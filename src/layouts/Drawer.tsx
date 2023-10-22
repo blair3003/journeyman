@@ -1,7 +1,11 @@
+import { useLayoutContext } from '../context/LayoutContext'
+
 const Drawer = () => {
 
+    const { drawerContent } = useLayoutContext()
+
     return (
-        <aside>Drawer</aside>
+        <aside>{drawerContent}</aside>
     )
 }
 

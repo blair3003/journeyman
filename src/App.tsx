@@ -3,11 +3,9 @@ import Layout from './layouts/Layout'
 function App() {
 
 	return (
-		<>
-			<Layout>
-				Main content
-			</Layout>
-		</>
+		<Layout>
+			Main content
+		</Layout>
 	)
 }
 
