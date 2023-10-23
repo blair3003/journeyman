@@ -2,8 +2,9 @@ import LayoutProvider from '../context/LayoutContext'
 import Drawer from './Drawer'
 import Header from './Header'
 import Sidebar from './Sidebar'
+import { Outlet } from 'react-router-dom'
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = () => {
 
     console.log(`Layout rendered`)
 
@@ -12,7 +13,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <Header />
             <main>
                 <Sidebar />
-                {children}
+                <Outlet />
                 <Drawer />
             </main>
         </LayoutProvider>
