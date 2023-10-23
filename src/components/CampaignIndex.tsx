@@ -2,13 +2,15 @@ import { useLayoutContext } from '../context/LayoutContext'
 
 const CampaignIndex = () => {
 
-    const { toggleDrawer } = useLayoutContext()    
+    console.log(`Campaign Index rendered`)
+
+    const { openDrawer } = useLayoutContext()    
 
     return (
         <section>
-            <button type="button" onClick={() => toggleDrawer(<div>Campaigns info</div>)}>Campaigns info</button>
-            <button type="button" onClick={() => toggleDrawer(<p>Other info</p>)}>Other info</button>
-            <button type="button" onClick={() => toggleDrawer()}>Clear</button>
+            <button type="button" onClick={() => openDrawer(<div>Campaigns info</div>)}>Campaigns info</button>
+            <button type="button" onClick={() => openDrawer(<p>Other info</p>)}>Other info</button>
+            <button type="button" onClick={() => openDrawer(null)}>Clear</button>
         </section>
     )
 }

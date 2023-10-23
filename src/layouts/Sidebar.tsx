@@ -1,5 +1,7 @@
 const Sidebar = () => {
 
+    console.log(`Sidebar rendered`)
+
     return (
         <aside>Sidebar</aside>
     )

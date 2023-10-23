@@ -1,30 +1,25 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext } from 'react'
+import useDrawer from '../hooks/useDrawer'
 
 const LayoutContext = createContext({})
 
 interface LayoutContextType {
-    isDrawerOpen: boolean
-    drawerContent: JSX.Element | null
-    toggleDrawer: (content?: JSX.Element) => null
+    drawer: Drawer
+    openDrawer: (content: JSX.Element | null) => void
+    closeDrawer: () => null
 }
 
 export const useLayoutContext = () => useContext(LayoutContext) as LayoutContextType
 
 const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
 
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-    const [drawerContent, setDrawerContent] = useState<JSX.Element | null>(null)
-
-    const toggleDrawer = (content: JSX.Element | null = null) => {
-        setDrawerContent(content)
-        setIsDrawerOpen(!!content)
-    }
+    const { drawer, openDrawer, closeDrawer } = useDrawer()
 
     return (
         <LayoutContext.Provider value={{
-            isDrawerOpen,
-            drawerContent,
-            toggleDrawer
+            drawer,
+            openDrawer,
+            closeDrawer
         }}>
             {children}
         </LayoutContext.Provider> 

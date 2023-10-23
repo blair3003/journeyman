@@ -5,6 +5,8 @@ import Sidebar from './Sidebar'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 
+    console.log(`Layout rendered`)
+
     return (
 		<LayoutProvider>
             <Header />
