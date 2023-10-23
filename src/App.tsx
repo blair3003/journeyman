@@ -3,6 +3,8 @@ import Layout from './layouts/Layout'
 
 function App() {
 
+	console.log(`App rendered`)
+
 	return (
 		<Layout>
 			<CampaignIndex />

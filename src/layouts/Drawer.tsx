@@ -1,11 +1,14 @@
 import { useLayoutContext } from '../context/LayoutContext'
 
 const Drawer = () => {
-
-    const { drawerContent } = useLayoutContext()
+    
+    const { isDrawerOpen, toggleDrawer, drawerContent } = useLayoutContext()
 
     return (
-        <aside>{drawerContent}</aside>
+        <aside data-visible={isDrawerOpen}>
+            <button type="button" onClick={() => toggleDrawer()}>Close</button>
+            {drawerContent}
+        </aside>
     )
 }
 
