@@ -10,7 +10,6 @@ const CampaignIndex = () => {
         <section>
             <button type="button" onClick={() => openDrawer(<div>Campaigns info</div>)}>Campaigns info</button>
             <button type="button" onClick={() => openDrawer(<p>Other info</p>)}>Other info</button>
-            <button type="button" onClick={() => openDrawer(null)}>Clear</button>
         </section>
     )
 }
