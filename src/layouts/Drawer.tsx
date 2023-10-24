@@ -7,10 +7,11 @@ const Drawer = () => {
     const { drawer, closeDrawer } = useLayoutContext()
 
     return (
-        <aside data-visible={drawer.open}>
+        {drawer &&
+        <aside>
             <button type="button" onClick={() => closeDrawer()}>Close</button>
-            {drawer.content}
-        </aside>
+            {drawer}
+        </aside>}
     )
 }
 
