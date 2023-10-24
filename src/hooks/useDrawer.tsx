@@ -2,10 +2,10 @@ import { useState } from 'react'
 
 const useDrawer = () => {
 
-    const [drawer, setDrawer] = useState<Drawer>({ content: null, open: false })
+    const [drawer, setDrawer] = useState<JSX.Element | null>(null)
 
-    const openDrawer = (content: JSX.Element | null) => setDrawer({ content, open: true })
-    const closeDrawer = () => setDrawer({ content: null, open: false })
+    const openDrawer = (content: JSX.Element) => setDrawer(content)
+    const closeDrawer = () => setDrawer(null)
 
     return { drawer, openDrawer, closeDrawer }
 }
