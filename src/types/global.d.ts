@@ -22,11 +22,8 @@ type Metabox = {
     id: string
     title: string
     type: 'checkbox' | 'date' | 'radio' | 'select'
-    options?: {
-        label: string
-        value: string
-    }
-    default?: string
+    options?: string[]
+    default?: any
     required?: boolean
 }
 
@@ -37,7 +34,10 @@ type Mission = {
     description: string
     users: string[]
     labels: string[]
-    metaboxes: string[]
+    metaboxes: [{
+        id: string
+        value: any
+    }]
     attachments: Attachment[]
     comments: Comment[]
     createdAt: Date
