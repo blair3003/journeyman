@@ -31,15 +31,26 @@ type Mission = {
     id: string
     campaign: string
     title: string
-    description: string
-    users: string[]
-    labels: string[]
-    metaboxes: [{
+    description?: string
+    objectives?: string[]
+    labels?: string[]
+    createdAt: Date
+    updatedAt: Date
+}
+
+type Objective = {
+    id: string
+    mission: string
+    title: string
+    description?: string
+    users?: string[]
+    labels?: string[]
+    metaboxes?: [{
         id: string
         value: any
     }]
-    attachments: Attachment[]
-    comments: Comment[]
+    attachments?: Attachment[]
+    comments?: Comment[]
     createdAt: Date
     updatedAt: Date
 }
@@ -70,5 +81,4 @@ type User = {
     displayName: string
     roles: string[]
     createdAt: Date
-    updatedAt: Date
 }
