@@ -1,10 +1,15 @@
+import { useAppContext } from '../context/AppContext'
 import { useLayoutContext } from '../context/LayoutContext'
 
-const CampaignIndex = () => {
+const Campaigns = () => {
 
-    console.log(`Campaign Index rendered`)
+    console.log(`Campaigns page rendered`)
 
-    const { openDrawer } = useLayoutContext()    
+    const { openDrawer } = useLayoutContext()
+    const { campaigns } = useAppContext()
+
+    console.log(campaigns)
+
 
     return (
         <section>
@@ -14,4 +19,4 @@ const CampaignIndex = () => {
     )
 }
 
-export default CampaignIndex
+export default Campaigns
