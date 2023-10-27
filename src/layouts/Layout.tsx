@@ -1,4 +1,4 @@
-import LayoutProvider from '../context/LayoutContext'
+import { LayoutProvider } from '../context/LayoutContext'
 import Drawer from './Drawer'
 import Header from './Header'
 import Sidebar from './Sidebar'
