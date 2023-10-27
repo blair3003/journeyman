@@ -4,7 +4,7 @@ import useDrawer from '../hooks/useDrawer'
 interface LayoutContextType {
     drawer: JSX.Element | null
     openDrawer: (content: JSX.Element) => void
-    closeDrawer: () => null
+    closeDrawer: () => void
 }
 
 const LayoutContext = createContext({})
