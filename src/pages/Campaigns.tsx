@@ -6,9 +6,11 @@ const Campaigns = () => {
     console.log(`Campaigns page rendered`)
 
     const { openDrawer } = useLayoutContext()
-    const { campaigns } = useAppContext()
+    const { campaigns, missions, objectives } = useAppContext()
 
     console.log(campaigns)
+    console.log(missions)
+    console.log(objectives)
 
 
     return (

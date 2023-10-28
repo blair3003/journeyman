@@ -1,8 +1,10 @@
 import { createContext, useContext } from 'react'
-import useCampaigns from '../hooks/useCampaigns'
+import useData from '../hooks/useData'
 
 interface AppContextType {
     campaigns: Campaign[]
+    missions: Mission[]
+    objectives: Objective[]
 }
 
 const AppContext = createContext({})
@@ -11,10 +13,12 @@ export const useAppContext = () => useContext(AppContext) as AppContextType
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
-    const { campaigns } = useCampaigns()
+    const { campaigns, missions, objectives } = useData()
 
     const value: AppContextType = {
-        campaigns
+        campaigns,
+        missions,
+        objectives
     }
 
     return (
