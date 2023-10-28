@@ -5,6 +5,8 @@ interface AppContextType {
     campaigns: Campaign[]
     missions: Mission[]
     objectives: Objective[]
+    isLoading: boolean
+    isError: boolean
 }
 
 const AppContext = createContext({})
@@ -13,12 +15,14 @@ export const useAppContext = () => useContext(AppContext) as AppContextType
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
-    const { campaigns, missions, objectives } = useData()
+    const { campaigns, missions, objectives, isLoading, isError } = useData()
 
     const value: AppContextType = {
         campaigns,
         missions,
-        objectives
+        objectives,
+        isLoading,
+        isError
     }
 
     return (

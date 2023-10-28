@@ -1,17 +1,17 @@
 interface Endpoints {
-	getCampaignsUrl: () => string
+	campaignsUrl: string
+	missionsUrl: string
+	objectivesUrl: string
 }
 
 const useEndpoints = (): Endpoints => {
 
     console.log(`useEndpoints rendered`)
 
-	// const baseUrl = ''
-	// const getCampaignsUrl = () => `${baseUrl}/campaigns`
-    const getCampaignsUrl = () => '/data/campaigns.json'
-
 	return {
-		getCampaignsUrl
+		campaignsUrl: '/data/campaigns.json',
+		missionsUrl: '/data/missions.json',
+		objectivesUrl: '/data/objectives.json',
 	}
 }
 
