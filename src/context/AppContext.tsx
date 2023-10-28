@@ -15,7 +15,7 @@ export const useAppContext = () => useContext(AppContext) as AppContextType
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
-    const { campaigns, missions, objectives, isLoading, isError } = useData()
+    const { resources: { campaigns, missions, objectives }, isLoading, isError } = useData()
 
     const value: AppContextType = {
         campaigns,

@@ -1,6 +1,12 @@
 import { useState } from 'react'
 
-const useDrawer = () => {
+interface Drawer {
+    drawer: JSX.Element | null;
+    openDrawer: (content: JSX.Element) => void;
+    closeDrawer: () => void;
+}
+
+const useDrawer = (): Drawer => {
 
     const [drawer, setDrawer] = useState<JSX.Element | null>(null)
 

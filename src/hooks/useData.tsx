@@ -1,10 +1,13 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import useEndpoints from './useEndpoints'
+import useDataReducer from './useDataReducer'
 
 interface Data {
-	campaigns: Campaign[]
-    missions: Mission[]
-    objectives: Objective[]
+	resources: {
+        campaigns: Campaign[]
+        missions: Mission[]
+        objectives: Objective[]
+    }
     isLoading: boolean
     isError: boolean
 }
@@ -13,57 +16,39 @@ const useData = (): Data => {
 
     console.log(`useData rendered`)
 
-    const [campaigns, setCampaigns] = useState<Campaign[]>([])
-    const [missions, setMissions] = useState<Mission[]>([])
-    const [objectives, setObjectives] = useState<Objective[]>([])
-
-    const [isLoading, setIsLoading] = useState(false) 
-    const [isError, setIsError] = useState(false) 
-
+    const { data, dispatchData } = useDataReducer()
     const { campaignsUrl, missionsUrl, objectivesUrl } = useEndpoints()
 
     const handleFetchData = useCallback(() => {
 		const controller = new AbortController();
 	    (async () => {
 			try {
-                setIsLoading(true)
+                dispatchData({ type: 'DATA_FETCH_INIT' })
                 const fetchPromise = async (url: string) => {
                     const response = await fetch(url, { signal: controller.signal })
                     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`)
                     console.log(`Fetched ${url}`)
                     return response.json()
                 }
-                const [campaignsData, missionsData, objectivesData] = await Promise.all([
+                const [campaigns, missions, objectives]: [Campaign[], Mission[], Objective[]] = await Promise.all([
                     fetchPromise(campaignsUrl),
                     fetchPromise(missionsUrl),
                     fetchPromise(objectivesUrl)
                 ])
-				setCampaigns(campaignsData)
-				setMissions(missionsData)
-				setObjectives(objectivesData)
-                setIsError(false)
-			} catch (err) {
-                setIsError(true)
-			} finally {
-                setIsLoading(false)
-            }
+                dispatchData({ type: 'DATA_FETCH_SUCCESS', payload: { campaigns, missions, objectives } })              
+			} catch (err: any) {
+                if (err.name !== 'AbortError') dispatchData({ type: 'DATA_FETCH_FAILURE' })
+			}
 	    })()
 	    return controller  
 	}, [campaignsUrl, missionsUrl, objectivesUrl])
 
 	useEffect(() => {
         const fetchData = handleFetchData()
-		return () => fetchData.abort()
-        
+		return () => fetchData.abort()        
 	}, [handleFetchData])
 
-    return {
-        campaigns,
-        missions,
-        objectives,
-        isLoading,
-        isError
-    }
+    return { ...data }
 }
 
 export default useData
