@@ -4,6 +4,7 @@ import useDataReducer from './useDataReducer'
 
 interface Data {
 	resources: {
+        users: User[]
         campaigns: Campaign[]
         missions: Mission[]
         objectives: Objective[]
@@ -17,7 +18,7 @@ const useData = (): Data => {
     console.log(`useData rendered`)
 
     const { data, dispatchData } = useDataReducer()
-    const { campaignsUrl, missionsUrl, objectivesUrl } = useEndpoints()
+    const { usersUrl, campaignsUrl, missionsUrl, objectivesUrl } = useEndpoints()
 
     const handleFetchData = useCallback(() => {
 		const controller = new AbortController();
@@ -30,18 +31,19 @@ const useData = (): Data => {
                     console.log(`Fetched ${url}`)
                     return response.json()
                 }
-                const [campaigns, missions, objectives]: [Campaign[], Mission[], Objective[]] = await Promise.all([
+                const [users, campaigns, missions, objectives]: [User[], Campaign[], Mission[], Objective[]] = await Promise.all([
+                    fetchPromise(usersUrl),
                     fetchPromise(campaignsUrl),
                     fetchPromise(missionsUrl),
                     fetchPromise(objectivesUrl)
                 ])
-                dispatchData({ type: 'DATA_FETCH_SUCCESS', payload: { campaigns, missions, objectives } })              
+                dispatchData({ type: 'DATA_FETCH_SUCCESS', payload: { users, campaigns, missions, objectives } })              
 			} catch (err: any) {
                 if (err.name !== 'AbortError') dispatchData({ type: 'DATA_FETCH_FAILURE' })
 			}
 	    })()
 	    return controller  
-	}, [campaignsUrl, missionsUrl, objectivesUrl])
+	}, [usersUrl, campaignsUrl, missionsUrl, objectivesUrl])
 
 	useEffect(() => {
         const fetchData = handleFetchData()

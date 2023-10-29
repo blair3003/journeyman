@@ -7,6 +7,7 @@ interface DataReducer {
 
 interface Data {
 	resources: {
+        users: User[]
         campaigns: Campaign[]
         missions: Mission[]
         objectives: Objective[]
@@ -45,6 +46,7 @@ const useDataReducer = (): DataReducer => {
     
     const dataInitial: Data = {
         resources: {
+            users: [],
             campaigns: [],
             missions: [],
             objectives: []

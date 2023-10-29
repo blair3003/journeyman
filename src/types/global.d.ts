@@ -79,6 +79,6 @@ type User = {
     username: string
     email: string
     displayName: string
-    roles: string[]
+    roles?: string[]
     createdAt: Date
 }

@@ -24,11 +24,11 @@ function App() {
 					<Route element={<Layout />}>
 						<Route path="c">
 							<Route index element={<Navigate to="/" replace />} />
-							<Route path=":id" element={<Campaign />} />
+							<Route path=":campaignId" element={<Campaign />} />
 						</Route>
 						<Route path="u">
 							<Route index element={<Navigate to="/" replace />} />
-							<Route path=":id">
+							<Route path=":userId">
 								<Route index element={<Profile />} />
 								<Route path="campaigns" element={<Campaigns />} />
 							</Route>

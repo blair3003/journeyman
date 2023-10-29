@@ -1,24 +1,28 @@
+import { Link, useParams } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
-import { useLayoutContext } from '../context/LayoutContext'
 
 const Campaigns = () => {
 
     console.log(`Campaigns page rendered`)
 
-    const { openDrawer } = useLayoutContext()
-    const { campaigns, missions, objectives, isLoading, isError } = useAppContext()
+    const { userId } = useParams()
+    const { users, campaigns } = useAppContext()
 
-    console.log(campaigns)
-    console.log(missions)
-    console.log(objectives)
+    const user: User | undefined = users.find(user => user.id === userId)
+    const myCampaigns: Campaign[] = (user?.id) ? campaigns.filter(campaign => campaign.users?.includes(user.id)) : []
 
 
     return (
         <section>
-            {isLoading && <p>LOADING</p>}
-            {isError && <p>ERROR</p>}
-            <button type="button" onClick={() => openDrawer(<div>Campaigns info</div>)}>Campaigns info</button>
-            <button type="button" onClick={() => openDrawer(<p>Other info</p>)}>Other info</button>
+            {user && <>
+                <h1>{user.displayName}'s Campaigns</h1>
+                                
+                <ul>
+                {myCampaigns.map(campaign => (
+                    <li key={campaign.id}><Link to={`/c/${campaign.id}`}>{campaign.title}</Link></li>
+                ))}
+                </ul>
+            </>}            
         </section>
     )
 }
