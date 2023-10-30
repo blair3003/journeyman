@@ -13,7 +13,7 @@ const useEndpoints = (): Endpoints => {
 		usersUrl: '/data/users.json',
 		campaignsUrl: '/data/campaigns.json',
 		missionsUrl: '/data/missions.json',
-		objectivesUrl: '/data/objectives.json',
+		objectivesUrl: '/data/objectives.json'
 	}
 }
 

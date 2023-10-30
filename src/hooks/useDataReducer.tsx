@@ -40,7 +40,7 @@ const useDataReducer = (): DataReducer => {
             case DataActionTypes.DATA_FETCH_FAILURE:
                 return { ...state, isLoading: false, isError: true }
             default:
-                return { ...state, isLoading: false, isError: false }
+                return { ...state }
         }
     }
     
