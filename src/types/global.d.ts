@@ -79,6 +79,7 @@ type User = {
     username: string
     email: string
     displayName: string
+    image?: string
     roles?: string[]
     createdAt: Date
 }
