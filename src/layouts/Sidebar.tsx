@@ -1,9 +1,11 @@
+import Navigation from '../components/Navigation'
+
 const Sidebar = () => {
 
-    console.log(`Sidebar rendered`)
-
     return (
-        <aside>Sidebar</aside>
+        <aside>
+            <Navigation />
+        </aside>
     )
 }
 

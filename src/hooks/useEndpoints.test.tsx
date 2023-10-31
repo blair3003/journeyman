@@ -7,7 +7,7 @@ describe('useEndpoints', () => {
 
 	it('should contain the required keys', () => {
         const { result } = renderHook(() => useEndpoints())
-        keys.forEach(keys => expect(result.current).toHaveProperty(keys))
+        keys.forEach(key => expect(result.current).toHaveProperty(key))
     })
 
 })

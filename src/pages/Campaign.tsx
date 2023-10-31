@@ -16,11 +16,11 @@ const Campaign = () => {
             {campaign && <>
                 <h1>{campaign.title}</h1>
 
-                <ul>
+                <ol>
                 {myMissions.map(mission => (
                     <li key={mission.id}>{mission.title}</li>
                 ))}
-                </ul>
+                </ol>
             </>}            
         </section>
     )

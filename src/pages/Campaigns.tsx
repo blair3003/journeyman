@@ -17,11 +17,11 @@ const Campaigns = () => {
             {user && <>
                 <h1>{user.displayName}'s Campaigns</h1>
                                 
-                <ul>
+                <ol>
                 {myCampaigns.map(campaign => (
                     <li key={campaign.id}><Link to={`/c/${campaign.id}`}>{campaign.title}</Link></li>
                 ))}
-                </ul>
+                </ol>
             </>}            
         </section>
     )

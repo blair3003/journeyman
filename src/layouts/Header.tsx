@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom'
+import HomeLink from '../components/HomeLink'
+import SearchBar from '../components/SearchBar'
 
 const Header = () => {
 
-    console.log(`Header rendered`)
-
     return (
         <header>
-            <Link to="/">Home</Link>
+            <HomeLink />
+            <SearchBar />
         </header>
     )
 }
