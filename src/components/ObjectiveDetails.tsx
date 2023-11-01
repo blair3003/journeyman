@@ -1,6 +1,10 @@
-const ObjectiveDetails = () => {
+interface ObjectiveDetailsProps {
+    objective: Objective
+}
 
-    return (<>ObjectiveDetails</>)
+const ObjectiveDetails = ({ objective }: ObjectiveDetailsProps) => {
+
+    return (<>{objective.title}</>)
 }
 
 export default ObjectiveDetails

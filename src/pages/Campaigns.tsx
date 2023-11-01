@@ -1,16 +1,21 @@
-import { Link, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 
 const Campaigns = () => {
 
     console.log(`Campaigns page rendered`)
 
+    const navigate = useNavigate()
     const { userId } = useParams()
     const { users, campaigns } = useAppContext()
 
     const user: User | undefined = users.find(user => user.id === userId)
-    const myCampaigns: Campaign[] = (user?.id) ? campaigns.filter(campaign => campaign.users?.includes(user.id)) : []
+    const myCampaigns: Campaign[] = (user) ? campaigns.filter(campaign => campaign.users?.includes(user.id)) : []
 
+    useEffect(() => {
+        if (users.length && !user) navigate('/')
+    }, [user, users, navigate])
 
     return (
         <section>
