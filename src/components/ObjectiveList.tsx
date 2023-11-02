@@ -11,7 +11,9 @@ const ObjectiveList = ({ objectives }: ObjectiveListProps) => {
 
 	const { openDrawer } = useLayoutContext()
 
-	const handleNewObjective = () => openDrawer(<CreateObjectiveForm />)
+	const missionId = objectives[0]?.mission
+
+	const handleNewObjective = () => openDrawer(<CreateObjectiveForm missionId={missionId} />)
 	
 	return (
 		<section className="flex flex-col">

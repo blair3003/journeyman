@@ -11,7 +11,9 @@ const MissionList = ({ missions }: MissionListProps) => {
 
 	const { openDrawer } = useLayoutContext()
 
-	const handleNewMission = () => openDrawer(<CreateMissionForm />)
+	const campaignId = missions[0]?.campaign
+
+	const handleNewMission = () => openDrawer(<CreateMissionForm campaignId={campaignId} />)
 
 	return (
 		<section className="flex">
