@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import debounce from 'lodash/debounce'
 
 interface MissionDetailsProps {
 	mission: Mission
@@ -16,19 +17,27 @@ const MissionDetails = ({ mission }: MissionDetailsProps) => {
 		register,
 		handleSubmit,
 		watch,
-		formState: { errors }
+		formState: { errors, isValid }
 	} = useForm<Inputs>({
-		title: mission.title,
-		description: mission.description || ''
+		defaultValues: {
+			title: mission.title,
+			description: mission.description || ''
+		},
+		mode: 'onChange'
 	})
 
-	// const onSubmit = (data: Inputs) => console.log(data)
+	const handleUpdateMission = debounce((data) => {
+		console.log(data)
+	}, 1000)
+
 
 	useEffect(() => {
-	    const subscription = watch((value, { name, type }) => console.log(value, name, type))
-	    // const subscription = watch(() => handleSubmit(onSubmit)())
-	    return () => subscription.unsubscribe()
-	}, [handleSubmit, watch])
+		if (!isValid) return
+		handleUpdateMission({
+			'title': watch('title'),
+			'description': watch('description')
+		})
+	}, [isValid, watch])
 	
 	return (
 		<section>
