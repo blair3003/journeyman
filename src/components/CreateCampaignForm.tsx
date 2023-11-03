@@ -28,27 +28,27 @@ const CreateCampaignForm = () => {
         setFocus('title')
     }, [setFocus])
 
-	return (		
-		<form onSubmit={handleSubmit(onSubmit)}>
-
-			{/*Title*/}
-			<div>
-				<div className="flex justify-between">
-					<label htmlFor="title">Title</label>
-					{(errors.title?.type === 'required') && <span>This field is required</span>}
+	return (	
+		<section>
+			<h2>Create Campaign</h2>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<div>
+					<div className="flex justify-between">
+						<label htmlFor="title">Title</label>
+						{(errors.title?.type === 'required') && <span>This field is required</span>}
+					</div>
+					<input
+						id="title"
+						type="text"
+						{...register("title", { required: true })}
+						aria-invalid={errors.title ? "true" : "false"}
+					/>
 				</div>
-				<input
-					id="title"
-					type="text"
-					{...register("title", { required: true })}
-					aria-invalid={errors.title ? "true" : "false"}
-				/>
-			</div>
-
-			<button disabled={isSubmitting}>
-				{isSubmitting ? <Loader /> : <span>Submit</span>}				
-			</button>
-		</form>
+				<button disabled={isSubmitting}>
+					{isSubmitting ? <Loader /> : <span>Submit</span>}				
+				</button>
+			</form>
+		</section>
 	)
 
 }
