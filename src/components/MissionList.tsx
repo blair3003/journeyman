@@ -1,7 +1,7 @@
 import { HiPlus } from 'react-icons/hi2'
 import { useLayoutContext } from '../context/LayoutContext'
 import Mission from './Mission'
-import CreateMissionForm from './CreateMissionForm'
+import CreateMission from './CreateMission'
 
 interface MissionListProps {
 	missions: Mission[]
@@ -13,7 +13,7 @@ const MissionList = ({ missions }: MissionListProps) => {
 
 	const campaignId = missions[0]?.campaign
 
-	const handleNewMission = () => openDrawer(<CreateMissionForm campaignId={campaignId} />)
+	const handleNewMission = () => openDrawer(<CreateMission campaignId={campaignId} />)
 
 	return (
 		<section className="flex">

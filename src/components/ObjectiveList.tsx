@@ -1,7 +1,7 @@
 import { useLayoutContext } from '../context/LayoutContext'
 import { HiPlus } from 'react-icons/hi2'
 import Objective from './Objective'
-import CreateObjectiveForm from './CreateObjectiveForm'
+import CreateObjective from './CreateObjective'
 
 interface ObjectiveListProps {
 	objectives: Objective[]
@@ -13,7 +13,7 @@ const ObjectiveList = ({ objectives }: ObjectiveListProps) => {
 
 	const missionId = objectives[0]?.mission
 
-	const handleNewObjective = () => openDrawer(<CreateObjectiveForm missionId={missionId} />)
+	const handleNewObjective = () => openDrawer(<CreateObjective missionId={missionId} />)
 	
 	return (
 		<section className="flex flex-col">

@@ -1,6 +1,8 @@
 import { HiEllipsisHorizontal } from 'react-icons/hi2'
 import { useAppContext } from '../context/AppContext'
 import ObjectiveList from './ObjectiveList'
+import MissionDetails from './MissionDetails'
+import { useLayoutContext } from '../context/LayoutContext'
 
 interface MissionProps {
 	mission: Mission
@@ -11,9 +13,14 @@ const Mission = ({ mission }: MissionProps) => {
 	const { objectives } = useAppContext()
 	const myObjectives: Objective[] = objectives.filter(objective => objective.mission === mission.id)
 
+	const { openDrawer } = useLayoutContext()
+
 	// TODO: MissionMenu
 	const handleMissionMenu = () => {
         console.log('MissionMenu open')
+
+		//temp
+		openDrawer(<MissionDetails mission={mission} />)
     }
 	
 	return (

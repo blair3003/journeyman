@@ -3,7 +3,7 @@ import Loader from './Loader'
 import { useLayoutContext } from '../context/LayoutContext'
 import { useEffect } from 'react'
 
-interface CreateMissionFormProps {
+interface CreateMissionProps {
 	campaignId: string
 }
 
@@ -12,7 +12,7 @@ interface Inputs {
 	description: string
 }
 
-const CreateMissionForm = ({ campaignId }: CreateMissionFormProps) => {
+const CreateMission = ({ campaignId }: CreateMissionProps) => {
 
 	const { closeDrawer } = useLayoutContext()
 
@@ -58,4 +58,4 @@ const CreateMissionForm = ({ campaignId }: CreateMissionFormProps) => {
 
 }
 
-export default CreateMissionForm
+export default CreateMission

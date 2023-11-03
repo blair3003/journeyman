@@ -3,7 +3,7 @@ import Loader from './Loader'
 import { useLayoutContext } from '../context/LayoutContext'
 import { useEffect } from 'react'
 
-interface CreateObjectiveFormProps {
+interface CreateObjectiveProps {
 	missionId: string
 }
 
@@ -12,7 +12,7 @@ interface Inputs {
 	description: string
 }
 
-const CreateObjectiveForm = ({ missionId }: CreateObjectiveFormProps) => {
+const CreateObjective = ({ missionId }: CreateObjectiveProps) => {
 
 	const { closeDrawer } = useLayoutContext()
 
@@ -58,4 +58,4 @@ const CreateObjectiveForm = ({ missionId }: CreateObjectiveFormProps) => {
 
 }
 
-export default CreateObjectiveForm
+export default CreateObjective

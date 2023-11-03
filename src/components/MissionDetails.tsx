@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import debounce from 'lodash/debounce'
 
@@ -15,7 +15,6 @@ const MissionDetails = ({ mission }: MissionDetailsProps) => {
 
 	const {
 		register,
-		handleSubmit,
 		watch,
 		formState: { errors, isValid }
 	} = useForm<Inputs>({
@@ -26,18 +25,27 @@ const MissionDetails = ({ mission }: MissionDetailsProps) => {
 		mode: 'onChange'
 	})
 
-	const handleUpdateMission = debounce((data) => {
-		console.log(data)
-	}, 1000)
+	const title = watch('title')
+	const description = watch('description')
 
+
+	// dont like this function at all
+	const handleUpdateMission = useRef(
+		debounce((data: Inputs) => {
+			console.log(`Updating Mission`)
+			console.log(data)
+		}, 1000)
+	).current
 
 	useEffect(() => {
+		// useEffect running on first render
+		// isValid doesnt work when title field is emptied
 		if (!isValid) return
 		handleUpdateMission({
-			'title': watch('title'),
-			'description': watch('description')
+			title,
+			description
 		})
-	}, [isValid, watch])
+	}, [isValid, title, description])
 	
 	return (
 		<section>

@@ -8,7 +8,7 @@ interface Inputs {
 	description: string
 }
 
-const CreateCampaignForm = () => {
+const CreateCampaign = () => {
 
 	const { closeDrawer } = useLayoutContext()
 
@@ -53,4 +53,4 @@ const CreateCampaignForm = () => {
 
 }
 
-export default CreateCampaignForm
+export default CreateCampaign
