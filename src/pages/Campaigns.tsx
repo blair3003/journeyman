@@ -14,7 +14,7 @@ const Campaigns = () => {
     const myCampaigns: Campaign[] = (user) ? campaigns.filter(campaign => campaign.users?.includes(user.id)) : []
 
     useEffect(() => {
-        if (users.length && !user) navigate('/')
+        // if (users.length && !user) navigate('/')
     }, [user, users, navigate])
 
     return (
