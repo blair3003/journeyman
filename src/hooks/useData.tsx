@@ -15,8 +15,6 @@ interface Data {
 
 const useData = (): Data => {
 
-    console.log(`useData rendered`)
-
     const { data, dispatchData } = useDataReducer()
     const { usersUrl, campaignsUrl, missionsUrl, objectivesUrl } = useEndpoints()
 
@@ -28,7 +26,6 @@ const useData = (): Data => {
                 const fetchPromise = async (url: string) => {
                     const response = await fetch(url, { signal: controller.signal })
                     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`)
-                    console.log(`Fetched ${url}`)
                     return response.json()
                 }
                 const [users, campaigns, missions, objectives]: [User[], Campaign[], Mission[], Objective[]] = await Promise.all([

@@ -1,3 +1,5 @@
+type FirebaseUser = import('firebase/auth').User
+
 type Campaign = {
     id: string
     title: string

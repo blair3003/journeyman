@@ -1,5 +1,5 @@
 import { HiEllipsisHorizontal } from 'react-icons/hi2'
-import { useAppContext } from '../context/AppContext'
+import { useDataContext } from '../context/DataContext'
 import ObjectiveList from './ObjectiveList'
 import MissionDetails from './MissionDetails'
 import { useLayoutContext } from '../context/LayoutContext'
@@ -10,7 +10,7 @@ interface MissionProps {
 
 const Mission = ({ mission }: MissionProps) => {
 
-	const { objectives } = useAppContext()
+	const { objectives } = useDataContext()
 	const myObjectives: Objective[] = objectives.filter(objective => objective.mission === mission.id)
 
 	const { openDrawer } = useLayoutContext()

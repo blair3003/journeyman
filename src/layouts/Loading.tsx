@@ -1,10 +1,8 @@
-import { useAppContext } from '../context/AppContext'
+import { useDataContext } from '../context/DataContext'
 
 const Loading = () => {
 
-    console.log(`Loading rendered`)
-
-    const { isLoading } = useAppContext()
+    const { isLoading } = useDataContext()
 
     return (
         <>

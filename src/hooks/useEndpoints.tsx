@@ -7,8 +7,6 @@ interface Endpoints {
 
 const useEndpoints = (): Endpoints => {
 
-    console.log(`useEndpoints rendered`)
-
 	return {
 		usersUrl: '/data/users.json',
 		campaignsUrl: '/data/campaigns.json',

@@ -74,7 +74,7 @@ const RegistrationForm = () => {
             </div>  
 
             <button disabled={isSubmitting} className="w-full p-4 mb-2 bg-gray-900 border-gray-300 border-2 rounded">
-				{isSubmitting ? <Loader size={16} /> : <span className="text-white uppercase font-bold text-xs">Register</span>}
+				{isSubmitting ? <Loader size={16} /> : <span className="text-white uppercase font-bold text-xs">Create Account</span>}
             </button>
         
         </form>

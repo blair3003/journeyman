@@ -1,10 +1,8 @@
-import { useAppContext } from '../context/AppContext'
+import { useDataContext } from '../context/DataContext'
 
 const Error = () => {
 
-    console.log(`Error rendered`)
-
-    const { isError } = useAppContext()
+    const { isError } = useDataContext()
 
     return (
         <>

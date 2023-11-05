@@ -1,16 +1,14 @@
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { HiChevronDown } from 'react-icons/hi2'
-import { useAppContext } from '../context/AppContext'
+import { useDataContext } from '../context/DataContext'
 import MissionList from '../components/MissionList'
 
 const Campaign = () => {
 
-    console.log(`Campaign page rendered`)
-
     const navigate = useNavigate()
     const { campaignId } = useParams()
-    const { campaigns, missions } = useAppContext()
+    const { campaigns, missions } = useDataContext()
 
     const campaign: Campaign | undefined = campaigns.find(campaign => campaign.id === campaignId)
     const myMissions: Mission[] = missions.filter(mission => mission.campaign === campaign?.id)
