@@ -29,8 +29,6 @@ enum DataActionTypes {
 
 const useDataReducer = (): DataReducer => {
     
-    console.log(`useDataReducer rendered`)
-    
     const dataReducer = (state: Data, action: DataAction): Data => {
         switch (action.type) {
             case DataActionTypes.DATA_FETCH_INIT:
