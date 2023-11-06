@@ -1,7 +1,17 @@
 type FirebaseUser = import('firebase/auth').User
 
+type User = {
+    uid: string
+    username: string
+    email: string
+    displayName: string
+    image?: string
+    roles?: string[]
+    createdAt: Date
+}
+
 type Campaign = {
-    id: string
+    uid: string
     title: string
     users?: string[]
     missions?: string[]
@@ -74,14 +84,4 @@ type Comment = {
     parent?: string
     createdAt: Date
     updatedAt: Date
-}
-
-type User = {
-    id: string
-    username: string
-    email: string
-    displayName: string
-    image?: string
-    roles?: string[]
-    createdAt: Date
 }

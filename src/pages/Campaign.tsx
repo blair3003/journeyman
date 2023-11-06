@@ -10,8 +10,8 @@ const Campaign = () => {
     const { campaignId } = useParams()
     const { campaigns, missions } = useDataContext()
 
-    const campaign: Campaign | undefined = campaigns.find(campaign => campaign.id === campaignId)
-    const myMissions: Mission[] = missions.filter(mission => mission.campaign === campaign?.id)
+    const campaign: Campaign | undefined = campaigns.find(campaign => campaign.uid === campaignId)
+    const myMissions: Mission[] = missions.filter(mission => mission.campaign === campaign?.uid)
 
     // TODO: CampaignAddMenu
     const handleCampaignAddMenu = () => {

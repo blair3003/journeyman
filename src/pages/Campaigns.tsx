@@ -1,34 +1,28 @@
 import { useEffect } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDataContext } from '../context/DataContext'
-import { useAuthContext } from '../context/AuthContext'
+import CampaignList from '../components/CampaignList'
 
 const Campaigns = () => {
 
     const navigate = useNavigate()
     const { userId } = useParams()
     const { users, campaigns } = useDataContext()
-    const { auth } = useAuthContext()
 
-    const user: User | undefined = users.find(user => user.id === userId)
-    const myCampaigns: Campaign[] = (user) ? campaigns.filter(campaign => campaign.users?.includes(user.id)) : []
+    const user: User | undefined = users.find(user => user.uid === userId)
+	const userCampaigns: Campaign[] = user ? campaigns.filter(campaign => campaign.users?.includes(user.uid)) : []
 
     useEffect(() => {
-        // if (users.length && !user) navigate('/')
+        if (users.length && !user) navigate('/')
     }, [user, users, navigate])
 
+    if (!user) return null
+
     return (
-        <section>
-            {auth && <>
-                <h1>{auth.displayName}'s Campaigns</h1>
-                                
-                <ol>
-                {myCampaigns.map(campaign => (
-                    <li key={campaign.id}><Link to={`/c/${campaign.id}`}>{campaign.title}</Link></li>
-                ))}
-                </ol>
-            </>}            
-        </section>
+		<section>
+			<h1>{user.displayName}'s Campaigns</h1>
+			<CampaignList campaigns={userCampaigns}/>
+		</section>
     )
 }
 
