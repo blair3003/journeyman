@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useLayoutContext } from '../context/LayoutContext'
 
 const Drawer = () => {
@@ -6,6 +7,14 @@ const Drawer = () => {
     const closeButtonStyle = `w-full p-4 text-right`
     
     const { drawer, closeDrawer } = useLayoutContext()
+
+    useEffect(() => {
+        const handleEscKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') closeDrawer()
+        }
+        window.addEventListener('keydown', handleEscKey)
+        return () => window.removeEventListener('keydown', handleEscKey)
+    }, [])
 
     return (
         <aside data-visible={!!drawer} className={drawerStyle}>

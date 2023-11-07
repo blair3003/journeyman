@@ -1,6 +1,6 @@
 import { useLayoutContext } from '../context/LayoutContext'
 import { HiPlus } from 'react-icons/hi2'
-import Objective from './Objective'
+import ObjectiveLink from './ObjectiveLink'
 import CreateObjective from './CreateObjective'
 
 interface ObjectiveListProps {
@@ -16,19 +16,21 @@ const ObjectiveList = ({ objectives }: ObjectiveListProps) => {
 	const handleNewObjective = () => openDrawer(<CreateObjective missionId={missionId} />)
 	
 	return (
-		<section className="flex flex-col">
+		<section>
 			<h4 className="sr-only">Objectives</h4>
-			<ol>
-			{objectives.map(objective => (
-				<li key={objective.id}>
-					<Objective objective={objective} />
-				</li>
-			))}
-	        </ol>
-			<button onClick={handleNewObjective}>
-				<span className="sr-only">New Objective</span>
-				<HiPlus />
-			</button>
+			<div className="flex flex-col">
+				<ol>
+				{objectives.map(objective => (
+					<li key={objective.uid}>
+						<ObjectiveLink objective={objective} />
+					</li>
+				))}
+				</ol>
+				<button onClick={handleNewObjective}>
+					<span className="sr-only">New Objective</span>
+					<HiPlus />
+				</button>
+			</div>
 		</section>
 	)
 }

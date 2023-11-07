@@ -16,19 +16,21 @@ const MissionList = ({ missions }: MissionListProps) => {
 	const handleNewMission = () => openDrawer(<CreateMission campaignId={campaignId} />)
 
 	return (
-		<section className="flex">
+		<section>
 			<h2 className="sr-only">Missions</h2>
-			<ol>
-			{missions.map(mission => (
-				<li key={mission.id}>
-					<Mission mission={mission} />
-				</li>
-			))}
-	        </ol>
-	        <button onClick={handleNewMission}>
-	        	<span className="sr-only">New Mission</span>
-	        	<HiPlus />
-	        </button>
+			<div className="flex">
+				<ol>
+				{missions.map(mission => (
+					<li key={mission.uid}>
+						<Mission mission={mission} />
+					</li>
+				))}
+				</ol>
+				<button onClick={handleNewMission}>
+					<span className="sr-only">New Mission</span>
+					<HiPlus />
+				</button>
+			</div>
 	    </section>
     )
 	

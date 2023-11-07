@@ -40,7 +40,7 @@ type Metabox = {
 }
 
 type Mission = {
-    id: string
+    uid: string
     campaign: string
     title: string
     description?: string
@@ -51,7 +51,7 @@ type Mission = {
 }
 
 type Objective = {
-    id: string
+    uid: string
     mission: string
     title: string
     description?: string

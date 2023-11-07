@@ -11,7 +11,7 @@ interface MissionProps {
 const Mission = ({ mission }: MissionProps) => {
 
 	const { objectives } = useDataContext()
-	const myObjectives: Objective[] = objectives.filter(objective => objective.mission === mission.id)
+	const myObjectives: Objective[] = objectives.filter(objective => objective.mission === mission.uid)
 
 	const { openDrawer } = useLayoutContext()
 
@@ -20,7 +20,7 @@ const Mission = ({ mission }: MissionProps) => {
         console.log('MissionMenu open')
 
 		//temp
-		openDrawer(<MissionDetails mission={mission} />)
+		// openDrawer(<MissionDetails mission={mission} />)
     }
 	
 	return (

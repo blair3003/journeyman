@@ -3,15 +3,17 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { HiChevronDown } from 'react-icons/hi2'
 import { useDataContext } from '../context/DataContext'
 import MissionList from '../components/MissionList'
+import ObjectiveModal from '../components/ObjectiveModal'
 
 const Campaign = () => {
 
     const navigate = useNavigate()
     const { campaignId } = useParams()
-    const { campaigns, missions } = useDataContext()
+    const { campaigns, missions, objectives } = useDataContext()
 
     const campaign: Campaign | undefined = campaigns.find(campaign => campaign.uid === campaignId)
-    const myMissions: Mission[] = missions.filter(mission => mission.campaign === campaign?.uid)
+    const userMissions: Mission[] = missions.filter(mission => mission.campaign === campaign?.uid)
+    const userObjectives: Objective[] = objectives.filter(objective => userMissions.some(mission => mission.uid === objective.mission))
 
     // TODO: CampaignAddMenu
     const handleCampaignAddMenu = () => {
@@ -31,7 +33,8 @@ const Campaign = () => {
                     <HiChevronDown />                        
                 </button>
             </header>
-            <MissionList missions={myMissions} />       
+            <MissionList missions={userMissions} />
+            <ObjectiveModal objectives={userObjectives}/>        
         </section>
     )
 }
