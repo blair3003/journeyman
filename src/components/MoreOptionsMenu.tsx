@@ -1,25 +1,45 @@
+import { useEffect, useRef } from 'react'
+import { HiXMark } from 'react-icons/hi2'
+
 interface MoreOptionsMenuProps {
-	handleClose: (e: React.MouseEvent<HTMLButtonElement>) => void
-	options: Record<string, () => void>
+	menu: Record<string, () => void> | null
+	onClose: () => void
 }
 
-const MoreOptionsMenu = ({ handleClose, options }: MoreOptionsMenuProps) => {
+const MoreOptionsMenu = ({ menu, onClose }: MoreOptionsMenuProps) => {
 
-    const handleOptionCallback = (e: React.MouseEvent<HTMLButtonElement>, callback: () => void) => {
-        e.preventDefault()
-        callback()
-        handleClose(e)
+	const menuRef = useRef<HTMLDialogElement | null>(null)
+
+    const handleClose = () => {
+        onClose()
+        menuRef.current?.close()
     }
+
+    const handleOptionCallback = (callback: () => void) => {
+        callback()
+        handleClose()
+    }
+
+	useEffect(() => {
+		(menu)
+		? menuRef.current?.show()
+		: menuRef.current?.close()
+	}, [menu])
+
+    if (!menu) return null
 	
 	return (
-        <div className="absolute bg-green-500">
+        <dialog ref={menuRef} className="absolute bg-green-500">
             <menu>
-                {Object.keys(options).map(option =>
-                    <li key={option}><button onClick={e => handleOptionCallback(e, options[option])}>{option}</button></li>
+                {Object.keys(menu).map(option =>
+                    <li key={option}><button onClick={e => {e.preventDefault(); handleOptionCallback(menu[option])}}>{option}</button></li>
                 )}
             </menu>
-            <button onClick={handleClose} className="w-full">Close</button>
-        </div>
+            <button onClick={e => {e.preventDefault(); handleClose()}} className="block w-full text-right">
+            	<span className="sr-only">Close</span>
+				<HiXMark />
+			</button>
+        </dialog>
 	)
 }
 

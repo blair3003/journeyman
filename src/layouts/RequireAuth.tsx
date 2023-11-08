@@ -5,9 +5,6 @@ const RequireAuth = () => {
 
     const { auth } = useAuthContext()
 
-    return <Outlet />
-
-    // Todo: Fix this - On reload, auth not set yet so redirecting to Login
     return (
         auth
 		? <Outlet />
