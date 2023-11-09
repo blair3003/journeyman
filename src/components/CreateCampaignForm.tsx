@@ -5,7 +5,7 @@ interface CreateCampaignFormProps {
 const CreateCampaignForm = ({ userId }: CreateCampaignFormProps) => {
 
 	return (
-		<>CreateCampaignForm</>
+		<>CreateCampaignForm #U {userId}</>
 	)
 }
 
