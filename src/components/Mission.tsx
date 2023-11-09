@@ -3,6 +3,8 @@ import { useDataContext } from '../context/DataContext'
 import ObjectiveList from './ObjectiveList'
 import MissionDetails from './MissionDetails'
 import { useLayoutContext } from '../context/LayoutContext'
+import useMoreOptionsMenu from '../hooks/useMoreOptionsMenu'
+import MoreOptionsMenu from './MoreOptionsMenu'
 
 interface MissionProps {
 	mission: Mission
@@ -11,28 +13,26 @@ interface MissionProps {
 const Mission = ({ mission }: MissionProps) => {
 
 	const { objectives } = useDataContext()
-	const myObjectives: Objective[] = objectives.filter(objective => objective.mission === mission.uid)
+	const missionObjectives: Objective[] = objectives.filter(objective => objective.mission === mission.uid)
 
 	const { openDrawer } = useLayoutContext()
-
-	// TODO: MissionMenu
-	const handleMissionMenu = () => {
-        console.log('MissionMenu open')
-
-		//temp
-		// openDrawer(<MissionDetails mission={mission} />)
-    }
+	const { menu, openMenu, closeMenu } = useMoreOptionsMenu({
+        	'Mission Details': () => openDrawer(<MissionDetails mission={mission} />)
+    	})
 	
 	return (
 		<section className="flex flex-col">
 			<header className="flex justify-between items-start">
 				<h3>{mission.title}</h3>
-				<button onClick={handleMissionMenu}>
-					<span className="sr-only">Mission Menu</span>
-					<HiEllipsisHorizontal />
-				</button>
+				<div className="relative">
+					<button onClick={e => {e.preventDefault(); openMenu()}}>
+						<span className="sr-only">Mission Menu</span>
+						<HiEllipsisHorizontal />
+					</button>
+					<MoreOptionsMenu menu={menu} onClose={closeMenu} />
+				</div>
 			</header>
-			<ObjectiveList objectives={myObjectives} />
+			<ObjectiveList objectives={missionObjectives} />
 		</section>
 	)
 }
