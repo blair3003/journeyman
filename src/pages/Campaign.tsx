@@ -13,7 +13,7 @@ const Campaign = () => {
 
     const campaign: Campaign | undefined = campaigns.find(campaign => campaign.uid === campaignId)
     const userMissions: Mission[] = missions.filter(mission => mission.campaign === campaign?.uid)
-    const userObjectives: Objective[] = objectives.filter(objective => userMissions.some(mission => mission.uid === objective.mission))
+    const missionObjectives: Objective[] = objectives.filter(objective => userMissions.some(mission => mission.uid === objective.mission))
 
     // TODO: CampaignAddMenu
     const handleCampaignAddMenu = () => {
@@ -34,7 +34,7 @@ const Campaign = () => {
                 </button>
             </header>
             <MissionList missions={userMissions} />
-            <ObjectiveModal objectives={userObjectives}/>        
+            <ObjectiveModal objectives={missionObjectives}/>        
         </section>
     )
 }
