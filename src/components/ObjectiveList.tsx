@@ -1,7 +1,6 @@
-import { useLayoutContext } from '../context/LayoutContext'
+import { Link } from 'react-router-dom'
 import { HiPlus } from 'react-icons/hi2'
 import ObjectiveLink from './ObjectiveLink'
-import CreateObjective from './CreateObjective'
 
 interface ObjectiveListProps {
 	objectives: Objective[]
@@ -9,11 +8,7 @@ interface ObjectiveListProps {
 
 const ObjectiveList = ({ objectives }: ObjectiveListProps) => {
 
-	const { openDrawer } = useLayoutContext()
-
 	const missionId = objectives[0]?.mission
-
-	const handleNewObjective = () => openDrawer(<CreateObjective missionId={missionId} />)
 	
 	return (
 		<section>
@@ -26,10 +21,10 @@ const ObjectiveList = ({ objectives }: ObjectiveListProps) => {
 					</li>
 				))}
 				</ol>
-				<button onClick={handleNewObjective}>
-					<span className="sr-only">New Objective</span>
+				<Link to={`?createObjective=${missionId}`}>
+					<span className="sr-only">New Mission</span>
 					<HiPlus />
-				</button>
+				</Link>
 			</div>
 		</section>
 	)

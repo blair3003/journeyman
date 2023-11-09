@@ -29,7 +29,7 @@ const MoreOptionsMenu = ({ menu, onClose }: MoreOptionsMenuProps) => {
     if (!menu) return null
 	
 	return (
-        <dialog ref={menuRef} className="absolute bg-green-500">
+        <dialog ref={menuRef} className="absolute m-0 start-0 bg-green-500">
             <menu>
                 {Object.keys(menu).map(option =>
                     <li key={option}><button onClick={e => {e.preventDefault(); handleOptionCallback(menu[option])}}>{option}</button></li>

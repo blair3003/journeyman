@@ -1,19 +1,12 @@
+import { Link } from 'react-router-dom'
 import { HiPlus } from 'react-icons/hi2'
-import { useLayoutContext } from '../context/LayoutContext'
 import Mission from './Mission'
-import CreateMission from './CreateMission'
 
 interface MissionListProps {
 	missions: Mission[]
 }
 
 const MissionList = ({ missions }: MissionListProps) => {
-
-	const { openDrawer } = useLayoutContext()
-
-	const campaignId = missions[0]?.campaign
-
-	const handleNewMission = () => openDrawer(<CreateMission campaignId={campaignId} />)
 
 	return (
 		<section>
@@ -26,10 +19,10 @@ const MissionList = ({ missions }: MissionListProps) => {
 					</li>
 				))}
 				</ol>
-				<button onClick={handleNewMission}>
+				<Link to="?createMission">
 					<span className="sr-only">New Mission</span>
 					<HiPlus />
-				</button>
+				</Link>
 			</div>
 	    </section>
     )
