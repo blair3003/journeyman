@@ -21,7 +21,7 @@ const CreateMissionModal = ({ campaignId }: CreateMissionModalProps) => {
 
 	return (
 		<Modal title="Create Mission" onClose={onClose}>
-			<CreateMissionForm campaignId={campaignId} />
+			<CreateMissionForm campaignId={campaignId} onSubmit={onClose} />
 		</Modal>
 	)
 }

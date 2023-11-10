@@ -23,7 +23,7 @@ const CreateObjectiveModal = ({ missions }: CreateObjectiveModalProps) => {
 
 	return (
 		<Modal title="Create Objective" onClose={onClose}>
-			<CreateObjectiveForm missionId={mission?.uid} />
+			<CreateObjectiveForm missions={missions} missionId={mission?.uid} onSubmit={onClose} />
 		</Modal>
 	)
 }

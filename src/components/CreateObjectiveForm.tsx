@@ -1,11 +1,63 @@
+import { useEffect } from 'react'
+import { useForm, FieldValues } from 'react-hook-form'
+import Input from './Input'
+import SubmitButton from './SubmitButton'
+import Select from './Select'
+
 interface CreateObjectiveFormProps {
+	missions: Mission[]
 	missionId?: string
+	onSubmit?: () => void
 }
 
-const CreateObjectiveForm = ({ missionId }: CreateObjectiveFormProps) => {
+const CreateObjectiveForm = ({ missions, missionId, onSubmit }: CreateObjectiveFormProps) => {
+
+	const {
+		register,
+		handleSubmit,
+        setFocus,
+		formState: { errors, isSubmitting }
+	} = useForm<FieldValues>({
+		defaultValues: {
+			mission: missionId
+		}
+	})
+
+	const createObjective = async (data: FieldValues) => {
+		try {
+			console.log({ ...data })
+			if (onSubmit) onSubmit()
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
+	useEffect(() => {
+	    setFocus('title')
+	}, [setFocus])
 
 	return (
-		<>CreateObjectiveForm {missionId ? `M# ${missionId}` : null}</>
+		<form onSubmit={handleSubmit(createObjective)}>
+			<Input
+				id="title"
+				label="Title"
+				register={register}
+				errors={errors}
+				required={true}
+				disabled={isSubmitting}
+			/>
+			<Select
+				id="mission"
+				label="Mission"
+				register={register}
+				options={missions.map(mission => ({ label: mission.title, value: mission.uid }))}
+				defaultOptionLabel="--Please choose a mission--"
+				errors={errors}
+				required={true}
+				disabled={isSubmitting}
+			/>
+			<SubmitButton disabled={isSubmitting} label="Create" />
+		</form>
 	)
 }
 

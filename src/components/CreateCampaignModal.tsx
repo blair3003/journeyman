@@ -21,7 +21,7 @@ const CreateCampaignModal = ({ userId }: CreateCampaignModalProps) => {
 
 	return (
 		<Modal title="Create Campaign" onClose={onClose}>
-			<CreateCampaignForm userId={userId} />
+			<CreateCampaignForm userId={userId} onSubmit={onClose} />
 		</Modal>
 	)
 }

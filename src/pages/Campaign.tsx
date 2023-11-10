@@ -20,8 +20,8 @@ const Campaign = () => {
     })
 
     const campaign: Campaign | undefined = campaigns.find(campaign => campaign.uid === campaignId)
-    const userMissions: Mission[] = missions.filter(mission => mission.campaign === campaign?.uid)
-    const missionObjectives: Objective[] = objectives.filter(objective => userMissions.some(mission => mission.uid === objective.mission))
+    const campaignMissions: Mission[] = missions.filter(mission => mission.campaign === campaign?.uid)
+    const missionObjectives: Objective[] = objectives.filter(objective => campaignMissions.some(mission => mission.uid === objective.mission))
 
     useEffect(() => {
         if (campaigns.length && !campaign) navigate('/')
@@ -41,10 +41,10 @@ const Campaign = () => {
                     <MoreOptionsMenu menu={menu} onClose={closeMenu} />
                 </div>
             </header>
-            <MissionList missions={userMissions} />
+            <MissionList missions={campaignMissions} />
             <ObjectiveModal objectives={missionObjectives}/>
             <CreateMissionModal campaignId={campaign.uid}/>
-            <CreateObjectiveModal missions={userMissions}/>
+            <CreateObjectiveModal missions={campaignMissions}/>
         </section>
     )
 }

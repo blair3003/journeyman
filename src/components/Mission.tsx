@@ -32,7 +32,7 @@ const Mission = ({ mission }: MissionProps) => {
 					<MoreOptionsMenu menu={menu} onClose={closeMenu} />
 				</div>
 			</header>
-			<ObjectiveList objectives={missionObjectives} />
+			<ObjectiveList missionId={mission.uid} objectives={missionObjectives} />
 		</section>
 	)
 }

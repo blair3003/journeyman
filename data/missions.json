@@ -14,5 +14,15 @@
 		],
 		"createdAt": "2023-10-26T10:23:27.273Z",
 		"updatedAt": "2023-10-26T10:23:27.273Z"
+	},
+	{
+		"uid": "8f0903c697473356b368",
+		"campaign": "bf6ba677662aa18e50b1",
+		"title": "Analysis & Design",
+		"description": "Create a schema and define the relationships between models",
+		"objectives": [],
+		"labels": [],
+		"createdAt": "2023-10-26T10:23:27.273Z",
+		"updatedAt": "2023-10-26T10:23:27.273Z"
 	}
 ]

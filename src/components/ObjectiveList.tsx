@@ -3,12 +3,11 @@ import { HiPlus } from 'react-icons/hi2'
 import ObjectiveLink from './ObjectiveLink'
 
 interface ObjectiveListProps {
+	missionId: string
 	objectives: Objective[]
 }
 
-const ObjectiveList = ({ objectives }: ObjectiveListProps) => {
-
-	const missionId = objectives[0]?.mission
+const ObjectiveList = ({ missionId, objectives }: ObjectiveListProps) => {
 	
 	return (
 		<section>
@@ -22,7 +21,7 @@ const ObjectiveList = ({ objectives }: ObjectiveListProps) => {
 				))}
 				</ol>
 				<Link to={`?createObjective=${missionId}`}>
-					<span className="sr-only">New Mission</span>
+					<span className="sr-only">New Objective</span>
 					<HiPlus />
 				</Link>
 			</div>
