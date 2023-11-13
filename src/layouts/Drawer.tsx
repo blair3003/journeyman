@@ -1,13 +1,17 @@
 import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useLayoutContext } from '../context/LayoutContext'
 
 const Drawer = () => {
 
+    const location = useLocation()
     const { drawer, closeDrawer } = useLayoutContext()
 
     const handleEscKey = (e: KeyboardEvent) => {
         if (e.key === 'Escape') closeDrawer()
     }
+
+    useEffect(() => closeDrawer(), [location])
 
     useEffect(() => {
         window.addEventListener('keydown', handleEscKey)

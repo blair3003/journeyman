@@ -5,6 +5,7 @@ import MissionDetails from './MissionDetails'
 import { useLayoutContext } from '../context/LayoutContext'
 import useMoreOptionsMenu from '../hooks/useMoreOptionsMenu'
 import MoreOptionsMenu from './MoreOptionsMenu'
+import EditMissionDetails from './EditMissionDetails'
 
 interface MissionProps {
 	mission: Mission
@@ -17,7 +18,8 @@ const Mission = ({ mission }: MissionProps) => {
 
 	const { openDrawer } = useLayoutContext()
 	const { menu, openMenu, closeMenu } = useMoreOptionsMenu({
-        	'Mission Details': () => openDrawer(<MissionDetails mission={mission} />)
+        	'Mission Details': () => openDrawer(<MissionDetails mission={mission} />),
+        	'Edit Mission': () => openDrawer(<EditMissionDetails mission={mission} />)
     	})
 	
 	return (

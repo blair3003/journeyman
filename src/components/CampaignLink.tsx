@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { HiEllipsisHorizontal } from 'react-icons/hi2'
 import { useLayoutContext } from '../context/LayoutContext'
 import CampaignDetails from './CampaignDetails'
-import EditCampaign from './EditCampaign'
+import EditCampaignDetails from './EditCampaignDetails'
 import useMoreOptionsMenu from '../hooks/useMoreOptionsMenu'
 import MoreOptionsMenu from './MoreOptionsMenu'
 
@@ -15,7 +15,7 @@ const CampaignLink = ({ campaign }: CampaignLinkProps) => {
     const { openDrawer } = useLayoutContext()
     const { menu, openMenu, closeMenu } = useMoreOptionsMenu({
         'Campaign Details': () => openDrawer(<CampaignDetails campaign={campaign} />),
-        'Edit Campaign': () => openDrawer(<EditCampaign campaign={campaign} />)
+        'Edit Campaign': () => openDrawer(<EditCampaignDetails campaign={campaign} />)
     })
 
     return (
