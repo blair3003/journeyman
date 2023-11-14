@@ -1,5 +1,5 @@
 import { Navigate, Routes, Route } from 'react-router-dom'
-import { AuthProvider } from './context/AuthContext'
+import { AppProvider } from './context/AppContext'
 import Layout from './layouts/Layout'
 import Campaign from './pages/Campaign'
 import Campaigns from './pages/Campaigns'
@@ -15,7 +15,7 @@ import Data from './layouts/Data'
 function App() {
 
 	return (
-		<AuthProvider>
+		<AppProvider>
 			<Routes>
 				<Route path="/" element={<Auth />}>
 					<Route index element={<Home />} />
@@ -44,7 +44,7 @@ function App() {
 					<Route path="*" element={<Navigate to="/" replace />} />
 				</Route>
 			</Routes>
-		</AuthProvider>
+		</AppProvider>
 	)
 }
 
