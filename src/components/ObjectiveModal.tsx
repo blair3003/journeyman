@@ -21,7 +21,7 @@ const ObjectiveModal = ({ objectives }: ObjectiveModalProps) => {
 	if (!objective) return null
 
 	return (
-		<Modal title={objective.title} onClose={onClose}>
+		<Modal title={`Objective #${objective.uid}`} onClose={onClose}>
 			<Objective objective={objective} />
 		</Modal>
 	)
