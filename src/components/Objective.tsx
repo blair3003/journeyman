@@ -1,3 +1,5 @@
+import ObjectiveForm from './ObjectiveForm'
+
 interface ObjectiveProps {
 	objective: Objective
 }
@@ -5,9 +7,7 @@ interface ObjectiveProps {
 const Objective = ({ objective }: ObjectiveProps) => {
 
 	return (
-		<div>
-			<p>{objective.description}</p>
-		</div>
+		<ObjectiveForm objective={objective} />
 	)
 }
 
