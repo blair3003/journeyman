@@ -3,6 +3,7 @@ import useAuth from '../hooks/useAuth'
 
 interface AuthContextType {
     auth: FirebaseUser | null
+    pending: boolean
 }
 
 const AuthContext = createContext({})
@@ -11,10 +12,11 @@ export const useAuthContext = () => useContext(AuthContext) as AuthContextType
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
-    const auth = useAuth()
+    const { authUser: auth, pending } = useAuth()
 
     const value: AuthContextType = {
-        auth
+        auth,
+        pending
     }
 
     return (
