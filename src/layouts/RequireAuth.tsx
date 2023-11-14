@@ -1,16 +1,29 @@
+import { useEffect, useState } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import { useAuthContext } from '../context/AuthContext'
+import { onAuthStateChanged } from 'firebase/auth'
 
 const RequireAuth = () => {
 
-    const { auth } = useAuthContext()
+	const [authenticated, setAuthenticated] = useState(false)
+	const [pending, setPending] = useState(true)
 
-    return (
-        auth
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, user => {
+			user
+			? setAuthenticated(true)
+			: setAuthenticated(false)
+			setPending(false)
+		})
+		return () => unsubscribe()
+	}, [])
+
+	if (pending) return null
+
+	return (
+        	authenticated
 		? <Outlet />
-        : <Navigate to="/login" replace />
-    )
-
+        	: <Navigate to="/login" replace />
+	)
 }
 
 export default RequireAuth
