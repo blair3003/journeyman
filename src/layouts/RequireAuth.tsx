@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext'
 
@@ -9,9 +8,9 @@ const RequireAuth = () => {
 	if (pending) return null
 
 	return (
-        	auth
+		auth
 		? <Outlet />
-        	: <Navigate to="/login" replace />
+        : <Navigate to="/login" replace />
 	)
 }
 

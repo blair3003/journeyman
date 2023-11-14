@@ -14,8 +14,7 @@ const ObjectiveForm = ({ objective }: ObjectiveFormProps) => {
 		register,
 		watch,
 		handleSubmit,
-		setError,
-		formState: { errors, isSubmitting }
+		formState: { errors }
 	} = useForm<FieldValues>({
 		mode: 'onChange',
 		defaultValues: {
@@ -33,17 +32,13 @@ const ObjectiveForm = ({ objective }: ObjectiveFormProps) => {
 
 	const debouncedUpdate = useCallback(
 		debounce((data: FieldValues) => {
-			console.log('debouncing')
+			// console.log('debouncing')
 			updateObjective(data)
 		}, 1000), [updateObjective]
 	)
 
 	useEffect(() => {
-		const subscription = watch((value, { name, type }) => {
-			console.log('Input updated')
-			console.log(value, name, type)
-			handleSubmit(debouncedUpdate)()
-		})
+		const subscription = watch(() => handleSubmit(debouncedUpdate)())
     	return () => subscription.unsubscribe()
 	}, [watch, handleSubmit])
 
