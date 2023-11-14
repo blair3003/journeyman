@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
-import Modal from './Modal'
+import Modal from '../../../components/Modal'
 import CreateObjectiveForm from './CreateObjectiveForm'
 
 interface CreateObjectiveModalProps {

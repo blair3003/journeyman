@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from 'react'
 import { useForm, FieldValues } from 'react-hook-form'
 import debounce from 'lodash/debounce'
-import Input from './Input'
-import Textarea from './Textarea'
+import Input from '../../../components/Input'
+import Textarea from '../../../components/Textarea'
 
 interface ObjectiveFormProps {
 	objective: Objective
@@ -30,15 +30,13 @@ const ObjectiveForm = ({ objective }: ObjectiveFormProps) => {
 		}
 	}
 
-	const debouncedUpdate = useCallback(
-		debounce((data: FieldValues) => {
-			// console.log('debouncing')
-			updateObjective(data)
-		}, 1000), [updateObjective]
+	const debounceUpdate = useCallback(
+		debounce((data: FieldValues) => updateObjective(data), 1000),
+		[updateObjective]
 	)
 
 	useEffect(() => {
-		const subscription = watch(() => handleSubmit(debouncedUpdate)())
+		const subscription = watch(() => handleSubmit(debounceUpdate)())
     	return () => subscription.unsubscribe()
 	}, [watch, handleSubmit])
 

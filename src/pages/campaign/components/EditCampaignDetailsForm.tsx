@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useForm, FieldValues } from 'react-hook-form'
-import Input from './Input'
-import SubmitButton from './SubmitButton'
+import Input from '../../../components/Input'
+import SubmitButton from '../../../components/SubmitButton'
 
 interface EditCampaignDetailsFormProps {
     campaign: Campaign

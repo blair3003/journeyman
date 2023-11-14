@@ -1,4 +1,4 @@
-import { useLayoutContext } from '../context/LayoutContext'
+import { useLayoutContext } from '../../../context/LayoutContext'
 import EditCampaignDetailsForm from './EditCampaignDetailsForm'
 import CampaignDetails from './CampaignDetails'
 

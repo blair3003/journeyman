@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 import CreateMissionForm from './CreateMissionForm'
-import Modal from './Modal'
+import Modal from '../../../components/Modal'
 
 interface CreateMissionModalProps {
 	campaignId: string

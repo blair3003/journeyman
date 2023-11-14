@@ -1,20 +1,20 @@
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { HiChevronDown } from 'react-icons/hi2'
-import { useDataContext } from '../context/DataContext'
-import MissionList from '../components/MissionList'
-import ObjectiveModal from '../components/ObjectiveModal'
-import MoreOptionsMenu from '../components/MoreOptionsMenu'
-import useMoreOptionsMenu from '../hooks/useMoreOptionsMenu'
-import CreateMissionModal from '../components/CreateMissionModal'
-import CreateObjectiveModal from '../components/CreateObjectiveModal'
+import { useDataContext } from '../../context/DataContext'
+import Menu from '../../components/Menu'
+import useMenu from '../../hooks/useMenu'
+import CreateMissionModal from './components/CreateMissionModal'
+import CreateObjectiveModal from './components/CreateObjectiveModal'
+import MissionList from './components/MissionList'
+import ObjectiveModal from './components/ObjectiveModal'
 
 const Campaign = () => {
 
     const navigate = useNavigate()
     const { campaignId } = useParams()
     const { campaigns, missions, objectives } = useDataContext()
-    const { menu, openMenu, closeMenu } = useMoreOptionsMenu({
+    const { menu, openMenu, closeMenu } = useMenu({
         'Create Mission': () => navigate('?createMission'),
         'Create Objective': () => navigate('?createObjective')
     })
@@ -38,7 +38,7 @@ const Campaign = () => {
                         <span>Add</span>
                         <HiChevronDown />                        
                     </button>
-                    <MoreOptionsMenu menu={menu} onClose={closeMenu} />
+                    <Menu menu={menu} onClose={closeMenu} />
                 </div>
             </header>
             <MissionList missions={campaignMissions} />

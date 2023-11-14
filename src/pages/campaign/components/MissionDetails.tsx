@@ -1,5 +1,5 @@
 import { HiPencil } from 'react-icons/hi2'
-import { useLayoutContext } from '../context/LayoutContext'
+import { useLayoutContext } from '../../../context/LayoutContext'
 import EditMissionDetails from './EditMissionDetails'
 
 interface MissionDetailsProps {

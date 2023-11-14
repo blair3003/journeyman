@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
 import { HiXMark } from 'react-icons/hi2'
 
-interface MoreOptionsMenuProps {
+interface MenuProps {
 	menu: Record<string, () => void> | null
 	onClose: () => void
 }
 
-const MoreOptionsMenu = ({ menu, onClose }: MoreOptionsMenuProps) => {
+const Menu = ({ menu, onClose }: MenuProps) => {
 
 	const menuRef = useRef<HTMLDialogElement | null>(null)
 
@@ -43,4 +43,4 @@ const MoreOptionsMenu = ({ menu, onClose }: MoreOptionsMenuProps) => {
 	)
 }
 
-export default MoreOptionsMenu
+export default Menu

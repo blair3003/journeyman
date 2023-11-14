@@ -2,13 +2,13 @@ import { useForm, FieldValues } from 'react-hook-form'
 import { FaGoogle } from 'react-icons/fa6'
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
-import { auth } from '../config/firebase'
-import Loader from './Loader'
+import { auth } from '../../../config/firebase'
+import Loader from '../../../components/Loader'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import { useAuthContext } from '../context/AuthContext'
-import Input from './Input'
-import SubmitButton from './SubmitButton'
+import { useAuthContext } from '../../../context/AuthContext'
+import Input from '../../../components/Input'
+import SubmitButton from '../../../components/SubmitButton'
 
 const LoginForm = () => {
 

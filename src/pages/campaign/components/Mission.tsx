@@ -1,11 +1,11 @@
 import { HiEllipsisHorizontal } from 'react-icons/hi2'
-import { useDataContext } from '../context/DataContext'
+import { useDataContext } from '../../../context/DataContext'
+import { useLayoutContext } from '../../../context/LayoutContext'
 import ObjectiveList from './ObjectiveList'
 import MissionDetails from './MissionDetails'
-import { useLayoutContext } from '../context/LayoutContext'
-import useMoreOptionsMenu from '../hooks/useMoreOptionsMenu'
-import MoreOptionsMenu from './MoreOptionsMenu'
 import EditMissionDetails from './EditMissionDetails'
+import useMenu from '../../../hooks/useMenu'
+import Menu from '../../../components/Menu'
 
 interface MissionProps {
 	mission: Mission
@@ -17,7 +17,7 @@ const Mission = ({ mission }: MissionProps) => {
 	const missionObjectives: Objective[] = objectives.filter(objective => objective.mission === mission.uid)
 
 	const { openDrawer } = useLayoutContext()
-	const { menu, openMenu, closeMenu } = useMoreOptionsMenu({
+	const { menu, openMenu, closeMenu } = useMenu({
         	'Mission Details': () => openDrawer(<MissionDetails mission={mission} />),
         	'Edit Mission': () => openDrawer(<EditMissionDetails mission={mission} />)
     	})
@@ -31,7 +31,7 @@ const Mission = ({ mission }: MissionProps) => {
 						<span className="sr-only">Mission Menu</span>
 						<HiEllipsisHorizontal />
 					</button>
-					<MoreOptionsMenu menu={menu} onClose={closeMenu} />
+					<Menu menu={menu} onClose={closeMenu} />
 				</div>
 			</header>
 			<ObjectiveList missionId={mission.uid} objectives={missionObjectives} />

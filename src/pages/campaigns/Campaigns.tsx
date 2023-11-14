@@ -1,18 +1,18 @@
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useDataContext } from '../context/DataContext'
-import CampaignList from '../components/CampaignList'
-import CreateCampaignModal from '../components/CreateCampaignModal'
-import useMoreOptionsMenu from '../hooks/useMoreOptionsMenu'
-import MoreOptionsMenu from '../components/MoreOptionsMenu'
 import { HiChevronDown } from 'react-icons/hi2'
+import { useDataContext } from '../../context/DataContext'
+import CampaignList from './components/CampaignList'
+import CreateCampaignModal from './components/CreateCampaignModal'
+import useMenu from '../../hooks/useMenu'
+import Menu from '../../components/Menu'
 
 const Campaigns = () => {
 
     const navigate = useNavigate()
     const { userId } = useParams()
     const { users, campaigns } = useDataContext()
-    const { menu, openMenu, closeMenu } = useMoreOptionsMenu({
+    const { menu, openMenu, closeMenu } = useMenu({
         'Create Campaign': () => navigate('?createCampaign')
     })
 
@@ -34,7 +34,7 @@ const Campaigns = () => {
                         <span>Add</span>
                         <HiChevronDown />                        
                     </button>
-                    <MoreOptionsMenu menu={menu} onClose={closeMenu} />
+                    <Menu menu={menu} onClose={closeMenu} />
                 </div>
             </header>
 			<CampaignList campaigns={userCampaigns}/>

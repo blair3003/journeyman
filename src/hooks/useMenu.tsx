@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
-interface MoreOptionsMenu {
+interface Menu {
 	menu: Record<string, () => void> | null
 	openMenu: () => void
 	closeMenu: () => void
 }
 
-const useMoreOptionsMenu = (options: Record<string, () => void>): MoreOptionsMenu => {
+const useMenu = (options: Record<string, () => void>): Menu => {
 
 	const [menu, setMenu] = useState<Record<string, () => void> | null>(null)
 
@@ -16,4 +16,4 @@ const useMoreOptionsMenu = (options: Record<string, () => void>): MoreOptionsMen
 	return { menu, openMenu, closeMenu }
 }
 
-export default useMoreOptionsMenu
+export default useMenu

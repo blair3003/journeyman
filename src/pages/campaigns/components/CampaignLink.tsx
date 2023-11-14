@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { HiEllipsisHorizontal } from 'react-icons/hi2'
-import { useLayoutContext } from '../context/LayoutContext'
-import CampaignDetails from './CampaignDetails'
-import EditCampaignDetails from './EditCampaignDetails'
-import useMoreOptionsMenu from '../hooks/useMoreOptionsMenu'
-import MoreOptionsMenu from './MoreOptionsMenu'
+import { useLayoutContext } from '../../../context/LayoutContext'
+import CampaignDetails from '../../campaign/components/CampaignDetails'
+import EditCampaignDetails from '../../campaign/components/EditCampaignDetails'
+import useMenu from '../../../hooks/useMenu'
+import Menu from '../../../components/Menu'
 
 interface CampaignLinkProps {
     campaign: Campaign
@@ -13,7 +13,7 @@ interface CampaignLinkProps {
 const CampaignLink = ({ campaign }: CampaignLinkProps) => {
 
     const { openDrawer } = useLayoutContext()
-    const { menu, openMenu, closeMenu } = useMoreOptionsMenu({
+    const { menu, openMenu, closeMenu } = useMenu({
         'Campaign Details': () => openDrawer(<CampaignDetails campaign={campaign} />),
         'Edit Campaign': () => openDrawer(<EditCampaignDetails campaign={campaign} />)
     })
@@ -26,7 +26,7 @@ const CampaignLink = ({ campaign }: CampaignLinkProps) => {
                     <span className="sr-only">More Campaign options</span>
                     <HiEllipsisHorizontal />
                 </button>
-                <MoreOptionsMenu menu={menu} onClose={closeMenu} />
+                <Menu menu={menu} onClose={closeMenu} />
             </div>
         </Link>
     )

@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useForm, FieldValues } from 'react-hook-form'
-import Input from './Input'
-import SubmitButton from './SubmitButton'
-import Select from './Select'
+import Input from '../../../components/Input'
+import SubmitButton from '../../../components/SubmitButton'
+import Select from '../../../components/Select'
 
 interface CreateObjectiveFormProps {
 	missions: Mission[]

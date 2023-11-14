@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 import Objective from './Objective'
-import Modal from './Modal'
+import Modal from '../../../components/Modal'
 
 interface ObjectiveModalProps {
 	objectives: Objective[]

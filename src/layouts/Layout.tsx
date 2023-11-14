@@ -1,10 +1,10 @@
+import { Outlet } from 'react-router-dom'
 import { LayoutProvider } from '../context/LayoutContext'
 import Drawer from './Drawer'
 import Error from './Error'
 import Header from './Header'
 import Loading from './Loading'
 import Sidebar from './Sidebar'
-import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
 

@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useForm, FieldValues } from 'react-hook-form'
-import Input from './Input'
-import Textarea from './Textarea'
-import SubmitButton from './SubmitButton'
+import Input from '../../../components/Input'
+import Textarea from '../../../components/Textarea'
+import SubmitButton from '../../../components/SubmitButton'
 
 interface EditMissionDetailsFormProps {
     mission: Mission

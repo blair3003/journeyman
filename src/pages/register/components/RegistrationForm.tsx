@@ -3,9 +3,9 @@ import { useForm, FieldValues } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { onAuthStateChanged, createUserWithEmailAndPassword} from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
-import { auth} from '../config/firebase'
-import Input from './Input'
-import SubmitButton from './SubmitButton'
+import { auth} from '../../../config/firebase'
+import Input from '../../../components/Input'
+import SubmitButton from '../../../components/SubmitButton'
 
 const RegistrationForm = () => {
 

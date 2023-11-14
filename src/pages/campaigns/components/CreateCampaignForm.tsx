@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import { useForm, FieldValues } from 'react-hook-form'
-import Input from './Input'
-import SubmitButton from './SubmitButton'
+import Input from '../../../components/Input'
+import SubmitButton from '../../../components/SubmitButton'
 
-interface CreateMissionFormProps {
-	campaignId: string
+interface CreateCampaignFormProps {
+	userId: string
 	onSubmit?: () => void
 }
 
-const CreateMissionForm = ({ campaignId, onSubmit }: CreateMissionFormProps) => {
+const CreateCampaignForm = ({ userId, onSubmit }: CreateCampaignFormProps) => {
 
 	const {
 		register,
@@ -17,9 +17,9 @@ const CreateMissionForm = ({ campaignId, onSubmit }: CreateMissionFormProps) => 
 		formState: { errors, isSubmitting }
 	} = useForm<FieldValues>()
 
-	const createMission = async (data: FieldValues) => {
+	const createCampaign = async (data: FieldValues) => {
 		try {
-			console.log({ ...data, campaign: campaignId })
+			console.log({ ...data, users: [userId] })
 			if (onSubmit) onSubmit()
 		} catch (error) {
 			console.error(error)
@@ -31,7 +31,7 @@ const CreateMissionForm = ({ campaignId, onSubmit }: CreateMissionFormProps) => 
 	}, [setFocus])
 
 	return (
-		<form onSubmit={handleSubmit(createMission)}>
+		<form onSubmit={handleSubmit(createCampaign)}>
 			<Input
 				id="title"
 				label="Title"
@@ -45,4 +45,4 @@ const CreateMissionForm = ({ campaignId, onSubmit }: CreateMissionFormProps) => 
 	)
 }
 
-export default CreateMissionForm
+export default CreateCampaignForm
