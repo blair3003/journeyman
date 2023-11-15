@@ -8,64 +8,35 @@
 			"tTTtLT1kFAVblNdHhiZwOeWrPa03",
 			"40d1e569c3df59f8a10e"
 		],
+		"priority": "medium",
+		"difficulty": "easy",
 		"labels": [
-			"2a2f332b521840c0a6bb"
+			"green"
 		],
-		"metaboxes": [
+		"tasks": [
 			{
-				"id": "7f0c4128cbece3fead0f",
-				"value": "2023-11-26T12:45:01.428Z"
+				"label": "Search Google for most popular project management tools.",
+				"checked": true
 			},
 			{
-				"id": "1fc8c11e73f3e3676720",
-				"value": [
-					{
-						"label": "Search Google for most popular project management tools.",
-						"checked": true
-					},
-					{
-						"label": "Select the 4 most commonly referenced tools.",
-						"checked": false
-					},
-					{
-						"label": "Record the results in a list.",
-						"checked": false
-					}
-				]
+				"label": "Select the 4 most commonly referenced tools.",
+				"checked": false
 			},
 			{
-				"id": "329920646345acaa96d1",
-				"value": "easy"
-			},
-			{
-				"id": "bbd761d9b40541e95f84",
-				"value": "medium"
-			}
-		],
-		"attachments": [
-			{
-				"path": "https://fastly.picsum.photos/id/875/600/400.jpg?hmac=LgLEuCR8oFN43a_gHWpChuFogpxPxCj-WJP-CxQ1nWQ",
-				"name": "An example image",
-				"mime": "jpg",
-				"size": 17276,
-				"thumbnail": "https://fastly.picsum.photos/id/558/200/200.jpg?hmac=tFHyh9KzOASFBog3Hpj6oSkBkBr90f67Yuejl0XnFDM",
-				"user": "tTTtLT1kFAVblNdHhiZwOeWrPa03",
-				"createdAt": "2023-10-26T10:23:27.273Z"
+				"label": "Record the results in a list.",
+				"checked": false
 			}
 		],
 		"comments": [
 			{
-				"id": "152c6869016eed27e01b",
 				"user": "tTTtLT1kFAVblNdHhiZwOeWrPa03",
 				"body": "My first comment!",
 				"createdAt": "2023-10-26T10:23:27.273Z",
 				"updatedAt": "2023-10-26T10:23:27.273Z"
 			},
 			{
-				"id": "cb58e73bc246a38c7b77",
 				"user": "40d1e569c3df59f8a10e",
-				"body": "I'm replying to your comment.",
-				"parent": "152c6869016eed27e01b",
+				"body": "Mt other comment.",
 				"createdAt": "2023-10-26T10:23:27.273Z",
 				"updatedAt": "2023-10-26T10:23:27.273Z"
 			}
@@ -82,38 +53,23 @@
 			"tTTtLT1kFAVblNdHhiZwOeWrPa03",
 			"40d1e569c3df59f8a10e"
 		],
+		"priority": "medium",
+		"difficulty": "moderate",
 		"labels": [
-			"2a2f332b521840c0a6bb"
+			"blue"
 		],
-		"metaboxes": [
+		"tasks": [
 			{
-				"id": "7f0c4128cbece3fead0f",
-				"value": "2023-11-26T12:45:01.428Z"
+				"label": "List the features of each tool.",
+				"checked": true
 			},
 			{
-				"id": "1fc8c11e73f3e3676720",
-				"value": [
-					{
-						"label": "List the features of each tool.",
-						"checked": false
-					},
-					{
-						"label": "Compare the features and identify similarities.",
-						"checked": false
-					},
-					{
-						"label": "Record the common features in a list.",
-						"checked": false
-					}
-				]
+				"label": "Compare the features and identify similarities.",
+				"checked": false
 			},
 			{
-				"id": "329920646345acaa96d1",
-				"value": "moderate"
-			},
-			{
-				"id": "bbd761d9b40541e95f84",
-				"value": "medium"
+				"label": "Record the common features in a list.",
+				"checked": false
 			}
 		],
 		"createdAt": "2023-10-26T10:23:27.273Z",
@@ -128,22 +84,10 @@
 			"tTTtLT1kFAVblNdHhiZwOeWrPa03",
 			"40d1e569c3df59f8a10e"
 		],
+		"priority": "medium",
+		"difficulty": "hard",
 		"labels": [
-			"2a2f332b521840c0a6bb"
-		],
-		"metaboxes": [
-			{
-				"id": "7f0c4128cbece3fead0f",
-				"value": "2023-11-26T12:45:01.428Z"
-			},
-			{
-				"id": "329920646345acaa96d1",
-				"value": "hard"
-			},
-			{
-				"id": "bbd761d9b40541e95f84",
-				"value": "medium"
-			}
+			"red"
 		],
 		"createdAt": "2023-10-26T10:23:27.273Z",
 		"updatedAt": "2023-10-26T10:23:27.273Z"

@@ -3,9 +3,8 @@ type FirebaseUser = import('firebase/auth').User
 type User = {
     uid: string
     username: string
-    email: string
     displayName: string
-    image?: string
+    photoURL?: string
     roles?: string[]
     createdAt: Date
 }
@@ -15,28 +14,8 @@ type Campaign = {
     title: string
     users?: string[]
     missions?: string[]
-    labels?: Label[]
-    metaboxes?: Metabox[]
     createdAt: Date
     updatedAt: Date
-}
-
-type Label = {
-    id: string
-    title: string
-    color: {
-        name: string
-        value: string
-    }
-}
-
-type Metabox = {
-    id: string
-    title: string
-    type: 'checkbox' | 'date' | 'radio' | 'select'
-    options?: string[]
-    default?: any
-    required?: boolean
 }
 
 type Mission = {
@@ -45,7 +24,6 @@ type Mission = {
     title: string
     description?: string
     objectives?: string[]
-    labels?: string[]
     createdAt: Date
     updatedAt: Date
 }
@@ -55,33 +33,25 @@ type Objective = {
     mission: string
     title: string
     description?: string
-    users?: string[]
+    due?: Date
     labels?: string[]
-    metaboxes?: [{
-        id: string
-        value: any
-    }]
-    attachments?: Attachment[]
+    priority?: string
+    difficulty?: string
+    tasks?: Task[]
+    users?: string[]
     comments?: Comment[]
     createdAt: Date
     updatedAt: Date
 }
 
-type Attachment = {
-    path: string
-    name: string
-    mime: string
-    size: string
-    thumbnail?: string
-    user: string
-    createdAt: Date
+type Task = {
+    label: string
+    checked: boolean
 }
 
 type Comment = {
-    id: string
     user: string
     body: string
-    parent?: string
     createdAt: Date
     updatedAt: Date
 }

@@ -9,9 +9,6 @@
 			"34d4a4d15cb1f04ac482",
 			"2eb0f63cfcd17a06643b"
 		],
-		"labels": [
-			"2a2f332b521840c0a6bb"
-		],
 		"createdAt": "2023-10-26T10:23:27.273Z",
 		"updatedAt": "2023-10-26T10:23:27.273Z"
 	},
@@ -20,8 +17,6 @@
 		"campaign": "bf6ba677662aa18e50b1",
 		"title": "Analysis & Design",
 		"description": "Create a schema and define the relationships between models",
-		"objectives": [],
-		"labels": [],
 		"createdAt": "2023-10-26T10:23:27.273Z",
 		"updatedAt": "2023-10-26T10:23:27.273Z"
 	}
