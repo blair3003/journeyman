@@ -1,6 +1,6 @@
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
 
-interface InputProps {
+interface SelectProps {
 	id: string
 	label: string
 	register: UseFormRegister<FieldValues>
@@ -11,7 +11,7 @@ interface InputProps {
 	disabled?: boolean
 }
 
-const Select = ({ id, label, register, options, defaultOptionLabel, errors, required = false, disabled = false }: InputProps) => {
+const Select = ({ id, label, register, options, defaultOptionLabel, errors, required = false, disabled = false }: SelectProps) => {
 
 	return (
 		<div className="bg-white border-gray-300 border-2 rounded p-2 mb-2">
