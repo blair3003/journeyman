@@ -4,7 +4,7 @@ interface RadioProps {
 	id: string
 	label: string
 	register: UseFormRegister<FieldValues>
-  options: Record<string, any>[]
+	options: Record<string, any>[]
 	errors: FieldErrors
 	required?: boolean
 	disabled?: boolean
@@ -13,9 +13,9 @@ interface RadioProps {
 const Radio = ({ id, label, register, options, errors, required = false, disabled = false }: RadioProps) => {
 
 	return (
-		<fieldset className="bg-white border-gray-300 border-2 rounded p-2 mb-2">
+		<div className="bg-white border-gray-300 border-2 rounded p-2 mb-2">
 			<div className="flex justify-between items-center mb-1">
-				<legend className="text-black uppercase font-bold text-xs">{label}</legend>
+				<span className="text-black uppercase font-bold text-xs">{label}</span>
 				{errors[id] && <span className="text-red-500 uppercase font-bold text-xs">{errors[id]?.type === 'required' ? 'This field is required' : errors[id]?.message?.toString()}</span>}
 			</div>
 			{options.map(option => (
@@ -31,7 +31,7 @@ const Radio = ({ id, label, register, options, errors, required = false, disable
 					<label htmlFor={option.value}>{option.label}</label>
 				</div>
 			))}
-		</fieldset>
+		</div>
 	)
 }
 
