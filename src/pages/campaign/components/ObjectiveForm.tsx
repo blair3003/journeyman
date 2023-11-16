@@ -1,14 +1,20 @@
 import { useCallback, useEffect } from 'react'
 import { useForm, FieldValues } from 'react-hook-form'
 import debounce from 'lodash/debounce'
-import Input from '../../../components/Input'
-import Textarea from '../../../components/Textarea'
+import { options } from '@/config/options'
+import Input from '@/components/Input'
+import Textarea from '@/components/Textarea'
+import Select from '@/components/Select'
+import Radio from '@/components/Radio'
 
 interface ObjectiveFormProps {
 	objective: Objective
+	missions: Mission[]
 }
 
-const ObjectiveForm = ({ objective }: ObjectiveFormProps) => {
+const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
+
+	const { labels, difficulty, priority } = options
 
 	const {
 		register,
@@ -48,13 +54,51 @@ const ObjectiveForm = ({ objective }: ObjectiveFormProps) => {
 				register={register}
 				errors={errors}
 				required={true}
-			/>			
+			/>
             <Textarea
                 id="description"
                 label="Description"
                 register={register}
                 errors={errors}
             />
+            <Select
+                id="mission"
+                label="Mission"
+                register={register}
+                options={missions.map(mission => ({ label: mission.title, value: mission.uid }))}
+                defaultOptionLabel="--"
+                errors={errors}
+                required={true}
+            />
+        	{/* TODO: complete check */}
+            <Input
+                id="due"
+                type="date"
+                label="Due Date"
+                register={register}
+                errors={errors}
+            />
+            <Select
+                id="priority"
+                label="Priority"
+                register={register}
+                options={Object.keys(priority).map(key => ({ label: priority[key], value: key }))}
+                defaultOptionLabel="--"
+                errors={errors}
+            />
+            <Radio
+                id="difficulty"
+                label="Difficulty"
+                register={register}
+                options={Object.keys(difficulty).map(key => ({ label: difficulty[key], value: key }))}
+                errors={errors}
+            />
+
+	        {/* TODO: labels */}
+	        {/* TODO: tasks */}
+		    {/* TODO: party */}
+			{/* TODO: comments */}
+
 		</form>
 	)
 }
