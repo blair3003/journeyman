@@ -7,7 +7,7 @@ interface ObjectiveProps {
 const Objective = ({ objective }: ObjectiveProps) => {
 
 	return (
-		<ObjectiveForm objective={objective} />
+		<ObjectiveForm objective={objective} missions={missions} />
 	)
 }
 
