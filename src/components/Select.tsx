@@ -4,7 +4,7 @@ interface SelectProps {
 	id: string
 	label: string
 	register: UseFormRegister<FieldValues>
-    options: Record<string, any>[]
+    options: Record<string, string>[]
 	defaultOptionLabel: string
 	errors: FieldErrors
 	required?: boolean

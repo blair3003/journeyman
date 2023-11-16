@@ -1,11 +1,11 @@
 import { useCallback, useEffect } from 'react'
 import { useForm, FieldValues } from 'react-hook-form'
 import debounce from 'lodash/debounce'
-import { options } from '@/config/options'
-import Input from '@/components/Input'
-import Textarea from '@/components/Textarea'
-import Select from '@/components/Select'
-import Radio from '@/components/Radio'
+import { options } from '../../../config/options'
+import Input from '../../../components/Input'
+import Textarea from '../../../components/Textarea'
+import Select from '../../../components/Select'
+import Radio from '../../../components/Radio'
 
 interface ObjectiveFormProps {
 	objective: Objective
@@ -73,7 +73,7 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
         	{/* TODO: complete check */}
             <Input
                 id="due"
-                type="date"
+                type="datetime-local"
                 label="Due Date"
                 register={register}
                 errors={errors}
@@ -82,7 +82,7 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
                 id="priority"
                 label="Priority"
                 register={register}
-                options={Object.keys(priority).map(key => ({ label: priority[key], value: key }))}
+                options={Object.keys(priority).map((key: string) => ({ label: priority[key as keyof typeof priority], value: key }))}
                 defaultOptionLabel="--"
                 errors={errors}
             />
@@ -90,7 +90,7 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
                 id="difficulty"
                 label="Difficulty"
                 register={register}
-                options={Object.keys(difficulty).map(key => ({ label: difficulty[key], value: key }))}
+                options={Object.keys(difficulty).map(key => ({ label: difficulty[key as keyof typeof difficulty], value: key }))}
                 errors={errors}
             />
 

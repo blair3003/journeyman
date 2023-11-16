@@ -4,7 +4,7 @@ interface RadioProps {
 	id: string
 	label: string
 	register: UseFormRegister<FieldValues>
-	options: Record<string, any>[]
+	options: Record<string, string>[]
 	errors: FieldErrors
 	required?: boolean
 	disabled?: boolean
@@ -23,6 +23,7 @@ const Radio = ({ id, label, register, options, errors, required = false, disable
 					<input
 						id={option.value}
 						type="radio"
+						value={option.value}
 						{...register(id, { required })}
 						aria-invalid={errors[id] ? "true" : "false"}
 						className="w-full bg-transparent"
