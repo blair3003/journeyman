@@ -42,7 +42,7 @@ const Campaign = () => {
                 </div>
             </header>
             <MissionList missions={campaignMissions} />
-            <ObjectiveModal objectives={missionObjectives}/>
+            <ObjectiveModal objectives={missionObjectives} missions={campaignMissions}/>
             <CreateMissionModal campaignId={campaign.uid}/>
             <CreateObjectiveModal missions={campaignMissions}/>
         </section>
