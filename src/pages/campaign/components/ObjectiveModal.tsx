@@ -4,9 +4,10 @@ import Modal from '../../../components/Modal'
 
 interface ObjectiveModalProps {
 	objectives: Objective[]
+	missions: Mission[]
 }
 
-const ObjectiveModal = ({ objectives }: ObjectiveModalProps) => {
+const ObjectiveModal = ({ objectives, missions }: ObjectiveModalProps) => {
 
 	const [searchParams, setSearchParams] = useSearchParams() 
 
@@ -22,7 +23,7 @@ const ObjectiveModal = ({ objectives }: ObjectiveModalProps) => {
 
 	return (
 		<Modal title={`Objective #${objective.uid}`} onClose={onClose}>
-			<Objective objective={objective} />
+			<Objective objective={objective} missions={missions} />
 		</Modal>
 	)
 }
