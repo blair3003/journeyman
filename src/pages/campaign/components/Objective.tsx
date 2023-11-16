@@ -2,9 +2,10 @@ import ObjectiveForm from './ObjectiveForm'
 
 interface ObjectiveProps {
 	objective: Objective
+	missions: Mission[]
 }
 
-const Objective = ({ objective }: ObjectiveProps) => {
+const Objective = ({ objective, missions }: ObjectiveProps) => {
 
 	return (
 		<ObjectiveForm objective={objective} missions={missions} />
