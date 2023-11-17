@@ -28,23 +28,12 @@ const Labels = ({ defaultValues = [], labelOptions, setValue, errors }: LabelsPr
 		setValue('labels', labels.filter(label => label !== oldLabel))
 	}
 
-	// const menuOptions = () => {
-	// 	const options: Record<string, () => void> = {}
-	// 	for (const key in labelOptions) {
-	// 		options[key] = () => addLabel(key)
-	// 	}
-	// 	return options
-	// }
-
 	const { menu, openMenu, closeMenu } = useMenu(
 		Object.keys(labelOptions).reduce((menu: Record<string, () => void>, key) => {
 			menu[key] = () => addLabel(key)
 			return menu
 		}, {})
 	)
-
-	// const { menu, openMenu, closeMenu } = useMenu(menuOptions())
-
 
 	return (
 		<div className="bg-white border-gray-300 border-2 rounded p-2 mb-2">
