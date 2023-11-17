@@ -35,7 +35,7 @@ const LabelsMenu = ({ menu, onClose }: LabelsMenuProps) => {
             <menu>
                 {Object.keys(menu).map(option =>
                     <li key={option}>
-                        <button onClick={e => {e.preventDefault(); handleOptionCallback(menu[option])}} className={`bg-${labelOptions[option]} w-6 h-4`}>
+                        <button onClick={e => {e.preventDefault(); handleOptionCallback(menu[option])}} className={`bg-${labelOptions[option as keyof typeof labelOptions]} w-6 h-4`}>
                             <span className="sr-only">{option}</span>
                         </button>
                     </li>

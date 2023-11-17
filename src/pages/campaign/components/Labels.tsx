@@ -7,7 +7,7 @@ import Label from './Label'
 
 interface LabelsProps {
 	defaultValues?: string[]
-	labelOptions: Record<string, string>[]
+	labelOptions: Record<string, string>
 	setValue: (name: string, value: unknown, config?: Object) => void
 	errors: FieldErrors
 }
@@ -18,22 +18,32 @@ const Labels = ({ defaultValues = [], labelOptions, setValue, errors }: LabelsPr
 
 	const addLabel = (newLabel: string) => {
 		if (!labels.includes(newLabel)) {
-			setLabels(oldLabels => [...oldLabels, newLabel])
-			setValue('labels', labels)
+			setLabels([...labels, newLabel])
+			setValue('labels', [...labels, newLabel])
 		}
 	}
 
 	const removeLabel = (oldLabel: string) => {
-		setLabels(oldLabels => oldLabels.filter(label => label !== oldLabel))
-		setValue('labels', labels)
+		setLabels(labels.filter(label => label !== oldLabel))
+		setValue('labels', labels.filter(label => label !== oldLabel))
 	}
 
+	// const menuOptions = () => {
+	// 	const options: Record<string, () => void> = {}
+	// 	for (const key in labelOptions) {
+	// 		options[key] = () => addLabel(key)
+	// 	}
+	// 	return options
+	// }
+
 	const { menu, openMenu, closeMenu } = useMenu(
-		labelOptions.reduce((menu, key) => {
+		Object.keys(labelOptions).reduce((menu: Record<string, () => void>, key) => {
 			menu[key] = () => addLabel(key)
 			return menu
-		})
+		}, {})
 	)
+
+	// const { menu, openMenu, closeMenu } = useMenu(menuOptions())
 
 
 	return (
@@ -44,7 +54,7 @@ const Labels = ({ defaultValues = [], labelOptions, setValue, errors }: LabelsPr
 			</div>
 			<div className="flex justify-between items-center">
 				<div className="flex justify-start items-center">
-					{labels.map(label => <Label label={label} color={labelOptions[label]} onRemove={removeLabel} />)}
+					{labels.map(label => <Label key={label} label={label} color={labelOptions[label]} onRemove={removeLabel} />)}
 				</div>
 				<div className="relative">
 					<button onClick={openMenu} className="flex items-center">

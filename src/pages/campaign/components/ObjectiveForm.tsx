@@ -96,8 +96,8 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
                 errors={errors}
             />
             <Labels
-            	deaultValues={objective?.labels}
-		labelOptions={labels}
+            	defaultValues={objective?.labels}
+				labelOptions={labels}
                 setValue={setValue}
                 errors={errors}
             />
@@ -106,6 +106,8 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
 	        {/* TODO: tasks */}
 		    {/* TODO: party */}
 			{/* TODO: comments */}
+
+			<div className="sr-only bg-black bg-red-500 bg-yellow-500 bg-blue-500 bg-green-500 bg-purple-500 bg-white bg-cyan-500"></div>
 
 		</form>
 	)
