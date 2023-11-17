@@ -1,13 +1,13 @@
 export const options = {
     labels: {
-        black: "#000000",
-        blue: "#0000FF",
-        green: "#00FF00",
-        cyan: "#00FFFF",
-        red: "#FF0000",
-        magenta: "#FF00FF",
-        yellow: "#FFFF00",
-        white: "#FFFFFF",
+        black: "black",
+        blue: "blue-500",
+        green: "green-500",
+        cyan: "cyan-500",
+        red: "red-500",
+        magenta: "purple-500",
+        yellow: "yellow-500",
+        white: "white",
     },
     difficulty: {
         hard: "Hard",
