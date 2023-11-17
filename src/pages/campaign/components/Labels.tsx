@@ -8,13 +8,13 @@ import Label from './Label'
 
 interface LabelsProps {
 	defaultValues?: string[]
+	labelOptions: Record<string, string>[]
 	setValue: (name: string, value: unknown, config?: Object) => void
 	errors: FieldErrors
 }
 
-const Labels = ({ defaultValues = [], setValue, errors }: LabelsProps) => {
-
-	const { labels: labelOptions } = options
+const Labels = ({ defaultValues = [], labelOptions, setValue, errors }: LabelsProps) => {
+	
 	const [labels, setLabels] = useState(defaultValues)
 
 	const addLabel = (newLabel: string) => {
