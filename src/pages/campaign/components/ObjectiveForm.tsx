@@ -6,6 +6,7 @@ import Input from '../../../components/Input'
 import Textarea from '../../../components/Textarea'
 import Select from '../../../components/Select'
 import Radio from '../../../components/Radio'
+import Labels from './Labels'
 
 interface ObjectiveFormProps {
 	objective: Objective
@@ -19,6 +20,7 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
 	const {
 		register,
 		watch,
+		setValue,
 		handleSubmit,
 		formState: { errors }
 	} = useForm<FieldValues>({
@@ -91,6 +93,12 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
                 label="Difficulty"
                 register={register}
                 options={Object.keys(difficulty).map(key => ({ label: difficulty[key as keyof typeof difficulty], value: key }))}
+                errors={errors}
+            />
+            <Labels
+            	deaultValues={objective?.labels}
+		labelOptions={labels}
+                setValue={setValue}
                 errors={errors}
             />
 
