@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { FieldErrors } from 'react-hook-form'
 import { HiPlus } from 'react-icons/hi2'
-import { options } from '../../../config/options'
 import useMenu from '../../../hooks/useMenu'
 import LabelsMenu from './LabelsMenu'
 import Label from './Label'
