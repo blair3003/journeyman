@@ -15,14 +15,17 @@
 		],
 		"tasks": [
 			{
+				"id": "1",
 				"label": "Search Google for most popular project management tools.",
 				"checked": true
 			},
 			{
+				"id": "2",
 				"label": "Select the 4 most commonly referenced tools.",
 				"checked": false
 			},
 			{
+				"id": "3",
 				"label": "Record the results in a list.",
 				"checked": false
 			}
@@ -60,14 +63,17 @@
 		],
 		"tasks": [
 			{
+				"id": "1",
 				"label": "List the features of each tool.",
 				"checked": true
 			},
 			{
+				"id": "2",
 				"label": "Compare the features and identify similarities.",
 				"checked": false
 			},
 			{
+				"id": "3",
 				"label": "Record the common features in a list.",
 				"checked": false
 			}

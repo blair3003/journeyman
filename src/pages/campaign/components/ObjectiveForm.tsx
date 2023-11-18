@@ -7,6 +7,7 @@ import Textarea from '../../../components/Textarea'
 import Select from '../../../components/Select'
 import Radio from '../../../components/Radio'
 import Labels from './Labels'
+import Tasks from './Tasks'
 
 interface ObjectiveFormProps {
 	objective: Objective
@@ -101,9 +102,12 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
                 setValue={setValue}
                 errors={errors}
             />
-
-	        {/* TODO: labels */}
-	        {/* TODO: tasks */}
+            <Tasks
+            	defaultValues={objective?.tasks}
+                setValue={setValue}
+                errors={errors}
+            />
+			
 		    {/* TODO: party */}
 			{/* TODO: comments */}
 

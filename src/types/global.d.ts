@@ -45,6 +45,7 @@ type Objective = {
 }
 
 type Task = {
+    id: string
     label: string
     checked: boolean
 }

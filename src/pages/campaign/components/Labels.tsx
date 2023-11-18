@@ -16,16 +16,19 @@ const Labels = ({ defaultValues = [], labelOptions, setValue, errors }: LabelsPr
 	
 	const [labels, setLabels] = useState(defaultValues)
 
+	const updateLabels = (newLabels: string[]) => {
+		setLabels(newLabels)
+		setValue('labels', newLabels)
+	}
+
 	const addLabel = (newLabel: string) => {
 		if (!labels.includes(newLabel)) {
-			setLabels([...labels, newLabel])
-			setValue('labels', [...labels, newLabel])
+			updateLabels([...labels, newLabel])
 		}
 	}
 
 	const removeLabel = (oldLabel: string) => {
-		setLabels(labels.filter(label => label !== oldLabel))
-		setValue('labels', labels.filter(label => label !== oldLabel))
+		updateLabels(labels.filter(label => label !== oldLabel))
 	}
 
 	const { menu, openMenu, closeMenu } = useMenu(
