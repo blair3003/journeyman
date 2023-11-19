@@ -8,6 +8,7 @@ import Select from '../../../components/Select'
 import Radio from '../../../components/Radio'
 import Labels from './Labels'
 import Tasks from './Tasks'
+import Party from './Party'
 
 interface ObjectiveFormProps {
 	objective: Objective
@@ -107,8 +108,11 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
                 setValue={setValue}
                 errors={errors}
             />
-			
-		    {/* TODO: party */}
+			<Party
+				defaultValues={objective?.users}
+                setValue={setValue}
+                errors={errors}
+			/>
 			{/* TODO: comments */}
 
 		</form>

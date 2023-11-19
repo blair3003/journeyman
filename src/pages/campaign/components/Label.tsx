@@ -16,7 +16,7 @@ const Label = ({ label, color, onRemove }: LabelProps) => {
 	return (
 		<div className="relative">
 			<button onClick={e => {e.preventDefault(); openMenu()}} className={`bg-${color} w-6 h-4`}>
-				<span key={label} className="sr-only">{label}</span>
+				<span className="sr-only">{label}</span>
 			</button>
 			<Menu menu={menu} onClose={closeMenu} />
 		</div>

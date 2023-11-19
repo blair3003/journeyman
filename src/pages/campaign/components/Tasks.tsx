@@ -38,7 +38,7 @@ const Tasks = ({ defaultValues = [], setValue, errors }: TasksProps) => {
 		<div className="bg-white border-gray-300 border-2 rounded p-2 mb-2">
 			<div className="flex justify-between items-center mb-1">
 				<span className="text-black uppercase font-bold text-xs">Tasks</span>
-				{errors.labels && <span className="text-red-500 uppercase font-bold text-xs">{errors.labels?.message?.toString()}</span>}
+				{errors.tasks && <span className="text-red-500 uppercase font-bold text-xs">{errors.tasks?.message?.toString()}</span>}
 			</div>
 			<div className="">
 				<div className="">
