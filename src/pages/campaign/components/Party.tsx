@@ -15,7 +15,6 @@ interface PartyProps {
 const Party = ({ defaultValues = [], setValue, errors }: PartyProps) => {
 	
 	const [party, setParty] = useState(defaultValues)
-    const [newTaskLabel, setNewTaskLabel] = useState('')
     const { users } = useDataContext()
 
     const updateParty = (newParty: string[]) => {

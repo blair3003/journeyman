@@ -39,7 +39,7 @@ type Objective = {
     difficulty?: string
     tasks?: Task[]
     users?: string[]
-    comments?: Comment[]
+    messages?: Message[]
     createdAt: Date
     updatedAt: Date
 }
@@ -50,7 +50,7 @@ type Task = {
     checked: boolean
 }
 
-type Comment = {
+type Message = {
     user: string
     body: string
     createdAt: Date

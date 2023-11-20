@@ -1,4 +1,5 @@
 import ObjectiveForm from './ObjectiveForm'
+import Messages from './Messages'
 
 interface ObjectiveProps {
 	objective: Objective
@@ -8,7 +9,10 @@ interface ObjectiveProps {
 const Objective = ({ objective, missions }: ObjectiveProps) => {
 
 	return (
-		<ObjectiveForm objective={objective} missions={missions} />
+		<>
+			<ObjectiveForm objective={objective} missions={missions} />
+			<Messages objectiveID={objective.uid} messages={objective.messages} />
+		</>
 	)
 }
 
