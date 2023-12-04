@@ -1,5 +1,6 @@
 import HomeLink from '../components/HomeLink'
 import SearchBar from '../components/SearchBar'
+import DarkModeToggle from '../components/DarkModeToggle'
 
 const Header = () => {
 
@@ -7,6 +8,7 @@ const Header = () => {
         <header>
             <HomeLink />
             <SearchBar />
+            <DarkModeToggle />
         </header>
     )
 }

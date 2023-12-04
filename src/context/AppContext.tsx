@@ -1,7 +1,9 @@
 import { createContext, useContext } from 'react'
+import useDarkMode from '../hooks/useDarkMode'
 
 interface AppContextType {
-    data: null
+    isDarkMode: boolean
+    toggleDarkMode: () => void
 }
 
 const AppContext = createContext({})
@@ -10,10 +12,11 @@ export const useAppContext = () => useContext(AppContext) as AppContextType
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
-    const data = null
+    const { isDarkMode, toggleDarkMode } = useDarkMode()
 
     const value: AppContextType = {
-        data
+        isDarkMode,
+        toggleDarkMode
     }
 
     return (
