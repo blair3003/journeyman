@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FieldErrors } from 'react-hook-form'
-import { HiXMark, HiPlus } from 'react-icons/hi2'
+import { HiPlus } from 'react-icons/hi2'
 import useMenu from '../../../hooks/useMenu'
 import PartyMenu from './PartyMenu'
 import PartyUser from './PartyUser'

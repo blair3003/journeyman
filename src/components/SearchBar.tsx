@@ -1,6 +1,6 @@
 const SearchBar = () => {
 
-    return (<>SearchBar</>)
+    return (<div></div>)
 }
 
 export default SearchBar
