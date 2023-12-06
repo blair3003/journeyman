@@ -18,7 +18,7 @@ const Sidebar = () => {
 
             <section>
                 <h3 className="uppercase text-sm font-bold p-2 text-slate-500">
-                    <Link to={`/u/${auth?.uid}/campaigns`} className="block">Campaigns</Link>
+                    <Link to={`/u/${auth?.uid}/campaigns`} className="block">My Campaigns</Link>
                 </h3>
                 <nav>
                     <ol>

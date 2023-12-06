@@ -8,11 +8,13 @@ import CreateMissionModal from './components/CreateMissionModal'
 import CreateObjectiveModal from './components/CreateObjectiveModal'
 import MissionList from './components/MissionList'
 import ObjectiveModal from './components/ObjectiveModal'
+import { useAppContext } from '../../context/AppContext'
 
 const Campaign = () => {
 
     const navigate = useNavigate()
     const { campaignId } = useParams()
+    const { isDarkMode } = useAppContext()
     const { campaigns, missions, objectives } = useDataContext()
     const { menu, openMenu, closeMenu } = useMenu({
         'Create Mission': () => navigate('?createMission'),
@@ -30,9 +32,9 @@ const Campaign = () => {
     if (!campaign) return null
 
     return (
-        <section>
+        <section className={`grow p-4 ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}>
             <header className="flex">
-                <h1>{campaign.title}</h1>
+                <h1 className={`text-xl ${isDarkMode ? 'text-white' : 'text-black'}`}>{campaign.title}</h1>
                 <div className="relative">
                     <button onClick={openMenu} className="flex items-center">
                         <span>Add</span>

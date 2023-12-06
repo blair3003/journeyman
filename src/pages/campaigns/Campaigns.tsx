@@ -6,11 +6,13 @@ import CampaignList from './components/CampaignList'
 import CreateCampaignModal from './components/CreateCampaignModal'
 import useMenu from '../../hooks/useMenu'
 import Menu from '../../components/Menu'
+import { useAppContext } from '../../context/AppContext'
 
 const Campaigns = () => {
 
     const navigate = useNavigate()
     const { userId } = useParams()
+    const { isDarkMode } = useAppContext()
     const { users, campaigns } = useDataContext()
     const { menu, openMenu, closeMenu } = useMenu({
         'Create Campaign': () => navigate('?createCampaign')
@@ -26,9 +28,9 @@ const Campaigns = () => {
     if (!user) return null
 
     return (
-		<section className="grow">
+		<section className={`grow p-4 ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}>
             <header className="flex">
-                <h1>{user.displayName}'s Campaigns</h1>
+                <h1 className={`text-xl ${isDarkMode ? 'text-white' : 'text-black'}`}>{user.displayName}'s Campaigns</h1>
                 <div className="relative">
                     <button onClick={openMenu} className="flex items-center">
                         <span>Add</span>
