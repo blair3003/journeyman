@@ -11,7 +11,7 @@ const Layout = () => {
     return (
 		<LayoutProvider>
             <Header />
-            <main>
+            <main className="flex grow">
                 <Sidebar />
                 <Outlet />
                 <Drawer />

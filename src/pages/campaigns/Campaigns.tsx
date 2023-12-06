@@ -26,7 +26,7 @@ const Campaigns = () => {
     if (!user) return null
 
     return (
-		<section>
+		<section className="grow">
             <header className="flex">
                 <h1>{user.displayName}'s Campaigns</h1>
                 <div className="relative">
