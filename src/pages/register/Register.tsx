@@ -1,17 +1,26 @@
 import { Link } from 'react-router-dom'
 import RegistrationForm from './components/RegistrationForm'
+import { useAppContext } from '../../context/AppContext'
+import DarkModeToggle from '../../components/DarkModeToggle'
 
 const Register = () => {
 
+    const { isDarkMode } = useAppContext()
+
     return (
-        <section className="max-w-sm mx-auto mt-8 bg-gray-200 rounded-lg p-4">
-            <h1 className="mb-4 font-bold text-xl uppercase text-black">Register</h1>
-            <RegistrationForm />
-            <div className="block text-black text-xs text-center">
-                <span>Already have an account? </span>
-                <Link to="/login" className="text-gray-950 underline">Login now.</Link>
-            </div>
-        </section>        
+        <main className={`grow ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}>
+            <section className={`max-w-md mx-auto mt-8 rounded-lg p-4 shadow-xl ${isDarkMode ? 'bg-slate-950' : 'bg-slate-200'}`}>
+                <header className="flex items-center justify-between mb-4">
+                    <h1 className={`font-josefin text-2xl ${isDarkMode ? 'text-slate-100' : 'text-slate-800'}`}>Register</h1>
+                    <DarkModeToggle />
+                </header>
+                <RegistrationForm />
+                <div className={`text-sm text-center ${isDarkMode ? 'text-white' : 'text-black'}`}>
+                    <span>Already have an account? </span>
+                    <Link to="/login" className="underline">Login now.</Link>
+                </div>
+            </section>        
+        </main>
     )
 }
 

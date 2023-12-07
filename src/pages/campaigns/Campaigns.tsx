@@ -29,10 +29,10 @@ const Campaigns = () => {
 
     return (
 		<section className={`grow p-4 ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}>
-            <header className="flex">
+            <header className="flex items-center gap-4">
                 <h1 className={`text-xl ${isDarkMode ? 'text-white' : 'text-black'}`}>{user.displayName}'s Campaigns</h1>
                 <div className="relative">
-                    <button onClick={openMenu} className="flex items-center">
+                    <button onClick={openMenu} className="flex items-center gap-1 bg-blue-800 text-white uppercase text-sm px-2 py-1 rounded">
                         <span>Add</span>
                         <HiChevronDown />                        
                     </button>

@@ -6,10 +6,12 @@ import { FirebaseError } from '@firebase/util'
 import { auth} from '../../../config/firebase'
 import Input from '../../../components/Input'
 import SubmitButton from '../../../components/SubmitButton'
+import { useAppContext } from '../../../context/AppContext'
 
 const RegistrationForm = () => {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate() 
+    const { isDarkMode } = useAppContext()
 
     const { register, handleSubmit, setError, setFocus, resetField, formState: { errors, isSubmitting } } = useForm<FieldValues>()
 
@@ -61,6 +63,7 @@ const RegistrationForm = () => {
                 errors={errors}
                 required={true}
                 disabled={isSubmitting}
+                isDarkMode={isDarkMode}
             />            
             <Input
                 id="password"
@@ -71,8 +74,9 @@ const RegistrationForm = () => {
                 errors={errors}
                 required={true}
                 disabled={isSubmitting}
+                isDarkMode={isDarkMode}
             />
-            <SubmitButton disabled={isSubmitting} label="Create Account" />        
+            <SubmitButton disabled={isSubmitting} label="Create Account" isDarkMode={isDarkMode} />        
         </form>
     )
 }

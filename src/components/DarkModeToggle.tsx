@@ -8,7 +8,7 @@ const DarkModeToggle = () => {
     return (
         <button
             onClick={toggleDarkMode}
-            className={`p-2 ${isDarkMode ? "text-slate-100" : "text-black"}`}
+            className={`p-2 ${isDarkMode ? "text-slate-100" : "text-slate-800"}`}
         >
             <span className="sr-only">{isDarkMode ? "Turn off Dark Mode" : "Turn on Dark Mode"}</span>
             {isDarkMode ? <HiMiniMoon /> : <HiMiniSun />}

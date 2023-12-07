@@ -9,10 +9,12 @@ import { useEffect } from 'react'
 import { useAuthContext } from '../../../context/AuthContext'
 import Input from '../../../components/Input'
 import SubmitButton from '../../../components/SubmitButton'
+import { useAppContext } from '../../../context/AppContext'
 
 const LoginForm = () => {
 
     const navigate = useNavigate()
+    const { isDarkMode } = useAppContext()
     const { auth: user } = useAuthContext()
 
     const {
@@ -82,6 +84,7 @@ const LoginForm = () => {
                 errors={errors}
                 required={true}
                 disabled={isSubmitting}
+                isDarkMode={isDarkMode}
             />
             
             <Input
@@ -93,13 +96,14 @@ const LoginForm = () => {
                 errors={errors}
                 required={true}
                 disabled={isSubmitting}
+                isDarkMode={isDarkMode}
             />
 
-            <SubmitButton disabled={isSubmitting} label="Continue" />
+            <SubmitButton disabled={isSubmitting} label="Continue" isDarkMode={isDarkMode} />
 
             <div className="flex gap-2">
-                <button type="button" disabled={isSubmitting} onClick={loginWithGoogle} className="w-full p-4 mb-2 bg-white border-gray-300 border-2 rounded">
-                    {isSubmitting ? <Loader size={16} color="black" /> : <div className="flex items-center justify-center gap-2"><FaGoogle /><span className="text-black uppercase font-bold text-xs">Sign in with Google</span></div>}
+                <button type="button" disabled={isSubmitting} onClick={loginWithGoogle} className={`w-full p-4 mb-2 rounded shadow ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
+                    {isSubmitting ? <Loader size={16} color={isDarkMode ? 'white' : 'black'} /> : <div className="flex items-center justify-center gap-2"><FaGoogle /><span className="uppercase text-sm">Sign in with Google</span></div>}
                 </button>
             </div>            
         
