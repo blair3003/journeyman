@@ -7,7 +7,7 @@ interface ObjectiveLinkProps {
 const ObjectiveLink = ({ objective }: ObjectiveLinkProps) => {
 
 	return (
-		<Link to={`?o=${objective.uid}`}>
+		<Link to={`?o=${objective.uid}`} className="block bg-slate-300 border-2 border-slate-500 rounded p-2">
 			<h5>{objective.title}</h5>
 		</Link>
 	)

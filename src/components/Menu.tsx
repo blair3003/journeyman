@@ -41,7 +41,7 @@ const Menu = ({ menu, onClose }: MenuProps) => {
     if (!menu) return null
 	
 	return (
-        <dialog ref={menuRef} className="absolute m-0 mt-2 start-0 bg-blue-700 rounded px-2 py-1 text-white text-sm">
+        <dialog ref={menuRef} className="absolute m-0 mt-2 start-0 bg-blue-700 rounded px-2 py-1 text-white text-sm shadow-xl">
             <menu className="">
                 {Object.keys(menu).map(option =>
                     <li key={option}><button onClick={e => {e.preventDefault(); handleOptionCallback(menu[option])}} className="w-full text-left p-1 border-b-2 border-blue-800/25 whitespace-nowrap">{option}</button></li>

@@ -23,8 +23,8 @@ const Mission = ({ mission }: MissionProps) => {
     	})
 	
 	return (
-		<section className="flex flex-col">
-			<header className="flex justify-between items-start">
+		<section className="flex flex-col bg-slate-200 border-2 border-slate-500 rounded p-2 shadow-xl">
+			<header className="flex justify-between items-start mb-2">
 				<h3>{mission.title}</h3>
 				<div className="relative">
 					<button onClick={e => {e.preventDefault(); openMenu()}}>
