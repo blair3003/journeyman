@@ -9,6 +9,7 @@ import Radio from '../../../components/Radio'
 import Labels from './Labels'
 import Tasks from './Tasks'
 import Party from './Party'
+import { useAppContext } from '../../../context/AppContext'
 
 interface ObjectiveFormProps {
 	objective: Objective
@@ -17,6 +18,7 @@ interface ObjectiveFormProps {
 
 const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
 
+	const { isDarkMode } = useAppContext()
 	const { labels, difficulty, priority } = options
 
 	const {
@@ -58,12 +60,14 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
 				register={register}
 				errors={errors}
 				required={true}
+				isDarkMode={isDarkMode}
 			/>
             <Textarea
                 id="description"
                 label="Description"
                 register={register}
                 errors={errors}
+				isDarkMode={isDarkMode}
             />
             <Select
                 id="mission"
@@ -73,14 +77,15 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
                 defaultOptionLabel="--"
                 errors={errors}
                 required={true}
+				isDarkMode={isDarkMode}
             />
-        	{/* TODO: complete check */}
             <Input
                 id="due"
                 type="datetime-local"
                 label="Due Date"
                 register={register}
                 errors={errors}
+				isDarkMode={isDarkMode}
             />
             <Select
                 id="priority"
@@ -89,6 +94,7 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
                 options={Object.keys(priority).map((key: string) => ({ label: priority[key as keyof typeof priority], value: key }))}
                 defaultOptionLabel="--"
                 errors={errors}
+				isDarkMode={isDarkMode}
             />
             <Radio
                 id="difficulty"
@@ -96,12 +102,14 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
                 register={register}
                 options={Object.keys(difficulty).map(key => ({ label: difficulty[key as keyof typeof difficulty], value: key }))}
                 errors={errors}
+				isDarkMode={isDarkMode}
             />
             <Labels
             	defaultValues={objective?.labels}
 				labelOptions={labels}
                 setValue={setValue}
                 errors={errors}
+				isDarkMode={isDarkMode}
             />
             <Tasks
             	defaultValues={objective?.tasks}

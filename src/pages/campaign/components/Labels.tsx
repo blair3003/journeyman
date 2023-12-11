@@ -10,9 +10,10 @@ interface LabelsProps {
 	labelOptions: Record<string, string>
 	setValue: (name: string, value: unknown, config?: Object) => void
 	errors: FieldErrors
+	isDarkMode?: boolean
 }
 
-const Labels = ({ defaultValues = [], labelOptions, setValue, errors }: LabelsProps) => {
+const Labels = ({ defaultValues = [], labelOptions, setValue, errors, isDarkMode = false }: LabelsProps) => {
 	
 	const [labels, setLabels] = useState(defaultValues)
 
@@ -39,17 +40,17 @@ const Labels = ({ defaultValues = [], labelOptions, setValue, errors }: LabelsPr
 	)
 
 	return (
-		<div className="bg-white border-gray-300 border-2 rounded p-2 mb-2">
-			<div className="flex justify-between items-center mb-1">
-				<span className="text-black uppercase font-bold text-xs">Labels</span>
-				{errors.labels && <span className="text-red-500 uppercase font-bold text-xs">{errors.labels?.message?.toString()}</span>}
+		<div className={`p-2 mb-2 rounded ${isDarkMode ? 'bg-slate-900' : 'bg-slate-100'}`}>
+			<div className="flex justify-between items-center">
+				<span className="grow text-sm uppercase font-bold text-slate-500 pb-1">Labels</span>
+				{errors.labels && <span className="text-red-500 uppercase font-bold text-sm">{errors.labels?.message?.toString()}</span>}
 			</div>
 			<div className="flex justify-between items-center">
 				<div className="flex justify-start items-center">
 					{labels.map(label => <Label key={label} label={label} color={labelOptions[label]} onRemove={removeLabel} />)}
 				</div>
 				<div className="relative">
-					<button onClick={openMenu} className="flex items-center">
+					<button onClick={openMenu} className={`grid place-content-center w-8 h-8 text-lg rounded-full ${isDarkMode ? 'text-white hover:bg-slate-950' : 'text-black hover:bg-slate-200'}`}>
 						<span className="sr-only">Add Label</span>
                         <HiPlus />
 					</button>
