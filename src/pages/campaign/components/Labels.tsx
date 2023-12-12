@@ -46,7 +46,7 @@ const Labels = ({ defaultValues = [], labelOptions, setValue, errors, isDarkMode
 				{errors.labels && <span className="text-red-500 uppercase font-bold text-sm">{errors.labels?.message?.toString()}</span>}
 			</div>
 			<div className="flex justify-between items-center">
-				<div className="flex justify-start items-center">
+				<div className="flex justify-start items-center grow flex-wrap gap-1">
 					{labels.map(label => <Label key={label} label={label} color={labelOptions[label]} onRemove={removeLabel} />)}
 				</div>
 				<div className="relative">

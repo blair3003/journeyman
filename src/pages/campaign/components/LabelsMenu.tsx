@@ -4,7 +4,7 @@ import { options } from '../../../config/options'
 
 interface LabelsMenuProps {
 	menu: Record<string, () => void> | null
-	onClose: () => void
+	onClose: () => void 
 }
 
 const LabelsMenu = ({ menu, onClose }: LabelsMenuProps) => {
@@ -20,7 +20,10 @@ const LabelsMenu = ({ menu, onClose }: LabelsMenuProps) => {
     const handleOptionCallback = (callback: () => void) => {
         callback()
         handleClose()
-    }
+    } 
+
+    const handleOutsideClick = (event: MouseEvent) => (menuRef.current && !menuRef.current.contains(event.target as Node)) ? handleClose() : null
+    const handleEscapeKey = (event: KeyboardEvent) => (event.key === 'Escape') ? handleClose() : null
 
 	useEffect(() => {
 		(menu)
@@ -28,20 +31,29 @@ const LabelsMenu = ({ menu, onClose }: LabelsMenuProps) => {
 		: menuRef.current?.close()
 	}, [menu])
 
+    useEffect(() => {
+        document.addEventListener('mousedown', handleOutsideClick)
+        document.addEventListener('keydown', handleEscapeKey)
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick)
+            document.removeEventListener('keydown', handleEscapeKey)
+        }
+	}, [])
+
     if (!menu) return null
 	
 	return (
-        <dialog ref={menuRef} className="absolute m-0 start-0 bg-green-500">
+        <dialog ref={menuRef} className="absolute m-0 mt-2 top-full start-0 bg-blue-700 rounded px-2 py-1 text-white text-sm border-2 border-slate-600 shadow-xl z-10">
             <menu>
                 {Object.keys(menu).map(option =>
                     <li key={option}>
-                        <button onClick={e => {e.preventDefault(); handleOptionCallback(menu[option])}} className={`bg-${labelOptions[option as keyof typeof labelOptions]} w-6 h-4`}>
+                        <button onClick={e => {e.preventDefault(); handleOptionCallback(menu[option])}} style={{ backgroundColor: labelOptions[option as keyof typeof labelOptions] }} className="w-6 h-4 rounded" title={option}>
                             <span className="sr-only">{option}</span>
                         </button>
                     </li>
                 )}
             </menu>
-            <button onClick={e => {e.preventDefault(); handleClose()}} className="block w-full text-right">
+            <button onClick={e => {e.preventDefault(); handleClose()}} className="w-6 h-6 grid place-content-center rounded-full mt-2 hover:bg-blue-800">
             	<span className="sr-only">Close</span>
 				<HiXMark />
 			</button>
