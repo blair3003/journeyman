@@ -10,9 +10,10 @@ interface PartyProps {
 	defaultValues?: string[]
 	setValue: (name: string, value: unknown, config?: Object) => void
 	errors: FieldErrors
+	isDarkMode?: boolean
 }
 
-const Party = ({ defaultValues = [], setValue, errors }: PartyProps) => {
+const Party = ({ defaultValues = [], setValue, errors, isDarkMode = false }: PartyProps) => {
 	
 	const [party, setParty] = useState(defaultValues)
     const { users } = useDataContext()
@@ -40,10 +41,10 @@ const Party = ({ defaultValues = [], setValue, errors }: PartyProps) => {
 	)
 
 	return (
-		<div className="bg-white border-gray-300 border-2 rounded p-2 mb-2">
-			<div className="flex justify-between items-center mb-1">
-				<span className="text-black uppercase font-bold text-xs">Party</span>
-				{errors.users && <span className="text-red-500 uppercase font-bold text-xs">{errors.users?.message?.toString()}</span>}
+		<div className={`p-2 mb-2 rounded ${isDarkMode ? 'bg-slate-900' : 'bg-slate-100'}`}>
+			<div className="flex justify-between items-center">
+				<span className="grow text-sm uppercase font-bold text-slate-500 cursor-pointer pb-1">Party</span>
+				{errors.users && <span className="text-red-500 uppercase font-bold text-sm">{errors.users?.message?.toString()}</span>}
 			</div>
 			<div className="flex justify-between items-center">
 				<div className="flex justify-start items-center">

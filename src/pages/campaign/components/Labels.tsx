@@ -50,7 +50,7 @@ const Labels = ({ defaultValues = [], labelOptions, setValue, errors, isDarkMode
 					{labels.map(label => <Label key={label} label={label} color={labelOptions[label]} onRemove={removeLabel} />)}
 				</div>
 				<div className="relative">
-					<button onClick={openMenu} className={`grid place-content-center w-8 h-8 text-lg rounded-full ${isDarkMode ? 'text-white hover:bg-slate-950' : 'text-black hover:bg-slate-200'}`}>
+					<button onClick={openMenu} className={`grid place-content-center w-8 h-8 text-lg rounded-full ${isDarkMode ? 'text-white hover:bg-slate-950 focus:bg-slate-950' : 'text-black hover:bg-slate-200 focus:bg-slate-200'}`}>
 						<span className="sr-only">Add Label</span>
                         <HiPlus />
 					</button>

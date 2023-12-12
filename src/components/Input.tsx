@@ -16,7 +16,7 @@ const Input = ({ id, label, register, errors, type = 'text', required = false, a
 
 	return (
 		<div className={`p-2 mb-2 rounded ${isDarkMode ? 'bg-slate-900' : 'bg-slate-100'}`}>
-			<div className="flex justify-between items-center">
+			<div className="flex justify-between items-center"> 
 				<label htmlFor={id} className="grow text-sm uppercase font-bold text-slate-500 cursor-pointer pb-1">{label}</label>
 				{errors[id] && <span className="text-red-500 uppercase font-bold text-sm">{errors[id]?.type === 'required' ? 'This field is required' : errors[id]?.message?.toString()}</span>}
 			</div>

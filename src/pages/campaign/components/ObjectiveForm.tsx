@@ -115,14 +115,14 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
             	defaultValues={objective?.tasks}
                 setValue={setValue}
                 errors={errors}
+				isDarkMode={isDarkMode}
             />
 			<Party
 				defaultValues={objective?.users}
                 setValue={setValue}
                 errors={errors}
+				isDarkMode={isDarkMode}
 			/>
-			{/* TODO: comments */}
-
 		</form>
 	)
 }
