@@ -10,7 +10,7 @@ interface LabelProps {
 const Label = ({ label, color, onRemove }: LabelProps) => {
 
 	const { menu, openMenu, closeMenu } = useMenu({
-		'Remove': () => onRemove(label)
+		'Remove label': () => onRemove(label)
 	})
 
 	return (

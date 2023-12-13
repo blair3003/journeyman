@@ -1,5 +1,6 @@
 import useMenu from '../../../hooks/useMenu'
 import Menu from '../../../components/Menu'
+import ProfilePic from '../../../components/ProfilePic'
 
 interface PartyUserProps {
 	user: User
@@ -9,14 +10,14 @@ interface PartyUserProps {
 const PartyUser = ({ user, onRemove }: PartyUserProps) => {
 
 	const { menu, openMenu, closeMenu } = useMenu({
-		'Remove': () => onRemove(user.uid)
+		'Remove from party': () => onRemove(user.uid)
 	})
 
 	return (
 		<div className="relative">
-			<button onClick={e => {e.preventDefault(); openMenu()}} className="w-6 h-6 rounded-full">
+			<button onClick={e => {e.preventDefault(); openMenu()}} title={user.displayName}>
                 <span className="sr-only">{user.displayName}</span>
-                <span>U</span>
+                <ProfilePic photoURL={user?.photoURL} displayName={user.displayName} />
 			</button>
 			<Menu menu={menu} onClose={closeMenu} />
 		</div>

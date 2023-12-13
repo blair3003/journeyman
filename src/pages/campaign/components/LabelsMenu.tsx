@@ -47,7 +47,7 @@ const LabelsMenu = ({ menu, onClose }: LabelsMenuProps) => {
             <menu>
                 {Object.keys(menu).map(option =>
                     <li key={option}>
-                        <button onClick={e => {e.preventDefault(); handleOptionCallback(menu[option])}} style={{ backgroundColor: labelOptions[option as keyof typeof labelOptions] }} className="w-6 h-4 rounded" title={option}>
+                        <button onClick={e => {e.preventDefault(); handleOptionCallback(menu[option])}} style={{ backgroundColor: labelOptions[option as keyof typeof labelOptions] }} className="w-6 h-4 rounded border-2 border-slate-300 shadow-xl" title={option}>
                             <span className="sr-only">{option}</span>
                         </button>
                     </li>
