@@ -1,6 +1,9 @@
 import { useMemo } from 'react'
 import { format, parseISO } from 'date-fns'
 import { useDataContext } from '../../../context/DataContext'
+import ProfilePic from '../../../components/ProfilePic'
+import { useAppContext } from '../../../context/AppContext'
+import { useAuthContext } from '../../../context/AuthContext'
 
 interface MessageProps {
 	message: Message
@@ -8,6 +11,8 @@ interface MessageProps {
 
 const Message = ({ message }: MessageProps) => {
 
+	const { isDarkMode } = useAppContext()
+	const { auth } = useAuthContext()
 	const { users } = useDataContext()
 
 	const user = useMemo(() => users.find(user => user.uid === message.user), [])
@@ -16,17 +21,18 @@ const Message = ({ message }: MessageProps) => {
 	if (!user) return null
 
 	return (
-		<div className="flex items-start justify-between">	
-			<div className="w-6 h-6 rounded-full bg-blue-500 grid place-content-center">
+		<div className="flex items-start justify-between p-2 gap-2">	
+			<div className="">
                 <span className="sr-only">{user.displayName}</span>
-                <span>U</span>
+                <ProfilePic photoURL={user?.photoURL} displayName={user.displayName!} />
 			</div>
-			<div className="grow">
-				<div className="flex items-center justify-start">
+			<div className={`grow ${isDarkMode ? 'text-white' : 'text-black'}`}>
+				<div className="flex items-center justify-start gap-2 text-slate-500 text-sm">
 					<div>{user.displayName}</div>
 					<div>{format(createdAt, "dd MMM 'at' HH:mm")}</div>
 				</div>
-				<div>{message.body}</div>				
+				<div className="mb-1">{message.body}</div>
+				{user.uid === auth?.uid && <div className="text-slate-500 text-sm"><a className="underline" href="">Edit</a> • <a className="underline" href="">Delete</a></div>}
 			</div>
 
 		</div>

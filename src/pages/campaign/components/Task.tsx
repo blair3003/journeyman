@@ -22,7 +22,7 @@ const Task = ({ id, label, checked, onCheck, onRemove, isDarkMode = false }: Tas
                 className="h-6 cursor-pointer"
             />
             <label htmlFor={id} className={`grow flex-wrap text-base cursor-pointer ${isDarkMode ? 'text-white' : 'text-black'}`}>{label}</label>
-            <button onClick={e => { e.preventDefault(); onRemove(id) }} className={`rounded-full w-6 h-6 shrink-0 grid place-content-center ${isDarkMode ? 'text-white hover:bg-slate-950 focus:bg-slate-950' : 'text-black hover:bg-slate-50 focus:bg-slate-50'}`}>
+            <button onClick={e => { e.preventDefault(); onRemove(id) }} title="Remove Task" className={`rounded-full w-6 h-6 shrink-0 grid place-content-center ${isDarkMode ? 'text-white hover:bg-slate-950 focus:bg-slate-950' : 'text-black hover:bg-slate-50 focus:bg-slate-50'}`}>
                 <span className="sr-only">Remove Task</span>
                 <HiXMark />
             </button>

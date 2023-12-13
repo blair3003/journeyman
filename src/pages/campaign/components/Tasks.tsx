@@ -45,7 +45,7 @@ const Tasks = ({ defaultValues = [], setValue, errors, isDarkMode = false }: Tas
 				<div className="p-2">
 					{tasks.map(task => <Task key={task.id} id={task.id} label={task.label} checked={task.checked} onCheck={checkTask} onRemove={removeTask} isDarkMode={isDarkMode} />)}
 				</div>
-				<div className="flex items-center gap-4">
+				<div className="flex items-center gap-2">
 					<div className={`flex gap-1 items-center grow rounded ${isDarkMode ? 'bg-slate-950 text-white' : 'bg-slate-50 text-black'}`}>
 						<label htmlFor="newTask" className="sr-only">Add a Task</label>
 						<input
@@ -62,7 +62,11 @@ const Tasks = ({ defaultValues = [], setValue, errors, isDarkMode = false }: Tas
 							<HiXMark />
 						</button>}
 					</div>
-					<button onClick={e => { e.preventDefault(); addTask() }} className={`grid place-content-center w-8 h-8 text-lg rounded-full ${isDarkMode ? 'text-white hover:bg-slate-950 focus:bg-slate-950' : 'text-black hover:bg-slate-200 focus:bg-slate-200'}`}>
+					<button
+						onClick={e => { e.preventDefault(); addTask() }}
+						title="Add Task"
+						className={`grid place-content-center w-8 h-8 text-lg rounded-full ${isDarkMode ? 'text-white hover:bg-slate-950 focus:bg-slate-950' : 'text-black hover:bg-slate-200 focus:bg-slate-200'}`}
+					>
 						<span className="sr-only">Add Task</span>
                         <HiPlus />
 					</button>
