@@ -9,7 +9,7 @@ interface InputProps {
 const SubmitButton = ({ label, disabled = false, isDarkMode = false }: InputProps) => {
 
 	return (
-		<button disabled={disabled} className={`w-full p-4 mb-2 rounded bg-blue-800 text-slate-300 ${isDarkMode ? '' : ''}`} >
+		<button disabled={disabled} className="w-full p-4 mb-2 rounded bg-blue-800 text-slate-300 hover:bg-blue-700" >
 			{disabled ? <Loader size={16} /> : <span className="uppercase text-sm">{label}</span>}				
 		</button>
 	)

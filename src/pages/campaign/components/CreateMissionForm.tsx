@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useForm, FieldValues } from 'react-hook-form'
 import Input from '../../../components/Input'
 import SubmitButton from '../../../components/SubmitButton'
+import { useAppContext } from '../../../context/AppContext'
 
 interface CreateMissionFormProps {
 	campaignId: string
@@ -9,6 +10,8 @@ interface CreateMissionFormProps {
 }
 
 const CreateMissionForm = ({ campaignId, onSubmit }: CreateMissionFormProps) => {
+
+	const { isDarkMode } = useAppContext()
 
 	const {
 		register,
@@ -39,6 +42,7 @@ const CreateMissionForm = ({ campaignId, onSubmit }: CreateMissionFormProps) => 
 				errors={errors}
 				required={true}
 				disabled={isSubmitting}
+				isDarkMode={isDarkMode}
 			/>
 			<SubmitButton disabled={isSubmitting} label="Create" />
 		</form>

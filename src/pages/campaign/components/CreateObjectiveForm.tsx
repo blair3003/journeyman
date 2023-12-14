@@ -3,6 +3,7 @@ import { useForm, FieldValues } from 'react-hook-form'
 import Input from '../../../components/Input'
 import SubmitButton from '../../../components/SubmitButton'
 import Select from '../../../components/Select'
+import { useAppContext } from '../../../context/AppContext'
 
 interface CreateObjectiveFormProps {
 	missions: Mission[]
@@ -11,6 +12,8 @@ interface CreateObjectiveFormProps {
 }
 
 const CreateObjectiveForm = ({ missions, missionId, onSubmit }: CreateObjectiveFormProps) => {
+
+	const { isDarkMode } = useAppContext()
 
 	const {
 		register,
@@ -45,6 +48,7 @@ const CreateObjectiveForm = ({ missions, missionId, onSubmit }: CreateObjectiveF
 				errors={errors}
 				required={true}
 				disabled={isSubmitting}
+				isDarkMode={isDarkMode}
 			/>
 			<Select
 				id="mission"
@@ -55,6 +59,7 @@ const CreateObjectiveForm = ({ missions, missionId, onSubmit }: CreateObjectiveF
 				errors={errors}
 				required={true}
 				disabled={isSubmitting}
+				isDarkMode={isDarkMode}
 			/>
 			<SubmitButton disabled={isSubmitting} label="Create" />
 		</form>
