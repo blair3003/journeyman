@@ -31,7 +31,7 @@ const Modal = ({ title, onClose, children }: ModalProps) => {
 					<h2 className="text-slate-500 text-sm uppercase font-bold">{title}</h2>
 					<button onClick={handleClose} className={`rounded-full w-12 h-12 grid place-content-center text-xl ${isDarkMode ? 'text-white hover:bg-slate-900' : 'text-black hover:bg-slate-100'}`}>
 						<span className="sr-only">Close</span>
-						<HiXMark />
+						<HiXMark /> 
 					</button>
 				</header>
 				{children}

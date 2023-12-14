@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useForm, FieldValues } from 'react-hook-form'
 import Input from '../../../components/Input'
 import SubmitButton from '../../../components/SubmitButton'
+import { useAppContext } from '../../../context/AppContext'
 
 interface EditCampaignDetailsFormProps {
     campaign: Campaign
@@ -9,6 +10,8 @@ interface EditCampaignDetailsFormProps {
 }
 
 const EditCampaignDetailsForm = ({ campaign, onSubmit }: EditCampaignDetailsFormProps) => {
+
+    const { isDarkMode } = useAppContext()
 
     const {
         register,
@@ -45,6 +48,7 @@ const EditCampaignDetailsForm = ({ campaign, onSubmit }: EditCampaignDetailsForm
                 errors={errors}
                 required={true}
                 disabled={isSubmitting}
+                isDarkMode={isDarkMode}
             />
             <SubmitButton disabled={isSubmitting} label="Update" />
         </form>

@@ -3,13 +3,17 @@ import { useForm, FieldValues } from 'react-hook-form'
 import Input from '../../../components/Input'
 import Textarea from '../../../components/Textarea'
 import SubmitButton from '../../../components/SubmitButton'
+import { useAppContext } from '../../../context/AppContext'
 
 interface EditMissionDetailsFormProps {
     mission: Mission
     onSubmit?: (updatedMission: Mission) => void
+    focus?: string
 }
 
-const EditMissionDetailsForm = ({ mission, onSubmit }: EditMissionDetailsFormProps) => {
+const EditMissionDetailsForm = ({ mission, onSubmit, focus = 'title' }: EditMissionDetailsFormProps) => {
+
+    const { isDarkMode } = useAppContext()
 
     const {
         register,
@@ -34,7 +38,7 @@ const EditMissionDetailsForm = ({ mission, onSubmit }: EditMissionDetailsFormPro
     }
 
     useEffect(() => {
-        setFocus('title')
+        setFocus(focus)
     }, [setFocus])
 
 
@@ -47,6 +51,7 @@ const EditMissionDetailsForm = ({ mission, onSubmit }: EditMissionDetailsFormPro
                 errors={errors}
                 required={true}
                 disabled={isSubmitting}
+                isDarkMode={isDarkMode}
             />
             <Textarea
                 id="description"
@@ -54,6 +59,7 @@ const EditMissionDetailsForm = ({ mission, onSubmit }: EditMissionDetailsFormPro
                 register={register}
                 errors={errors}
                 disabled={isSubmitting}
+                isDarkMode={isDarkMode}
             />
             <SubmitButton disabled={isSubmitting} label="Update" />
         </form>

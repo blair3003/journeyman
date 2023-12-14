@@ -17,8 +17,8 @@ const EditCampaignDetails = ({ campaign }: EditCampaignDetailsProps) => {
     }
 
     return (
-        <section>
-            <h2>Edit Campaign Details</h2>
+        <section className="p-4">
+            <h2 className="uppercase text-sm font-bold p-2 text-slate-500">Edit Campaign Details</h2>
             <EditCampaignDetailsForm campaign={campaign} onSubmit={onUpdate} />
         </section>
     )

@@ -4,9 +4,10 @@ import MissionDetails from './MissionDetails'
 
 interface EditMissionDetailsProps {
     mission: Mission
+    focus?: string
 }
 
-const EditMissionDetails = ({ mission }: EditMissionDetailsProps) => {
+const EditMissionDetails = ({ mission, focus }: EditMissionDetailsProps) => {
 
     const { openDrawer } = useLayoutContext()
 
@@ -17,9 +18,9 @@ const EditMissionDetails = ({ mission }: EditMissionDetailsProps) => {
     }
 
     return (
-        <section>
-            <h2>Edit Mission Details</h2>
-            <EditMissionDetailsForm mission={mission} onSubmit={onUpdate} />
+        <section className="p-4">
+            <h2 className="uppercase text-sm font-bold p-2 text-slate-500">Edit Mission Details</h2>
+            <EditMissionDetailsForm mission={mission} onSubmit={onUpdate} focus={focus} />
         </section>
     )
 }

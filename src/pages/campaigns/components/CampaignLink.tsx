@@ -22,7 +22,7 @@ const CampaignLink = ({ campaign }: CampaignLinkProps) => {
         <Link to={`/c/${campaign.uid}`} className="w-64 h-32 flex items-start justify-between rounded p-2 text-sm bg-blue-600 hover:bg-blue-600/75 text-white shadow-xl">
             <h3>{campaign.title}</h3>
             <div className="relative">
-                <button onClick={e => {e.preventDefault(); openMenu()}}>
+                <button onClick={e => {e.preventDefault(); openMenu()}} className={`w-6 h-6 text-base grid place-content-center hover:bg-blue-700`}>
                     <span className="sr-only">More Campaign options</span>
                     <HiEllipsisHorizontal />
                 </button>
