@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { HiPlus } from 'react-icons/hi2'
 import ObjectiveLink from './ObjectiveLink'
+import { useAppContext } from '../../../context/AppContext'
 
 interface ObjectiveListProps {
 	missionId: string
@@ -8,6 +9,8 @@ interface ObjectiveListProps {
 }
 
 const ObjectiveList = ({ missionId, objectives }: ObjectiveListProps) => {
+
+	const { isDarkMode } = useAppContext()
 	
 	return (
 		<section>
@@ -20,10 +23,12 @@ const ObjectiveList = ({ missionId, objectives }: ObjectiveListProps) => {
 					</li>
 				))}
 				</ol>
-				<Link to={`?createObjective=${missionId}`}>
-					<span className="sr-only">New Objective</span>
-					<HiPlus />
-				</Link>
+				<div className="w-full grid place-content-center p-2">
+					<Link to={`?createObjective=${missionId}`} title="New Objective" className={`rounded-full w-12 h-12 grid place-content-center text-xl ${isDarkMode ? 'text-white hover:bg-slate-900' : 'text-black hover:bg-slate-300'}`}>
+						<span className="sr-only">New Objective</span>
+						<HiPlus />
+					</Link>
+				</div>
 			</div>
 		</section>
 	)

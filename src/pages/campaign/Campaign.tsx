@@ -32,8 +32,8 @@ const Campaign = () => {
     if (!campaign) return null
 
     return (
-        <section className={`grow p-4 ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}>
-            <header className="flex items-center gap-4 mb-4">
+        <section className={`flex flex-col overflow-hidden grow ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}>
+            <header className="flex items-center gap-4 mb-4 p-4">
                 <h1 className={`text-xl ${isDarkMode ? 'text-white' : 'text-black'}`}>{campaign.title}</h1>
                 <div className="relative">
                     <button onClick={openMenu} className="flex items-center gap-1 bg-blue-800 text-white uppercase text-sm px-2 py-1 rounded">

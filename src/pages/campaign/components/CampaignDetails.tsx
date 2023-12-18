@@ -26,7 +26,7 @@ const CampaignDetails = ({ campaign }: CampaignDetailsProps) => {
                     <HiPencil />
                 </button>
             </header>
-            <button
+            <button 
                 onClick={handleEdit}
                 className={`w-full text-left p-2 mb-2 rounded ${isDarkMode ? 'bg-slate-900' : 'bg-slate-100'}`}
             >

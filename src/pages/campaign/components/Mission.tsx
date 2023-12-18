@@ -6,6 +6,7 @@ import MissionDetails from './MissionDetails'
 import EditMissionDetails from './EditMissionDetails'
 import useMenu from '../../../hooks/useMenu'
 import Menu from '../../../components/Menu'
+import { useAppContext } from '../../../context/AppContext'
 
 interface MissionProps {
 	mission: Mission
@@ -13,6 +14,7 @@ interface MissionProps {
 
 const Mission = ({ mission }: MissionProps) => {
 
+	const { isDarkMode } = useAppContext()
 	const { objectives } = useDataContext()
 	const missionObjectives: Objective[] = objectives.filter(objective => objective.mission === mission.uid)
 
@@ -23,8 +25,8 @@ const Mission = ({ mission }: MissionProps) => {
     	})
 	
 	return (
-		<section className="flex flex-col bg-slate-200 border-2 border-slate-500 rounded p-2 shadow-xl">
-			<header className="flex justify-between items-start mb-2">
+		<section className={`w-72 flex flex-col border-2 rounded-lg p-2 shadow-xl ${isDarkMode ? 'text-white bg-slate-950 border-slate-800' : 'text-black bg-slate-100 border-slate-200'}`}>
+			<header className="flex justify-between items-start mb-4">
 				<h3>{mission.title}</h3>
 				<div className="relative">
 					<button onClick={e => {e.preventDefault(); openMenu()}}>
