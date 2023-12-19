@@ -21,12 +21,12 @@ const Campaign = () => {
         'Create Objective': () => navigate('?createObjective')
     })
 
-    const campaign: Campaign | undefined = campaigns.find(campaign => campaign.uid === campaignId)
-    const campaignMissions: Mission[] = missions.filter(mission => mission.campaign === campaign?.uid)
-    const missionObjectives: Objective[] = objectives.filter(objective => campaignMissions.some(mission => mission.uid === objective.mission))
+    const campaign: Campaign | undefined = campaigns.find(campaign => campaign.id === campaignId)
+    const campaignMissions: Mission[] = missions.filter(mission => mission.campaign === campaign?.id)
+    const missionObjectives: Objective[] = objectives.filter(objective => campaignMissions.some(mission => mission.id === objective.mission))
 
     useEffect(() => {
-        if (campaigns.length && !campaign) navigate('/')
+        if (campaigns.length && !campaign) navigate('/', { replace: true })
     }, [campaign, campaigns, navigate])
 
     if (!campaign) return null
@@ -45,7 +45,7 @@ const Campaign = () => {
             </header>
             <MissionList missions={campaignMissions} />
             <ObjectiveModal objectives={missionObjectives} missions={campaignMissions}/>
-            <CreateMissionModal campaignId={campaign.uid}/>
+            <CreateMissionModal campaignId={campaign.id}/>
             <CreateObjectiveModal missions={campaignMissions}/>
         </section>
     )

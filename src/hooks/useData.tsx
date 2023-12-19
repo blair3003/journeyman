@@ -1,5 +1,6 @@
-import { useCallback, useEffect } from 'react'
-import useEndpoints from './useEndpoints'
+import { useEffect } from 'react'
+import { db } from '../config/firebase'
+import { getDocs, collection } from 'firebase/firestore'
 import useDataReducer from './useDataReducer'
 
 interface Data {
@@ -16,36 +17,70 @@ interface Data {
 const useData = (): Data => {
 
     const { data, dispatchData } = useDataReducer()
-    const { usersUrl, campaignsUrl, missionsUrl, objectivesUrl } = useEndpoints()
-
-    const handleFetchData = useCallback(() => {
-		const controller = new AbortController();
-	    (async () => {
-			try {
-                dispatchData({ type: 'DATA_FETCH_INIT' })
-                const fetchPromise = async (url: string) => {
-                    const response = await fetch(url, { signal: controller.signal })
-                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`)
-                    return response.json()
-                }
-                const [users, campaigns, missions, objectives]: [User[], Campaign[], Mission[], Objective[]] = await Promise.all([
-                    fetchPromise(usersUrl),
-                    fetchPromise(campaignsUrl),
-                    fetchPromise(missionsUrl),
-                    fetchPromise(objectivesUrl)
-                ])
-                dispatchData({ type: 'DATA_FETCH_SUCCESS', payload: { users, campaigns, missions, objectives } })              
-			} catch (err: any) {
-                if (err.name !== 'AbortError') dispatchData({ type: 'DATA_FETCH_FAILURE' })
-			}
-	    })()
-	    return controller  
-	}, [usersUrl, campaignsUrl, missionsUrl, objectivesUrl])
 
 	useEffect(() => {
-        const fetchData = handleFetchData()
-		return () => fetchData.abort()        
-	}, [handleFetchData])
+        const getData = async () => {
+            try {
+                dispatchData({ type: 'DATA_FETCH_INIT' })
+                const getUsers = async () => {
+                    const data = await getDocs(collection(db, 'users'))
+                    return data.docs.map(doc => ({id: doc.id, ...doc.data() }))
+                }
+                const getCampaigns = async () => {
+                    const data = await getDocs(collection(db, 'campaigns'))
+                    return data.docs.map(doc => {
+                        const { users, missions, ...rest } = doc.data()
+                        return {
+                            id: doc.id,
+                            users: users?.map((user: { id: string }) => user.id),
+                            missions: missions?.map((mission: { id: string }) => mission.id),
+                            ...rest
+                        }
+                    })
+                }
+                const getMissions = async () => {
+                    const data = await getDocs(collection(db, 'missions'))
+                    return data.docs.map(doc => {
+                        const { campaign, objectives, ...rest } = doc.data()
+                        return {
+                            id: doc.id,
+                            campaign: campaign.id,
+                            objectives: objectives?.map((objective: { id: string }) => objective.id),
+                            ...rest
+                        }
+                    })
+                }
+                const getObjectives = async () => {
+                    const data = await getDocs(collection(db, 'objectives'))
+                    return data.docs.map(doc => {
+                        const { users, mission, messages, ...rest } = doc.data()
+                        return {
+                            id: doc.id,
+                            users: users?.map((user: { id: string }) => user.id),
+                            mission: mission.id,
+                            messages: messages.map((message: { user: { id: string } }) => {
+                                return {
+                                    ...message,
+                                    user: message.user.id
+                                }
+                            }),
+                            ...rest
+                        }
+                    })
+                }
+                const [users, campaigns, missions, objectives] = await Promise.all([
+                    getUsers(),
+                    getCampaigns(),
+                    getMissions(),
+                    getObjectives()
+                ])
+                dispatchData({ type: 'DATA_FETCH_SUCCESS', payload: { users, campaigns, missions, objectives } })
+            } catch (error) {
+                dispatchData({ type: 'DATA_FETCH_FAILURE' })
+            }
+        }
+        getData()   
+	}, [])
 
     return { ...data }
 }

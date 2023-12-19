@@ -1,16 +1,16 @@
 type FirebaseUser = import('firebase/auth').User
 
 type User = {
-    uid: string
+    id: string
     username: string
+    email: string
     displayName: string
-    photoURL?: string
+    displayPic?: string
     roles?: string[]
-    createdAt: Date
 }
 
 type Campaign = {
-    uid: string
+    id: string
     title: string
     users?: string[]
     missions?: string[]
@@ -19,7 +19,7 @@ type Campaign = {
 }
 
 type Mission = {
-    uid: string
+    id: string
     campaign: string
     title: string
     description?: string
@@ -29,7 +29,7 @@ type Mission = {
 }
 
 type Objective = {
-    uid: string
+    id: string
     mission: string
     title: string
     description?: string
@@ -45,7 +45,6 @@ type Objective = {
 }
 
 type Task = {
-    id: string
     label: string
     checked: boolean
 }

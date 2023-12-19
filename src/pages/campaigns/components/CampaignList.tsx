@@ -10,7 +10,7 @@ const CampaignList = ({ campaigns }: CampaignListProps) => {
         <section>
             <h2 className="sr-only">Campaign List</h2>
             <ol className="flex gap-4">
-                {campaigns.map(campaign => <li key={campaign.uid}><CampaignLink campaign={campaign}/></li>)}
+                {campaigns.map(campaign => <li key={campaign.id}><CampaignLink campaign={campaign}/></li>)}
             </ol>
         </section>
     )

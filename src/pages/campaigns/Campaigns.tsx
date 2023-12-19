@@ -18,11 +18,11 @@ const Campaigns = () => {
         'Create Campaign': () => navigate('?createCampaign')
     })
 
-    const user: User | undefined = users.find(user => user.uid === userId)
-	const userCampaigns: Campaign[] = user ? campaigns.filter(campaign => campaign.users?.includes(user.uid)) : []
+    const user: User | undefined = users.find(user => user.id === userId)
+	const userCampaigns: Campaign[] = user ? campaigns.filter(campaign => campaign.users?.includes(user.id)) : []
 
     useEffect(() => {
-        if (users.length && !user) navigate('/')
+        if (users.length && !user) navigate('/', { replace: true })
     }, [user, users, navigate])
 
     if (!user) return null
@@ -40,7 +40,7 @@ const Campaigns = () => {
                 </div>
             </header>
 			<CampaignList campaigns={userCampaigns}/>
-            <CreateCampaignModal userId={user.uid} />
+            <CreateCampaignModal userId={user.id} />
 		</section>
     )
 }
