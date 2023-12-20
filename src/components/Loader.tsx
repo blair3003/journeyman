@@ -8,7 +8,7 @@ interface LoaderProps {
 	cssOverride?: CSSProperties
 }
 
-const Loader = ({ color = '#FFF', loading = true, size = 150, cssOverride }: LoaderProps) => {
+const Loader = ({ color = '#FFF', loading = true, size = 48, cssOverride }: LoaderProps) => {
 
 	return (
 		<ClipLoader

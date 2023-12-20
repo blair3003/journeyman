@@ -7,7 +7,6 @@ import EditMissionDetails from './EditMissionDetails'
 import useMenu from '../../../hooks/useMenu'
 import Menu from '../../../components/Menu'
 import { useAppContext } from '../../../context/AppContext'
-import { Link } from 'react-router-dom'
 
 interface MissionProps {
 	mission: Mission

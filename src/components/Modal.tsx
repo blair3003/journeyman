@@ -4,7 +4,7 @@ import { useAppContext } from '../context/AppContext'
 
 interface ModalProps {
 	title: string
-	onClose: () => void
+	onClose?: () => void
 	children: React.ReactNode
 }
 
@@ -14,7 +14,7 @@ const Modal = ({ title, onClose, children }: ModalProps) => {
 	const dialogRef = useRef<HTMLDialogElement | null>(null)
 
 	const handleClose = () => {
-		onClose()
+		if (onClose) onClose()
 		dialogRef.current?.close()
 	}
 
