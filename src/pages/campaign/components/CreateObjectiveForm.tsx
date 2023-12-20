@@ -54,7 +54,7 @@ const CreateObjectiveForm = ({ missions, missionId, onSubmit }: CreateObjectiveF
 				id="mission"
 				label="Mission"
 				register={register}
-				options={missions.map(mission => ({ label: mission.title, value: mission.uid }))}
+				options={missions.map(mission => ({ label: mission.title, value: mission.id }))}
 				defaultOptionLabel="--Please choose a mission--"
 				errors={errors}
 				required={true}

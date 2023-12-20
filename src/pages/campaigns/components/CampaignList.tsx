@@ -7,7 +7,7 @@ interface CampaignListProps {
 const CampaignList = ({ campaigns }: CampaignListProps) => {
 
     return (
-        <section>
+        <section className="p-4">
             <h2 className="sr-only">Campaign List</h2>
             <ol className="flex gap-4">
                 {campaigns.map(campaign => <li key={campaign.id}><CampaignLink campaign={campaign}/></li>)}

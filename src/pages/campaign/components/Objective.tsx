@@ -11,7 +11,7 @@ const Objective = ({ objective, missions }: ObjectiveProps) => {
 	return (
 		<>
 			<ObjectiveForm objective={objective} missions={missions} />
-			<Messages objectiveID={objective.uid} messages={objective.messages} />
+			<Messages objectiveID={objective.id} messages={objective.messages} />
 		</>
 	)
 }

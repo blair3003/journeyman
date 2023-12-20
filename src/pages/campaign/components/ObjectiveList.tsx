@@ -18,7 +18,7 @@ const ObjectiveList = ({ missionId, objectives }: ObjectiveListProps) => {
 			<div className="flex flex-col">
 				<ol className="flex flex-col gap-2">
 				{objectives.map(objective => (
-					<li key={objective.uid}>
+					<li key={objective.id}>
 						<ObjectiveLink objective={objective} />
 					</li>
 				))}

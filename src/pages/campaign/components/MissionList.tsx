@@ -16,8 +16,8 @@ const MissionList = ({ missions }: MissionListProps) => {
 			<h2 className="sr-only">Missions</h2>
 			<div className="flex gap-4">
 				<ol className="flex gap-4">
-					{missions.map(mission => (
-						<li key={mission.uid}>
+					{missions.sort((a,b) => a.order - b.order).map(mission => (
+						<li key={mission.id}>
 							<Mission mission={mission} />
 						</li>
 					))}

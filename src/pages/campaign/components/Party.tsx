@@ -35,7 +35,7 @@ const Party = ({ defaultValues = [], setValue, errors, isDarkMode = false }: Par
 
 	const { menu, openMenu, closeMenu } = useMenu(
 		users.reduce((menu: Record<string, () => void>, user) => {
-			menu[user.uid] = () => addUser(user.uid)
+			menu[user.id] = () => addUser(user.id)
 			return menu
 		}, {})
 	)
@@ -49,9 +49,9 @@ const Party = ({ defaultValues = [], setValue, errors, isDarkMode = false }: Par
 			<div className="flex justify-between items-center">
 				<div className="flex justify-start items-center grow flex-wrap gap-1 p-2">
 					{party.map(partyUser => {
-                        const user = users.find(user => user.uid === partyUser)
+                        const user = users.find(user => user.id === partyUser)
                         if (!user) return null
-                        return <PartyUser key={user.uid} user={user} onRemove={removeUser} />
+                        return <PartyUser key={user.id} user={user} onRemove={removeUser} />
                     })}
 				</div>
 				<div className="relative">

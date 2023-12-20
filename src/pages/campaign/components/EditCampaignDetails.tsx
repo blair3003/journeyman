@@ -1,6 +1,7 @@
 import { useLayoutContext } from '../../../context/LayoutContext'
 import EditCampaignDetailsForm from './EditCampaignDetailsForm'
 import CampaignDetails from './CampaignDetails'
+import { useDataContext } from '../../../context/DataContext'
 
 interface EditCampaignDetailsProps {
     campaign: Campaign
@@ -9,10 +10,10 @@ interface EditCampaignDetailsProps {
 const EditCampaignDetails = ({ campaign }: EditCampaignDetailsProps) => {
 
     const { openDrawer } = useLayoutContext()
+    const { campaigns, setCampaigns } = useDataContext()
 
     const onUpdate = (updatedCampaign: Campaign) => {
-        console.log('Campaign updated')
-        console.log(updatedCampaign)
+        setCampaigns([updatedCampaign, ...campaigns.filter(campaign => campaign.id !== updatedCampaign.id)])
         openDrawer(<CampaignDetails campaign={updatedCampaign} />)
     }
 

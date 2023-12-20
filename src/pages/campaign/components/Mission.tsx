@@ -7,6 +7,7 @@ import EditMissionDetails from './EditMissionDetails'
 import useMenu from '../../../hooks/useMenu'
 import Menu from '../../../components/Menu'
 import { useAppContext } from '../../../context/AppContext'
+import { Link } from 'react-router-dom'
 
 interface MissionProps {
 	mission: Mission
@@ -16,7 +17,7 @@ const Mission = ({ mission }: MissionProps) => {
 
 	const { isDarkMode } = useAppContext()
 	const { objectives } = useDataContext()
-	const missionObjectives: Objective[] = objectives.filter(objective => objective.mission === mission.uid)
+	const missionObjectives: Objective[] = objectives.filter(objective => objective.mission === mission.id)
 
 	const { openDrawer } = useLayoutContext()
 	const { menu, openMenu, closeMenu } = useMenu({
@@ -27,7 +28,11 @@ const Mission = ({ mission }: MissionProps) => {
 	return (
 		<section className={`w-72 flex flex-col border-2 rounded-lg p-2 shadow-xl ${isDarkMode ? 'text-white bg-slate-950 border-slate-800' : 'text-black bg-slate-100 border-slate-200'}`}>
 			<header className="flex justify-between items-start mb-4">
-				<h3>{mission.title}</h3>
+				
+				<button onClick={e => {e.preventDefault(); openDrawer(<MissionDetails mission={mission} />)}}>
+					<h3>{mission.title}</h3>
+				</button>
+				
 				<div className="relative">
 					<button onClick={e => {e.preventDefault(); openMenu()}}>
 						<span className="sr-only">Mission Menu</span>
@@ -36,7 +41,7 @@ const Mission = ({ mission }: MissionProps) => {
 					<Menu menu={menu} onClose={closeMenu} />
 				</div>
 			</header>
-			<ObjectiveList missionId={mission.uid} objectives={missionObjectives} />
+			<ObjectiveList missionId={mission.id} objectives={missionObjectives} />
 		</section>
 	)
 }

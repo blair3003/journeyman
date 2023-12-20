@@ -73,7 +73,7 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
                 id="mission"
                 label="Mission"
                 register={register}
-                options={missions.map(mission => ({ label: mission.title, value: mission.uid }))}
+                options={missions.map(mission => ({ label: mission.title, value: mission.id }))}
                 defaultOptionLabel="--"
                 errors={errors}
                 required={true}

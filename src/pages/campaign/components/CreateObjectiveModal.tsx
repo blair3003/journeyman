@@ -12,7 +12,7 @@ const CreateObjectiveModal = ({ missions }: CreateObjectiveModalProps) => {
 
 	const createObjective = searchParams.has('createObjective')
 	const missionId = searchParams.get('createObjective')
-	const mission = (missionId) ? missions.find(mission => mission.uid === missionId) : null
+	const mission = (missionId) ? missions.find(mission => mission.id === missionId) : null
 
 	const onClose = () => {
 		searchParams.delete('createObjective')
@@ -23,7 +23,7 @@ const CreateObjectiveModal = ({ missions }: CreateObjectiveModalProps) => {
 
 	return (
 		<Modal title="Create Objective" onClose={onClose}>
-			<CreateObjectiveForm missions={missions} missionId={mission?.uid} onSubmit={onClose} />
+			<CreateObjectiveForm missions={missions} missionId={mission?.id} onSubmit={onClose} />
 		</Modal>
 	)
 }

@@ -2,6 +2,7 @@ type FirebaseUser = import('firebase/auth').User
 
 type User = {
     id: string
+    uid?: string
     username: string
     email: string
     displayName: string
@@ -24,6 +25,7 @@ type Mission = {
     title: string
     description?: string
     objectives?: string[]
+    order: number
     createdAt: Date
     updatedAt: Date
 }

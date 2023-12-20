@@ -10,6 +10,12 @@ interface Data {
         missions: Mission[]
         objectives: Objective[]
     }
+    setters: {
+        setUsers: (users: User[]) => void
+        setCampaigns: (campaigns: Campaign[]) => void
+        setMissions: (missions: Mission[]) => void
+        setObjectives: (objectives: Objective[]) => void
+    }
     isLoading: boolean
     isError: boolean
 }
@@ -17,6 +23,11 @@ interface Data {
 const useData = (): Data => {
 
     const { data, dispatchData } = useDataReducer()
+
+    const setUsers = (users: User[]) => dispatchData({ type: 'UPDATE_USERS', payload: users })
+    const setCampaigns = (campaigns: Campaign[]) => dispatchData({ type: 'UPDATE_CAMPAIGNS', payload: campaigns })
+    const setMissions = (missions: Mission[]) => dispatchData({ type: 'UPDATE_MISSIONS', payload: missions })
+    const setObjectives = (objectives: Objective[]) => dispatchData({ type: 'UPDATE_OBJECTIVES', payload: objectives })
 
 	useEffect(() => {
         const getData = async () => {
@@ -82,7 +93,7 @@ const useData = (): Data => {
         getData()   
 	}, [])
 
-    return { ...data }
+    return { ...data, setters: { setUsers, setCampaigns, setMissions, setObjectives } }
 }
 
 export default useData

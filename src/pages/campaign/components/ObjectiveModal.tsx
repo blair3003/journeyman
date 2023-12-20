@@ -12,7 +12,7 @@ const ObjectiveModal = ({ objectives, missions }: ObjectiveModalProps) => {
 	const [searchParams, setSearchParams] = useSearchParams() 
 
 	const objectiveId = searchParams.get('o')
-	const objective = objectives.find(objective => objective.uid === objectiveId)
+	const objective = objectives.find(objective => objective.id === objectiveId)
 
 	const onClose = () => {
 		searchParams.delete('o')
@@ -22,7 +22,7 @@ const ObjectiveModal = ({ objectives, missions }: ObjectiveModalProps) => {
 	if (!objective) return null
 
 	return (
-		<Modal title={`Objective #${objective.uid}`} onClose={onClose}>
+		<Modal title={`Objective #${objective.id}`} onClose={onClose}>
 			<Objective objective={objective} missions={missions} />
 		</Modal>
 	)

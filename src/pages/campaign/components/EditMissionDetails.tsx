@@ -1,3 +1,4 @@
+import { useDataContext } from '../../../context/DataContext'
 import { useLayoutContext } from '../../../context/LayoutContext'
 import EditMissionDetailsForm from './EditMissionDetailsForm'
 import MissionDetails from './MissionDetails'
@@ -10,10 +11,10 @@ interface EditMissionDetailsProps {
 const EditMissionDetails = ({ mission, focus }: EditMissionDetailsProps) => {
 
     const { openDrawer } = useLayoutContext()
+    const { missions, setMissions } = useDataContext()
 
     const onUpdate = (updatedMission: Mission) => {
-        console.log('Mission updated')
-        console.log(updatedMission)
+        setMissions([...missions.filter(mission => mission.id !== updatedMission.id), updatedMission])
         openDrawer(<MissionDetails mission={updatedMission} />)
     }
 

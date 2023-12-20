@@ -24,7 +24,11 @@ interface DataAction {
 enum DataActionTypes {
     DATA_FETCH_INIT = 'DATA_FETCH_INIT',
     DATA_FETCH_SUCCESS = 'DATA_FETCH_SUCCESS',
-    DATA_FETCH_FAILURE = 'DATA_FETCH_FAILURE'
+    DATA_FETCH_FAILURE = 'DATA_FETCH_FAILURE',
+    UPDATE_USERS = 'UPDATE_USERS',
+    UPDATE_CAMPAIGNS = 'UPDATE_CAMPAIGNS',
+    UPDATE_MISSIONS = 'UPDATE_MISSIONS',
+    UPDATE_OBJECTIVES = 'UPDATE_OBJECTIVES'
 }
 
 const useDataReducer = (): DataReducer => {
@@ -34,10 +38,18 @@ const useDataReducer = (): DataReducer => {
             case DataActionTypes.DATA_FETCH_INIT:
                 return { ...state, isLoading: true, isError: false }
             case DataActionTypes.DATA_FETCH_SUCCESS:
-                console.log({ resources: action.payload })
+                console.log(action.payload)
                 return { ...state, resources: action.payload, isLoading: false, isError: false }
             case DataActionTypes.DATA_FETCH_FAILURE:
                 return { ...state, isLoading: false, isError: true }
+            case DataActionTypes.UPDATE_USERS:
+                return { ...state, resources: { ...state.resources, users: action.payload } }
+            case DataActionTypes.UPDATE_CAMPAIGNS:
+                return { ...state, resources: { ...state.resources, campaigns: action.payload } }
+            case DataActionTypes.UPDATE_MISSIONS:
+                return { ...state, resources: { ...state.resources, missions: action.payload } }
+            case DataActionTypes.UPDATE_OBJECTIVES:
+                return { ...state, resources: { ...state.resources, objectives: action.payload } }
             default:
                 return { ...state }
         }

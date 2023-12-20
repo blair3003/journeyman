@@ -9,9 +9,10 @@ const Sidebar = () => {
     const { campaignId } = useParams()
     const { isDarkMode } = useAppContext()
     const { auth } = useAuthContext()
-    const { campaigns } = useDataContext()
+    const { users, campaigns } = useDataContext()
 
-	const userCampaigns: Campaign[] = auth ? campaigns.filter(campaign => campaign.users?.includes(auth.uid)) : []
+    const user: User | undefined = users.find(user => user.uid === auth?.uid)
+	const userCampaigns: Campaign[] = user ? campaigns.filter(campaign => campaign.users?.includes(user.id)) : []
 
     return (
         <aside className={`p-2 w-64 flex flex-col ${isDarkMode ? 'bg-slate-950' : 'bg-white'}`}>
@@ -19,16 +20,16 @@ const Sidebar = () => {
 
             <section className="grow">
                 <h3 className="uppercase text-sm font-bold p-2 text-slate-500">
-                    <Link to={`/u/${auth?.uid}/campaigns`} className="block">My Campaigns</Link>
+                    <Link to={`/u/${user?.id}/campaigns`} className="block">My Campaigns</Link>
                 </h3>
                 <nav>
                     <ol>
                         {userCampaigns.map(campaign => (
-                            <li key={campaign.uid}>
+                            <li key={campaign.id}>
                                 <Link
-                                    to={`/c/${campaign.uid}`}
+                                    to={`/c/${campaign.id}`}
                                     title={campaign.title}
-                                    className={`block px-2 py-1 rounded text-sm truncate ${isDarkMode ? 'text-slate-300' : 'text-black'} ${campaign.uid === campaignId ? isDarkMode ? 'bg-blue-900' : 'bg-slate-100' : '' }`}
+                                    className={`block px-2 py-1 rounded text-sm truncate ${isDarkMode ? 'text-slate-300' : 'text-black'} ${campaign.id === campaignId ? isDarkMode ? 'bg-blue-900' : 'bg-slate-100' : '' }`}
                                 >{campaign.title}</Link>
                             </li>
                         ))}
