@@ -10,12 +10,13 @@ import { useAuthContext } from '../../../context/AuthContext'
 import Input from '../../../components/Input'
 import SubmitButton from '../../../components/SubmitButton'
 import { useAppContext } from '../../../context/AppContext'
+import { createUserDoc } from '../../../services/firestore'
 
 const LoginForm = () => {
 
     const navigate = useNavigate()
     const { isDarkMode } = useAppContext()
-    const { auth: user } = useAuthContext()
+    const { authUser } = useAuthContext()
 
     const {
         register,
@@ -42,7 +43,8 @@ const LoginForm = () => {
 
     const loginWithGoogle = async () => {
         try {
-            await signInWithPopup(auth, new GoogleAuthProvider())
+            const userCredential = await signInWithPopup(auth, new GoogleAuthProvider())
+            await createUserDoc(userCredential.user)
         } catch (error) {
             if (error instanceof FirebaseError) {
                 handleFirebaseError(error.code)
@@ -69,8 +71,12 @@ const LoginForm = () => {
     }, [setFocus])
 
     useEffect(() => {
-        if (user) navigate(`/u/${user.uid}/campaigns`)
-    }, [user])
+        const getUserIdAndRedirect = async (authUser: FirebaseUser) => {
+            const userId = await createUserDoc(authUser)
+            navigate(`/u/${userId}/campaigns`)
+        }
+        if (authUser) getUserIdAndRedirect(authUser)
+    }, [authUser])
 
     return (
         <form onSubmit={handleSubmit(loginWithCredentials)}>

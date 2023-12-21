@@ -6,20 +6,14 @@ import { auth } from '../../config/firebase'
 const Logout = () => {
 
     const navigate = useNavigate()
-
-    const handleSignOut = async () => {
-        try {
+    
+    useEffect(() => {
+        const handleSignOut = async () => {
             await signOut(auth)
-        } catch (error) {
-            if (error instanceof Error) console.error(error.message)
-        } finally {
             navigate('/login', { replace: true })
         }
-    }
-
-    useEffect(() => {
         handleSignOut()
-    }, [])
+    }, [navigate])
 
     return null
 }

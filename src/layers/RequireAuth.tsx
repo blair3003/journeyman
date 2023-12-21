@@ -3,12 +3,12 @@ import { useAuthContext } from '../context/AuthContext'
 
 const RequireAuth = () => {
 
-	const { auth, pending } = useAuthContext()
+	const { authUser, pending } = useAuthContext()
 	
 	if (pending) return null
 
 	return (
-		auth
+		authUser
 		? <Outlet />
         : <Navigate to="/login" replace />
 	)

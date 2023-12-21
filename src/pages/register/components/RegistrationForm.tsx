@@ -1,17 +1,20 @@
 import { useEffect } from 'react'
 import { useForm, FieldValues } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { onAuthStateChanged, createUserWithEmailAndPassword} from 'firebase/auth'
+import { createUserWithEmailAndPassword} from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
 import { auth} from '../../../config/firebase'
 import Input from '../../../components/Input'
 import SubmitButton from '../../../components/SubmitButton'
 import { useAppContext } from '../../../context/AppContext'
+import { createUserDoc } from '../../../services/firestore'
+import { useAuthContext } from '../../../context/AuthContext'
 
 const RegistrationForm = () => {
 
     const navigate = useNavigate() 
     const { isDarkMode } = useAppContext()
+    const { authUser } = useAuthContext()
 
     const { register, handleSubmit, setError, setFocus, resetField, formState: { errors, isSubmitting } } = useForm<FieldValues>()
 
@@ -46,11 +49,12 @@ const RegistrationForm = () => {
     }, [setFocus])
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, user => {
-            if (user) navigate(`/u/${user.uid}/campaigns`)
-        })
-        return () => unsubscribe()
-    }, [navigate])
+        const getUserIdAndRedirect = async (authUser: FirebaseUser) => {
+            const userId = await createUserDoc(authUser)
+            navigate(`/u/${userId}/campaigns`)
+        }
+        if (authUser) getUserIdAndRedirect(authUser)
+    }, [authUser])
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>            

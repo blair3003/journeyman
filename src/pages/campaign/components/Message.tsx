@@ -12,7 +12,7 @@ interface MessageProps {
 const Message = ({ message }: MessageProps) => {
 
 	const { isDarkMode } = useAppContext()
-	const { auth } = useAuthContext()
+	const { authUser } = useAuthContext()
 	const { users } = useDataContext()
 
 	const user = useMemo(() => users.find(user => user.id === message.user), [])
@@ -32,7 +32,7 @@ const Message = ({ message }: MessageProps) => {
 					<div>{format(createdAt, "dd MMM 'at' HH:mm")}</div>
 				</div>
 				<div className="mb-1">{message.body}</div>
-				{user.id === auth?.uid && <div className="text-slate-500 text-sm"><a className="underline" href="">Edit</a> • <a className="underline" href="">Delete</a></div>}
+				{user.uid === authUser?.uid && <div className="text-slate-500 text-sm"><a className="underline" href="">Edit</a> • <a className="underline" href="">Delete</a></div>}
 			</div>
 
 		</div>

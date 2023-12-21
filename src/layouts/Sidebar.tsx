@@ -8,10 +8,10 @@ const Sidebar = () => {
 
     const { campaignId } = useParams()
     const { isDarkMode } = useAppContext()
-    const { auth } = useAuthContext()
+    const { authUser } = useAuthContext()
     const { users, campaigns } = useDataContext()
 
-    const user: User | undefined = users.find(user => user.uid === auth?.uid)
+    const user: User | undefined = users.find(user => user.uid === authUser?.uid)
 	const userCampaigns: Campaign[] = user ? campaigns.filter(campaign => campaign.users?.includes(user.id)) : []
 
     return (

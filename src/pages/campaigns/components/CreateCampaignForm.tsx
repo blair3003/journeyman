@@ -6,7 +6,7 @@ import { useAppContext } from '../../../context/AppContext'
 
 interface CreateCampaignFormProps {
 	userId: string
-	onSubmit?: () => void 
+	onSubmit?: (newCampaign: Campaign) => void 
 }
 
 const CreateCampaignForm = ({ userId, onSubmit }: CreateCampaignFormProps) => {
@@ -22,8 +22,8 @@ const CreateCampaignForm = ({ userId, onSubmit }: CreateCampaignFormProps) => {
 
 	const createCampaign = async (data: FieldValues) => {
 		try {
-			console.log({ ...data, users: [userId] })
-			if (onSubmit) onSubmit()
+			const newCampaign = { ...data, users: [userId], id: '1234' } as Campaign //Remember to remove this line
+            if (onSubmit) onSubmit(newCampaign)
 		} catch (error) {
 			console.error(error)
 		}
