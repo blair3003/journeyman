@@ -44,9 +44,9 @@ const Campaign = () => {
                 </div>
             </header>
             <MissionList missions={campaignMissions} />
-            <ObjectiveModal objectives={missionObjectives} missions={campaignMissions}/>
-            <CreateMissionModal campaignId={campaign.id}/>
-            <CreateObjectiveModal missions={campaignMissions}/>
+            <ObjectiveModal objectives={missionObjectives} missions={campaignMissions} />
+            <CreateMissionModal />
+            <CreateObjectiveModal missions={campaignMissions} />
         </section>
     )
 }

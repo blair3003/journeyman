@@ -51,7 +51,7 @@ const RegistrationForm = () => {
     useEffect(() => {
         const getUserIdAndRedirect = async (authUser: FirebaseUser) => {
             const userId = await createUserDoc(authUser)
-            navigate(`/u/${userId}/campaigns`)
+            if (userId) navigate(`/u/${userId}/campaigns`)
         }
         if (authUser) getUserIdAndRedirect(authUser)
     }, [authUser])

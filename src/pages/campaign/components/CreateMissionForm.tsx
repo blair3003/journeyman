@@ -3,13 +3,15 @@ import { useForm, FieldValues } from 'react-hook-form'
 import Input from '../../../components/Input'
 import SubmitButton from '../../../components/SubmitButton'
 import { useAppContext } from '../../../context/AppContext'
+import { createMissionDoc } from '../../../services/firestore'
 
 interface CreateMissionFormProps {
 	campaignId: string
-	onSubmit?: () => void
+	order: number
+	onSubmit?: (newMission: Mission) => void
 }
 
-const CreateMissionForm = ({ campaignId, onSubmit }: CreateMissionFormProps) => {
+const CreateMissionForm = ({ campaignId, order, onSubmit }: CreateMissionFormProps) => {
 
 	const { isDarkMode } = useAppContext()
 
@@ -22,8 +24,10 @@ const CreateMissionForm = ({ campaignId, onSubmit }: CreateMissionFormProps) => 
 
 	const createMission = async (data: FieldValues) => {
 		try {
-			console.log({ ...data, campaign: campaignId })
-			if (onSubmit) onSubmit()
+			const { title } = data
+			const newMission = await createMissionDoc(title, campaignId, order)
+			if (!newMission) throw new Error()
+			if (onSubmit) onSubmit(newMission)
 		} catch (error) {
 			console.error(error)
 		}

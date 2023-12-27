@@ -3,15 +3,21 @@ import { useForm, FieldValues } from 'react-hook-form'
 import Input from '../../../components/Input'
 import SubmitButton from '../../../components/SubmitButton'
 import { useAppContext } from '../../../context/AppContext'
+import { useDataContext } from '../../../context/DataContext'
+import { useAuthContext } from '../../../context/AuthContext'
+import { createCampaignDoc } from '../../../services/firestore'
 
 interface CreateCampaignFormProps {
-	userId: string
 	onSubmit?: (newCampaign: Campaign) => void 
 }
 
-const CreateCampaignForm = ({ userId, onSubmit }: CreateCampaignFormProps) => {
+const CreateCampaignForm = ({ onSubmit }: CreateCampaignFormProps) => {
 
 	const { isDarkMode } = useAppContext()
+	const { users } = useDataContext()
+	const { authUser } = useAuthContext()
+
+	
 
 	const {
 		register,
@@ -22,7 +28,11 @@ const CreateCampaignForm = ({ userId, onSubmit }: CreateCampaignFormProps) => {
 
 	const createCampaign = async (data: FieldValues) => {
 		try {
-			const newCampaign = { ...data, users: [userId], id: '1234' } as Campaign //Remember to remove this line
+			const { title } = data
+			const userId = users.find(user => user.uid === authUser?.uid)?.id
+			if (!userId) throw new Error()
+			const newCampaign = await createCampaignDoc(title, userId)
+			if (!newCampaign) throw new Error()
             if (onSubmit) onSubmit(newCampaign)
 		} catch (error) {
 			console.error(error)

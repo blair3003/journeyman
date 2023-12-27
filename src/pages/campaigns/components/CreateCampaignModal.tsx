@@ -3,11 +3,7 @@ import CreateCampaignForm from './CreateCampaignForm'
 import Modal from '../../../components/Modal'
 import { useDataContext } from '../../../context/DataContext'
 
-interface CreateCampaignModalProps {
-	userId: string
-}
-
-const CreateCampaignModal = ({ userId }: CreateCampaignModalProps) => {
+const CreateCampaignModal = () => {
 
 	const [searchParams, setSearchParams] = useSearchParams()
     const { campaigns, setCampaigns } = useDataContext() 
@@ -28,7 +24,7 @@ const CreateCampaignModal = ({ userId }: CreateCampaignModalProps) => {
 
 	return (
 		<Modal title="Create Campaign" onClose={onClose}>
-			<CreateCampaignForm userId={userId} onSubmit={onCreate} />
+			<CreateCampaignForm onSubmit={onCreate} />
 		</Modal>
 	)
 }
