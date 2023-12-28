@@ -4,16 +4,21 @@ import Input from '../../../components/Input'
 import SubmitButton from '../../../components/SubmitButton'
 import Select from '../../../components/Select'
 import { useAppContext } from '../../../context/AppContext'
+import { useDataContext } from '../../../context/DataContext'
+import { createObjectiveDoc } from '../../../services/firestore'
 
 interface CreateObjectiveFormProps {
-	missions: Mission[]
+	campaignId: string
 	missionId?: string
-	onSubmit?: () => void
+	onSubmit?: (newObjective: Objective) => void
 }
 
-const CreateObjectiveForm = ({ missions, missionId, onSubmit }: CreateObjectiveFormProps) => {
+const CreateObjectiveForm = ({ campaignId, missionId, onSubmit }: CreateObjectiveFormProps) => {
 
 	const { isDarkMode } = useAppContext()
+	const { missions } = useDataContext()
+	
+	const campaignMissions = missions.filter(mission => mission.campaign === campaignId)
 
 	const {
 		register,
@@ -28,8 +33,10 @@ const CreateObjectiveForm = ({ missions, missionId, onSubmit }: CreateObjectiveF
 
 	const createObjective = async (data: FieldValues) => {
 		try {
-			console.log({ ...data })
-			if (onSubmit) onSubmit()
+			const { title, mission } = data
+			const newObjective = await createObjectiveDoc(title, mission)
+			if (!newObjective) throw new Error()
+			if (onSubmit) onSubmit(newObjective)
 		} catch (error) {
 			console.error(error)
 		}
@@ -54,7 +61,7 @@ const CreateObjectiveForm = ({ missions, missionId, onSubmit }: CreateObjectiveF
 				id="mission"
 				label="Mission"
 				register={register}
-				options={missions.map(mission => ({ label: mission.title, value: mission.id }))}
+				options={campaignMissions.map(mission => ({ label: mission.title, value: mission.id }))}
 				defaultOptionLabel="--Please choose a mission--"
 				errors={errors}
 				required={true}

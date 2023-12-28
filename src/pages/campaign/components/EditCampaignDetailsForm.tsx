@@ -3,6 +3,7 @@ import { useForm, FieldValues } from 'react-hook-form'
 import Input from '../../../components/Input'
 import SubmitButton from '../../../components/SubmitButton'
 import { useAppContext } from '../../../context/AppContext'
+import { updateCampaignDoc } from '../../../services/firestore'
 
 interface EditCampaignDetailsFormProps {
     campaign: Campaign
@@ -26,8 +27,9 @@ const EditCampaignDetailsForm = ({ campaign, onSubmit }: EditCampaignDetailsForm
 
     const updateCampaignDetails = async (data: FieldValues) => {
         try {
-            // TODO: update campaign resource
-            const updatedCampaign: Campaign = { ...campaign, ...data }
+            const { title } = data
+            const updatedCampaign = await updateCampaignDoc(campaign, { title })
+            if (!updatedCampaign) throw new Error()
             if (onSubmit) onSubmit(updatedCampaign)
         } catch (error) {
             console.error(error)

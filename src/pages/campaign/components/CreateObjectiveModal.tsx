@@ -1,17 +1,17 @@
-import { useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import Modal from '../../../components/Modal'
 import CreateObjectiveForm from './CreateObjectiveForm'
+import { useDataContext } from '../../../context/DataContext'
 
-interface CreateObjectiveModalProps {
-	missions: Mission[]
-}
+const CreateObjectiveModal = () => {
 
-const CreateObjectiveModal = ({ missions }: CreateObjectiveModalProps) => {
-
-	const [searchParams, setSearchParams] = useSearchParams() 
-
+	const { campaignId } = useParams()
+	const [searchParams, setSearchParams] = useSearchParams()
+	const { missions, objectives, setMissions, setObjectives } = useDataContext()
+	
 	const createObjective = searchParams.has('createObjective')
 	const missionId = searchParams.get('createObjective')
+
 	const mission = (missionId) ? missions.find(mission => mission.id === missionId) : null
 
 	const onClose = () => {
@@ -19,11 +19,19 @@ const CreateObjectiveModal = ({ missions }: CreateObjectiveModalProps) => {
 		setSearchParams(searchParams)
 	}
 
-	if (!createObjective) return null
+	const onCreate = (newObjective: Objective) => {
+		setObjectives([newObjective, ...objectives])
+		const mission = missions.find(mission => mission.id === newObjective.mission)
+		const updatedMission = { ...mission, objectives: [...mission?.objectives!, newObjective.id] } as Mission
+		setMissions([...missions.filter(mission => mission.id !== updatedMission.id), updatedMission])
+		onClose()
+	}
+
+	if (!campaignId || !createObjective) return null
 
 	return (
 		<Modal title="Create Objective" onClose={onClose}>
-			<CreateObjectiveForm missions={missions} missionId={mission?.id} onSubmit={onClose} />
+			<CreateObjectiveForm campaignId={campaignId} missionId={mission?.id} onSubmit={onCreate} />
 		</Modal>
 	)
 }

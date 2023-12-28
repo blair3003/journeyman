@@ -4,6 +4,7 @@ import Input from '../../../components/Input'
 import Textarea from '../../../components/Textarea'
 import SubmitButton from '../../../components/SubmitButton'
 import { useAppContext } from '../../../context/AppContext'
+import { updateMissionDoc } from '../../../services/firestore'
 
 interface EditMissionDetailsFormProps {
     mission: Mission
@@ -29,8 +30,9 @@ const EditMissionDetailsForm = ({ mission, onSubmit, focus = 'title' }: EditMiss
 
     const updateMissionDetails = async (data: FieldValues) => {
         try {
-            // TODO: update mission resource
-            const updatedMission: Mission = { ...mission, ...data }
+            const { title, description } = data
+            const updatedMission = await updateMissionDoc(mission, { title, description })
+            if (!updatedMission) throw new Error()
             if (onSubmit) onSubmit(updatedMission)
         } catch (error) {
             console.error(error)

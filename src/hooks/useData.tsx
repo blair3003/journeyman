@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
-import { db } from '../config/firebase'
-import { getDocs, collection } from 'firebase/firestore'
 import useDataReducer from './useDataReducer'
+import { getCampaigns, getMissions, getObjectives, getUsers } from '../services/firestore'
 
 interface Data {
 	resources: {
@@ -33,52 +32,6 @@ const useData = (): Data => {
         const getData = async () => {
             try {
                 dispatchData({ type: 'DATA_FETCH_INIT' })
-                const getUsers = async () => {
-                    const data = await getDocs(collection(db, 'users'))
-                    return data.docs.map(doc => ({id: doc.id, ...doc.data() }))
-                }
-                const getCampaigns = async () => {
-                    const data = await getDocs(collection(db, 'campaigns'))
-                    return data.docs.map(doc => {
-                        const { users, missions, ...rest } = doc.data()
-                        return {
-                            id: doc.id,
-                            users: users?.map((user: { id: string }) => user.id),
-                            missions: missions?.map((mission: { id: string }) => mission.id),
-                            ...rest
-                        }
-                    })
-                }
-                const getMissions = async () => {
-                    const data = await getDocs(collection(db, 'missions'))
-                    return data.docs.map(doc => {
-                        const { campaign, objectives, ...rest } = doc.data()
-                        return {
-                            id: doc.id,
-                            campaign: campaign.id,
-                            objectives: objectives?.map((objective: { id: string }) => objective.id),
-                            ...rest
-                        }
-                    })
-                }
-                const getObjectives = async () => {
-                    const data = await getDocs(collection(db, 'objectives'))
-                    return data.docs.map(doc => {
-                        const { users, mission, messages, ...rest } = doc.data()
-                        return {
-                            id: doc.id,
-                            users: users?.map((user: { id: string }) => user.id),
-                            mission: mission.id,
-                            messages: messages.map((message: { user: { id: string } }) => {
-                                return {
-                                    ...message,
-                                    user: message.user.id
-                                }
-                            }),
-                            ...rest
-                        }
-                    })
-                }
                 const [users, campaigns, missions, objectives] = await Promise.all([
                     getUsers(),
                     getCampaigns(),

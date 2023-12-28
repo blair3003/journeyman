@@ -22,17 +22,18 @@ const Tasks = ({ defaultValues = [], setValue, errors, isDarkMode = false }: Tas
 
 	const addTask = () => {
         if (!newTaskLabel) return
-        const id = (tasks.length) ? Number(tasks[tasks.length - 1].id) + 1 : 1
-        updateTasks([...tasks, { id: id.toString(), label: newTaskLabel, checked: false }])
+        // const id = (tasks.length) ? Number(tasks[tasks.length - 1].id) + 1 : 1
+        // updateTasks([...tasks, { id: id.toString(), label: newTaskLabel, checked: false }])
+        updateTasks([...tasks, { label: newTaskLabel, checked: false }])
         setNewTaskLabel('')
 	}
 
-	const removeTask = (oldTaskID: string) => {
-		updateTasks(tasks.filter(task => task.id !== oldTaskID))
+	const removeTask = (taskIndex: number) => {
+		updateTasks(tasks.filter((_, index) => index !== taskIndex))
 	}
 
-	const checkTask = (taskID: string) => {
-        updateTasks(tasks.map(task => task.id === taskID ? { ...task, checked: !task.checked } : task))
+	const checkTask = (taskIndex: number) => {
+        updateTasks(tasks.map((task, index) => index === taskIndex ? { ...task, checked: !task.checked } : task))
 	}
 
 	return (
@@ -43,7 +44,7 @@ const Tasks = ({ defaultValues = [], setValue, errors, isDarkMode = false }: Tas
 			</div>
 			<div className="">
 				<div className="p-2">
-					{tasks.map(task => <Task key={task.id} id={task.id} label={task.label} checked={task.checked} onCheck={checkTask} onRemove={removeTask} isDarkMode={isDarkMode} />)}
+					{tasks.map((task, index) => <Task key={index} index={index} label={task.label} checked={task.checked} onCheck={checkTask} onRemove={removeTask} isDarkMode={isDarkMode} />)}
 				</div>
 				<div className="flex items-center gap-2">
 					<div className={`flex gap-1 items-center grow rounded ${isDarkMode ? 'bg-slate-950 text-white' : 'bg-slate-50 text-black'}`}>
