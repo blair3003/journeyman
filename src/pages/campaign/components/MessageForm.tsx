@@ -3,15 +3,22 @@ import { HiMiniPaperAirplane } from 'react-icons/hi2'
 import { useAuthContext } from '../../../context/AuthContext'
 import { useAppContext } from '../../../context/AppContext'
 import ProfilePic from '../../../components/ProfilePic'
+import { useDataContext } from '../../../context/DataContext'
+import { createObjectiveDocMessage } from '../../../services/firestore'
 
 interface MessageFormProps {
-	objectiveID: string
+	objectiveId: string
+	onSubmit?: (updatedObjective: Objective) => void
 }
 
-const MessageForm = ({ objectiveID }: MessageFormProps) => {
+const MessageForm = ({ objectiveId, onSubmit }: MessageFormProps) => {
 
 	const { isDarkMode } = useAppContext()
-	const { auth } = useAuthContext()
+	const { authUser } = useAuthContext()
+	const { users, objectives } = useDataContext()
+
+	const user = users.find(user => user.uid === authUser?.uid)
+	const objective = objectives.find(objective => objective.id === objectiveId)
 
 	const {
 		register,
@@ -22,14 +29,17 @@ const MessageForm = ({ objectiveID }: MessageFormProps) => {
 
 	const postMessage = async (data: FieldValues) => {
 		try {
-			console.log({ ...data, objective: objectiveID, user: auth?.uid })
+			const { body } = data
+			const updatedObjective = await createObjectiveDocMessage(objective!, user!.id, body)
+			if (!updatedObjective) throw new Error()
+			if (onSubmit) onSubmit(updatedObjective)
             reset()
 		} catch (error) {
 			console.error(error)
 		}
 	}
 
-    if (!auth) return null
+    if (!user) return null
 
 	return (
 		<form onSubmit={handleSubmit(postMessage)}>
@@ -37,8 +47,8 @@ const MessageForm = ({ objectiveID }: MessageFormProps) => {
 			<div className="flex items-center gap-2 py-2">
 
 				<div className="">
-	                <span className="sr-only">{auth.displayName}</span>
-	                <ProfilePic photoURL={auth?.photoURL!} displayName={auth.displayName!} />
+	                <span className="sr-only">{user.displayName}</span>
+	                <ProfilePic photoURL={user?.displayPic} displayName={user.displayName} />
 				</div>
 
 				<div className={`flex gap-1 items-center grow rounded ${isDarkMode ? 'bg-slate-950 text-white' : 'bg-slate-50 text-black'}`}>

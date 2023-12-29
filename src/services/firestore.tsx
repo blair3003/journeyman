@@ -151,3 +151,33 @@ export const updateMissionDoc = async (mission: Mission, data: { title?: string,
         console.error(error)
     }
 }
+
+export const updateObjectiveDoc = async (objective: Objective, data: { title?: string, description?: string, mission: string, due?: Date, labels?: string[], priority?: string, difficulty?: string, tasks?: Task[], users?: string[] }) => {
+    try {
+        const objectiveDocRef = doc(objectiveCollectionRef, objective.id)
+        const missionDocRef = doc(missionCollectionRef, data.mission)
+        const userDocRefs = data.users?.map(user => doc(userCollectionRef, user))
+        const timestamp = serverTimestamp()
+        const clientTimestamp = new Date()
+        await updateDoc(objectiveDocRef, { ...data, mission: missionDocRef, users: userDocRefs ?? null, updatedAt: timestamp })        
+        return { ...objective, ...data, updatedAt: clientTimestamp } as Objective
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const createObjectiveDocMessage = async (objective: Objective, user: string, body: string) => {
+    try {
+        const objectiveDocRef = doc(objectiveCollectionRef, objective.id)
+        const userDocRef = doc(userCollectionRef, user)
+        // const timestamp = serverTimestamp()
+        const clientTimestamp = new Date()
+        const message = { user: userDocRef, body, createdAt: clientTimestamp, updatedAt: clientTimestamp }
+        await updateDoc(objectiveDocRef, { messages: arrayUnion(message) } )
+        const clientMessage = { user, body, createdAt: clientTimestamp, updatedAt: clientTimestamp }
+        const messages = (objective.messages?.length) ? [...objective.messages, clientMessage] : [clientMessage]
+        return { ...objective, messages } as Objective
+    } catch (error) {
+        console.error(error)
+    }
+}

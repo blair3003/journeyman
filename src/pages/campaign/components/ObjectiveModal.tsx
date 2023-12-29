@@ -1,15 +1,13 @@
-import { useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import Objective from './Objective'
 import Modal from '../../../components/Modal'
+import { useDataContext } from '../../../context/DataContext'
 
-interface ObjectiveModalProps {
-	objectives: Objective[]
-	missions: Mission[]
-}
+const ObjectiveModal = () => {
 
-const ObjectiveModal = ({ objectives, missions }: ObjectiveModalProps) => {
-
+	const { campaignId } = useParams()
 	const [searchParams, setSearchParams] = useSearchParams() 
+	const { objectives } = useDataContext()
 
 	const objectiveId = searchParams.get('o')
 	const objective = objectives.find(objective => objective.id === objectiveId)
@@ -19,11 +17,11 @@ const ObjectiveModal = ({ objectives, missions }: ObjectiveModalProps) => {
 		setSearchParams(searchParams)
 	}
 
-	if (!objective) return null
+	if (!objective || !campaignId) return null
 
 	return (
 		<Modal title={`Objective #${objective.id}`} onClose={onClose}>
-			<Objective objective={objective} missions={missions} />
+			<Objective campaignId={campaignId} objective={objective} />
 		</Modal>
 	)
 }

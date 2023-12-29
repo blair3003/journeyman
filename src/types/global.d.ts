@@ -24,7 +24,6 @@ type Mission = {
     campaign: string
     title: string
     description?: string
-    objectives?: string[]
     order: number
     createdAt: Date
     updatedAt: Date

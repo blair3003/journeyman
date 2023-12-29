@@ -10,15 +10,21 @@ import Labels from './Labels'
 import Tasks from './Tasks'
 import Party from './Party'
 import { useAppContext } from '../../../context/AppContext'
+import { updateObjectiveDoc } from '../../../services/firestore'
+import { useDataContext } from '../../../context/DataContext'
 
 interface ObjectiveFormProps {
+	campaignId: string
 	objective: Objective
-	missions: Mission[]
+	onSubmit: (updatedObjective: Objective) => void
 }
 
-const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
+const ObjectiveForm = ({ campaignId, objective, onSubmit }: ObjectiveFormProps) => {
 
 	const { isDarkMode } = useAppContext()
+	const { missions } = useDataContext()
+
+	const campaignMissions = missions.filter(mission => mission.campaign === campaignId)
 	const { labels, difficulty, priority } = options
 
 	const {
@@ -36,10 +42,27 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
 
 	const updateObjective = async (data: FieldValues) => {
 		try {
-			console.log(data)
+			const { title, description, mission, due, labels, priority, difficulty, tasks, users } = data
+			const tidy = { title, description, mission, due, labels, priority, difficulty, tasks, users }
+			const updatedObjective = await updateObjectiveDoc(objective, tidyData(tidy) as typeof tidy)
+			if (!updatedObjective) throw new Error()
+			if (onSubmit) onSubmit(updatedObjective)
 		} catch (error) {
 			console.error(error)
 		}
+	}
+
+	const tidyData = <T extends Record<string, any>>(data: T): Partial<T> => {
+		const tidy: Partial<T> = {}
+		for (const key in data) {
+			if (data.hasOwnProperty(key)) {
+				const value = data[key as keyof typeof data]
+				if (value !== null && value !== undefined && value !== '') {
+					tidy[key] = value
+				}
+			}
+		}		
+		return tidy
 	}
 
 	const debounceUpdate = useCallback(
@@ -73,7 +96,7 @@ const ObjectiveForm = ({ objective, missions }: ObjectiveFormProps) => {
                 id="mission"
                 label="Mission"
                 register={register}
-                options={missions.map(mission => ({ label: mission.title, value: mission.id }))}
+                options={campaignMissions.map(mission => ({ label: mission.title, value: mission.id }))}
                 defaultOptionLabel="--"
                 errors={errors}
                 required={true}

@@ -15,7 +15,7 @@ const Campaign = () => {
     const navigate = useNavigate()
     const { campaignId } = useParams()
     const { isDarkMode } = useAppContext()
-    const { campaigns, missions, objectives } = useDataContext()
+    const { campaigns, missions } = useDataContext()
     const { menu, openMenu, closeMenu } = useMenu({
         'Create Mission': () => navigate('?createMission'),
         'Create Objective': () => navigate('?createObjective')
@@ -23,7 +23,6 @@ const Campaign = () => {
 
     const campaign: Campaign | undefined = campaigns.find(campaign => campaign.id === campaignId)
     const campaignMissions: Mission[] = missions.filter(mission => mission.campaign === campaign?.id)
-    const missionObjectives: Objective[] = objectives.filter(objective => campaignMissions.some(mission => mission.id === objective.mission))
 
     useEffect(() => {
         if (campaigns.length && !campaign) navigate('/', { replace: true })
@@ -44,7 +43,7 @@ const Campaign = () => {
                 </div>
             </header>
             <MissionList missions={campaignMissions} />
-            <ObjectiveModal objectives={missionObjectives} missions={campaignMissions} />
+            <ObjectiveModal />
             <CreateMissionModal />
             <CreateObjectiveModal />
         </section>
