@@ -43,7 +43,7 @@ const LabelsMenu = ({ menu, onClose }: LabelsMenuProps) => {
     if (!menu) return null
 	
 	return (
-        <dialog ref={menuRef} className="absolute m-0 mt-2 top-full start-0 bg-blue-700 rounded px-2 py-1 text-white text-sm border-2 border-slate-600 shadow-xl z-10">
+        <dialog ref={menuRef} className="absolute m-0 mt-2 top-full start-auto bg-blue-700 rounded px-2 py-1 text-white text-sm border-2 border-slate-600 shadow-xl z-10">
             <menu>
                 {Object.keys(menu).map(option =>
                     <li key={option}>
