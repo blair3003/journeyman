@@ -10,7 +10,7 @@ const RequireAuth = () => {
 	return (
 		authUser
 		? <Outlet />
-        : <Navigate to="/login" replace />
+        : <Navigate to="/" replace />
 	)
 }
 

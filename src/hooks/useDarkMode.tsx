@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const useDarkMode = () => {
 
-    const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem('darkMode') || false)
+    const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem('darkMode')?.toLowerCase() === 'true' || false)
 
     const toggleDarkMode = () => {
         setIsDarkMode(!isDarkMode)

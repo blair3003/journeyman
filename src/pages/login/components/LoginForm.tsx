@@ -41,6 +41,14 @@ const LoginForm = () => {
         }
     }
 
+    const loginAsGuest = async () => {
+        try {
+            await signInWithEmailAndPassword(auth, 'guest@forthdev.com', 'guestpass')
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     const loginWithGoogle = async () => {
         try {
             const userCredential = await signInWithPopup(auth, new GoogleAuthProvider())
@@ -107,9 +115,13 @@ const LoginForm = () => {
 
             <SubmitButton disabled={isSubmitting} label="Continue" isDarkMode={isDarkMode} />
 
-            <div className="flex gap-2">
-                <button type="button" disabled={isSubmitting} onClick={loginWithGoogle} className={`w-full p-4 mb-2 rounded shadow ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
-                    {isSubmitting ? <Loader size={16} color={isDarkMode ? 'white' : 'black'} /> : <div className="flex items-center justify-center gap-2"><FaGoogle /><span className="uppercase text-sm">Sign in with Google</span></div>}
+            <div className="flex flex-col">
+                <button type="button" disabled={isSubmitting} onClick={loginAsGuest} className={`w-full p-4 mb-2 rounded shadow uppercase text-sm ${isDarkMode ? 'bg-slate-600 hover:bg-slate-500 text-white' : 'bg-slate-300 hover:bg-slate-200 text-black'}`}>Sign in as Guest</button>
+                <button type="button" disabled={isSubmitting} onClick={loginWithGoogle} className={`w-full p-4 mb-2 rounded shadow uppercase text-sm ${isDarkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
+                    <div className="flex items-center justify-center gap-2">
+                        <FaGoogle />
+                        <span>Sign in with Google</span>
+                    </div>
                 </button>
             </div>            
         

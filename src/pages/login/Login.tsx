@@ -19,8 +19,7 @@ const Login = () => {
                     <span>Don't have an account? </span>
                     <Link to="/register" className="underline">Register now.</Link>
                 </div>
-            </section>
-            
+            </section>            
         </main>
     )
 }
