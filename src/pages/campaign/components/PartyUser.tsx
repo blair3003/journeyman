@@ -15,7 +15,7 @@ const PartyUser = ({ user, onRemove }: PartyUserProps) => {
 
 	return (
 		<div className="relative">
-			<button onClick={e => {e.preventDefault(); openMenu()}} title={user.displayName}>
+			<button type="button" onClick={openMenu} title={user.displayName}>
                 <span className="sr-only">{user.displayName}</span>
                 <ProfilePic photoURL={user?.displayPic} displayName={user.displayName} />
 			</button>

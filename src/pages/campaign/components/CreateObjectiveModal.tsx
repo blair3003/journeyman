@@ -7,7 +7,7 @@ const CreateObjectiveModal = () => {
 
 	const { campaignId } = useParams()
 	const [searchParams, setSearchParams] = useSearchParams()
-	const { missions, objectives, setMissions, setObjectives } = useDataContext()
+	const { missions, objectives, setObjectives } = useDataContext()
 	
 	const createObjective = searchParams.has('createObjective')
 	const missionId = searchParams.get('createObjective')
@@ -21,9 +21,6 @@ const CreateObjectiveModal = () => {
 
 	const onCreate = (newObjective: Objective) => {
 		setObjectives([newObjective, ...objectives])
-		const mission = missions.find(mission => mission.id === newObjective.mission)
-		const updatedMission = { ...mission, objectives: [...mission?.objectives!, newObjective.id] } as Mission
-		setMissions([...missions.filter(mission => mission.id !== updatedMission.id), updatedMission])
 		onClose()
 	}
 

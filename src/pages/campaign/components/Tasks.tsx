@@ -64,7 +64,8 @@ const Tasks = ({ defaultValues = [], setValue, errors, isDarkMode = false }: Tas
 						</button>}
 					</div>
 					<button
-						onClick={e => { e.preventDefault(); addTask() }}
+						type="button"
+						onClick={addTask}
 						title="Add Task"
 						className={`grid place-content-center w-8 h-8 text-lg rounded-full ${isDarkMode ? 'text-white hover:bg-slate-950 focus:bg-slate-950' : 'text-black hover:bg-slate-200 focus:bg-slate-200'}`}
 					>

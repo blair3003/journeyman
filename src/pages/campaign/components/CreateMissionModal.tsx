@@ -21,7 +21,8 @@ const CreateMissionModal = () => {
 	const onCreate = (newMission: Mission) => {
 		setMissions([newMission, ...missions])
 		const campaign = campaigns.find(campaign => campaign.id === newMission.campaign)
-		const updatedCampaign = { ...campaign, missions: [...campaign?.missions!, newMission.id] } as Campaign
+		const campaignMissions = (campaign?.missions?.length) ? [...campaign.missions, newMission.id] : [newMission.id]
+		const updatedCampaign = { ...campaign, missions: campaignMissions } as Campaign
 		setCampaigns([...campaigns.filter(campaign => campaign.id !== newMission.campaign), updatedCampaign])
 		onClose()
 	}

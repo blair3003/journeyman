@@ -13,8 +13,12 @@
     scrollbar-width: none;
 }
 
-html::-webkit-scrollbar {
+::-webkit-scrollbar {
 	display: none;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 @layer utilities {

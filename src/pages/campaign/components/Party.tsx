@@ -55,7 +55,7 @@ const Party = ({ defaultValues = [], setValue, errors, isDarkMode = false }: Par
                     })}
 				</div>
 				<div className="relative">
-					<button onClick={openMenu} className={`grid place-content-center w-8 h-8 text-lg rounded-full ${isDarkMode ? 'text-white hover:bg-slate-950 focus:bg-slate-950' : 'text-black hover:bg-slate-200 focus:bg-slate-200'}`}>
+					<button type="button" onClick={openMenu} className={`grid place-content-center w-8 h-8 text-lg rounded-full ${isDarkMode ? 'text-white hover:bg-slate-950 focus:bg-slate-950' : 'text-black hover:bg-slate-200 focus:bg-slate-200'}`}>
 						<span className="sr-only">Add Label</span>
                         <HiPlus />
 					</button>
