@@ -8,7 +8,7 @@ const Header = () => {
     const { isDarkMode } = useAppContext()
 
     return (
-        <header className={`flex justify-between items-center border-b-2 ${isDarkMode ? "bg-slate-950 border-slate-900" : "bg-white border-slate-100"}`}>
+        <header className={`flex items-center border-b-2 ${isDarkMode ? "bg-slate-950 border-slate-900" : "bg-white border-slate-100"}`}>
             <HomeLink />
             <DarkModeToggle />
             <SearchBar />
