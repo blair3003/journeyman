@@ -7,7 +7,7 @@ const HomeLink = () => {
 
     return (
         <Link
-            to="/"
+            to="/login"
             className="py-2 px-4 flex items-center justify-start gap-1 grow"
         >
             <span className={`font-josefin text-2xl ${isDarkMode ? "text-white" : "text-black"}`}>Journeyman</span>
