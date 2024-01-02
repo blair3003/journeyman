@@ -10,8 +10,8 @@ const Header = () => {
     return (
         <header className={`flex justify-between items-center border-b-2 ${isDarkMode ? "bg-slate-950 border-slate-900" : "bg-white border-slate-100"}`}>
             <HomeLink />
-            <SearchBar />
             <DarkModeToggle />
+            <SearchBar />
         </header>
     )
 }

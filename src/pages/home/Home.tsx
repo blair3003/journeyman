@@ -9,7 +9,7 @@ const Home = () => {
 
     return (
         <main className={`grow ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}>
-            <section className={`max-w-md mx-auto mt-8 rounded-lg p-4 shadow-xl ${isDarkMode ? 'bg-slate-950' : 'bg-slate-200'}`}>
+            <section className={`max-w-md mt-8 mx-auto sm:rounded-lg p-4 shadow-xl ${isDarkMode ? 'bg-slate-950' : 'bg-slate-200'}`}>
                 <header className="flex items-center justify-between mb-4">
                     <HomeLink />
                     <DarkModeToggle />

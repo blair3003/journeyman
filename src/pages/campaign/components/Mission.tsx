@@ -25,7 +25,7 @@ const Mission = ({ mission }: MissionProps) => {
     	})
 	
 	return (
-		<section className={`w-72 flex flex-col border-2 rounded-lg p-2 shadow-xl ${isDarkMode ? 'text-white bg-slate-950 border-slate-800' : 'text-black bg-slate-100 border-slate-200'}`}>
+		<section className={`flex flex-col border-2 rounded-lg p-2 shadow-xl ${isDarkMode ? 'text-white bg-slate-950 border-slate-800' : 'text-black bg-slate-100 border-slate-200'}`}>
 			<header className="flex justify-between items-start mb-4">
 				
 				<button onClick={e => {e.preventDefault(); openDrawer(<MissionDetails mission={mission} />)}}>

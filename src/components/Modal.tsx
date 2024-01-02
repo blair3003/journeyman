@@ -25,7 +25,7 @@ const Modal = ({ title, onClose, children }: ModalProps) => {
 	}, [children])
 
 	return (
-		<dialog ref={dialogRef} className="max-h-screen w-[35rem] p-8 bg-transparent" tabIndex={-1}>
+		<dialog ref={dialogRef} className="max-h-screen w-full sm:w-[35rem] py-8 bg-transparent" tabIndex={-1}>
 			<section className={`p-4 rounded-xl shadow-xl border-2  ${isDarkMode ? 'bg-slate-950 border-slate-900' : 'bg-slate-50 border-slate-300'}`}>
 				<header className="flex justify-between items-center mb-4">
 					<h2 className="text-slate-500 text-sm uppercase font-bold">{title}</h2>

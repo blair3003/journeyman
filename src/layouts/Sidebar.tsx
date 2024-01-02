@@ -15,7 +15,7 @@ const Sidebar = () => {
 	const userCampaigns: Campaign[] = user ? campaigns.filter(campaign => campaign.users?.includes(user.id)) : []
 
     return (
-        <aside className={`p-2 w-64 flex flex-col ${isDarkMode ? 'bg-slate-950' : 'bg-white'}`}>
+        <aside className={`hidden sm:flex p-2 w-64 flex-col ${isDarkMode ? 'bg-slate-950' : 'bg-white'}`}>
             <h2 className="sr-only">Navigation</h2>
 
             <section className="grow">
