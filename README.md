@@ -1,27 +1,19 @@
-# React + TypeScript + Vite
+# Journeyman
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Journeyman is a project management application, built using React with Firebase Authentication and Firebase Database.
 
-Currently, two official plugins are available:
+[https://journeyman-f849b.web.app/](https://journeyman-f849b.web.app/))
+ 
+## The App
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application uses React Router with layers of context providers to provide state management. The app layer provides app-wide controls for the application dark mode setting, whilst the data layer provides the application data. An auth layer supports user authentication and access control. The forms in the application are built using React Hook Form - most configured to send data on submit, except for the Objective form which will send on change.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Features of the app include:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Firebase Database** - Data is stored as collections of documents in the no-SQL Firebase Database. 
+- **Optimistic rendering** - Updates to the application data are sent to the server and updated in client state in parallel.
+- **Objective update on change** - Changes to fields in an Objective will be registered instantly.
+- **Authentication** - User account management is handled by Firebase Authentication with the option to sign in with Google.
+- **Dark Mode Toggle** - Users can toggle the Dark Mode theme of the application with the click of a button.
