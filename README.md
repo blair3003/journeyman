@@ -1,6 +1,6 @@
 # Journeyman
 
-Journeyman is a project management application, built using React with Firebase Authentication and Firebase Database.
+Journeyman is a project management application, built using React with Firebase Authentication and Firestore Database.
 
 [https://journeyman-f849b.web.app/](https://journeyman-f849b.web.app/))
  
@@ -12,7 +12,7 @@ The application uses React Router with layers of context providers to provide st
 
 Features of the app include:
 
-- **Firebase Database** - Data is stored as collections of documents in the no-SQL Firebase Database. 
+- **Firestore Database** - Data is stored as collections of documents in the no-SQL Firestore Database. 
 - **Optimistic rendering** - Updates to the application data are sent to the server and updated in client state in parallel.
 - **Objective update on change** - Changes to fields in an Objective will be registered instantly.
 - **Authentication** - User account management is handled by Firebase Authentication with the option to sign in with Google.
