@@ -2,7 +2,7 @@
 
 Journeyman is a project management application, built using React with Firebase Authentication and Firestore Database.
 
-[https://journeyman-f849b.web.app/](https://journeyman-f849b.web.app/))
+[https://journeyman-f849b.web.app/](https://journeyman-f849b.web.app/)
  
 ## The App
 
