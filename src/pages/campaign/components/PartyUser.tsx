@@ -14,7 +14,7 @@ const PartyUser = ({ user, onRemove }: PartyUserProps) => {
 	})
 
 	return (
-		<div className="relative">
+		<div className="relative grid place-content-center">
 			<button type="button" onClick={openMenu} title={user.displayName}>
                 <span className="sr-only">{user.displayName}</span>
                 <ProfilePic photoURL={user?.displayPic} displayName={user.displayName} />

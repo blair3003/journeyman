@@ -38,6 +38,7 @@ const useDataReducer = (): DataReducer => {
             case DataActionTypes.DATA_FETCH_INIT:
                 return { ...state, isLoading: true, isError: false }
             case DataActionTypes.DATA_FETCH_SUCCESS:
+                console.log(`Data loaded`)
                 return { ...state, resources: action.payload, isLoading: false, isError: false }
             case DataActionTypes.DATA_FETCH_FAILURE:
                 return { ...state, isLoading: false, isError: true }
